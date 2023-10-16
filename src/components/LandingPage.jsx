@@ -8,7 +8,9 @@ const LandingPage = () => {
             <div className="container landingpage">
                 <div className="lp">
                     <h1>Welcome to Furte E-Commerce Store</h1>
-                    <Link to="/signin">Sign In</Link>
+                    <div className="login-register">
+                        <Link to="/signin">Sign In</Link>
+                    </div>
                 </div>
             </div>
             
