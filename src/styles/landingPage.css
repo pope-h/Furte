@@ -1,3 +1,7 @@
 .landingpage {
     background: url('backgroundmain.jpg');
 }
+
+.container .lp h1 {
+    color: #e4e4e4;
+}
