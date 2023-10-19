@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "./Header";
+import useStorePackage from "../store";
 
 function SignIn() {
+
+    const login = useStorePackage(state => state.login);
+    const navigate = useNavigate();
 
     const [userDetails, setUserDetails] = useState({
         email: "",
@@ -20,10 +25,45 @@ function SignIn() {
         });
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log({...userDetails});
-    }
+
+        const { email, password } = userDetails;
+
+        const payload = {
+            email,
+            password,
+        };
+
+        try {
+            // Send a POST request to the backend
+            const response = await fetch('http://localhost:3001/api/v1/auth/signin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data.token);
+                const userToken = data.token;
+
+                login(userToken);
+                console.log('Successfully signed in:', data);
+                setTimeout(() => {
+                    navigate('/dashboard');
+                }, 2000);
+            } else {
+                const errorData = await response.json();
+                console.error('Sign In failed:', errorData.msg);
+            }
+        } catch (err) {
+            console.error('Error during sign in:', err);
+        }
+    };
 
     return (
         <>

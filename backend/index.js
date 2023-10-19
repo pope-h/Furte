@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const app = express();
 
-const allowedOrigins = ['http://localhost'];
+const allowedOrigins = ['http://localhost:3000'];
 app.use(cors({ origin: allowedOrigins, allowedHeaders: ['*'] }));
 app.use(express.json());
 
@@ -20,7 +20,7 @@ const authRoute = require('./routes/auth');
 
 app.use('/api/v1/auth', authRoute);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
 });

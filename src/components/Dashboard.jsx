@@ -1,9 +1,17 @@
 import React from "react";
+import Header from "./Header";
 
 const DashBoard = () => {
 
     return (
-        <h1>Welcome to Furte</h1>
+        <>
+            <div className="container">
+                <Header />
+                <div className="content text-sci">
+                    This is the DashBoard
+                </div>
+            </div>
+        </>
     );
 }
 

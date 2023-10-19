@@ -1,12 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 
 function SignUp() {
 
+    const navigate = useNavigate();
+
     const [newDetails, setNewDetails] = useState({
-        uName: "",
+        userName: "",
         email: "",
         password: ""
     });
@@ -22,10 +25,31 @@ function SignUp() {
         });
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log({...newDetails});
-    }
+
+        try {
+            const response = await fetch('http://localhost:3001/api/v1/auth/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newDetails),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error(errorData);
+            }
+
+            const successData = await response.json();
+            console.log(successData);
+            navigate('/signin');
+        } catch (err) {
+            console.error('An error occured:', err);
+        }
+    };
 
     return (
         <>
@@ -57,7 +81,7 @@ function SignUp() {
 
                             <div className="input-box">
                                 <span className="icon"><i className='bx bxs-user'></i></span>
-                                <input value={newDetails.uName} onChange={handleChange} type="text" id="uName" name="uName" required />
+                                <input value={newDetails.uName} onChange={handleChange} type="text" id="userName" name="userName" required />
                                 <label htmlFor="userName">User Name</label>  
                             </div>
                             <div className="input-box">
