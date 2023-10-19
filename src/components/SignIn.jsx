@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import useStorePackage from "../store";
+import LoadingSpinner from "./LoadingSpinner";
 
 function SignIn() {
 
     const login = useStorePackage(state => state.login);
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
 
     const [userDetails, setUserDetails] = useState({
         email: "",
@@ -28,6 +30,8 @@ function SignIn() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log({...userDetails});
+
+        setIsLoading(true);
 
         const { email, password } = userDetails;
 
@@ -53,9 +57,13 @@ function SignIn() {
 
                 login(userToken);
                 console.log('Successfully signed in:', data);
-                setTimeout(() => {
-                    navigate('/dashboard');
-                }, 2000);
+
+                // The below will be used oce the database is populated and 
+                // the dashboard get much from it.
+                // setTimeout(() => {
+                //     navigate('/dashboard');
+                // }, 5000);
+                navigate('/dashboard');
             } else {
                 const errorData = await response.json();
                 console.error('Sign In failed:', errorData.msg);
@@ -63,6 +71,7 @@ function SignIn() {
         } catch (err) {
             console.error('Error during sign in:', err);
         }
+        setIsLoading(false);
     };
 
     return (
@@ -112,6 +121,7 @@ function SignIn() {
                             <button type="submit" className="btn">Sign In</button>
                             <div className="login-register">
                                 <p>Don't have an account? <Link to="/signup" className="register-link">Sign Up</Link></p>
+                                { isLoading && <LoadingSpinner /> }
                             </div>
                         </form>
                     </div>

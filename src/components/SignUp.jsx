@@ -3,10 +3,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
+import LoadingSpinner from "./LoadingSpinner";
 
 function SignUp() {
 
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
 
     const [newDetails, setNewDetails] = useState({
         userName: "",
@@ -29,6 +31,8 @@ function SignUp() {
         e.preventDefault();
         console.log({...newDetails});
 
+        setIsLoading(true);
+
         try {
             const response = await fetch('http://localhost:3001/api/v1/auth/signup', {
                 method: 'POST',
@@ -49,6 +53,7 @@ function SignUp() {
         } catch (err) {
             console.error('An error occured:', err);
         }
+        setIsLoading(false);
     };
 
     return (
@@ -103,6 +108,7 @@ function SignUp() {
                             <button type="submit" className="btn">Sign Up</button>
                             <div className="login-register">
                                 <p>Already have an account? <Link to="/signin" className="register-link">Sign In</Link></p>
+                                { isLoading && <LoadingSpinner /> }
                             </div>
                         </form>
                     </div>
