@@ -17,8 +17,10 @@ app.get('/', (req, res) => {
 connectDB();
 
 const authRoute = require('./routes/auth');
+const dashboardRoute = require('./routes/dashboard');
 // app.use('/api/v1/auth', authRoute);
 app.use(authRoute);
+app.use(dashboardRoute);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
