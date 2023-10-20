@@ -42,7 +42,7 @@ function SignIn() {
 
         try {
             // Send a POST request to the backend
-            const response = await fetch('http://localhost:3001/api/v1/auth/signin', {
+            const response = await fetch('http://localhost:3001/signin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -34,7 +34,7 @@ function SignUp() {
         setIsLoading(true);
 
         try {
-            const response = await fetch('http://localhost:3001/api/v1/auth/signup', {
+            const response = await fetch('http://localhost:3001/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
