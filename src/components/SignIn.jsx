@@ -54,6 +54,7 @@ function SignIn() {
                 const data = await response.json();
                 console.log(data.token);
                 const userToken = data.token;
+                const role = data.role;
 
                 login(userToken);
                 console.log('Successfully signed in:', data);
@@ -63,7 +64,11 @@ function SignIn() {
                 // setTimeout(() => {
                 //     navigate('/dashboard');
                 // }, 5000);
-                navigate('/dashboard');
+                if (role === "Admin") {
+                    navigate('/admin-dashboard');
+                } else {
+                    navigate('/dashboard');
+                }
             } else {
                 const errorData = await response.json();
                 console.error('Sign In failed:', errorData.msg);
