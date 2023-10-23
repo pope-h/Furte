@@ -14,19 +14,19 @@ const handleRefreshToken = async (req, res) => {
         process.env.REFRESH_KEY,
         (err, decoded) => {
             if (err || foundUser.email !== decoded.email) return res.sendStatus(403);
-            const roles = Object.values(foundUser.roles);
+            const role = Object.values(foundUser.role);
             const accessToken = jwt.sign(
                 {
                     "UserInfo": {
                         "userName": decoded.userName,
                         "email": decoded.email,
-                        "roles": roles
+                        "role": role
                     }
                 },
                 process.env.ACCESS_KEY,
-                { expiresIn: '15m' }
+                { expiresIn: '10m' }
             );
-            res.json({ roles, accessToken })
+            res.json({ role: foundUser.role, accessToken })
         }
     );
 }

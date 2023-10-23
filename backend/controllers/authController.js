@@ -2,24 +2,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
-// const createJwtToken = (user) => {
-//     // Define the payload
-//     const payload = {
-//         user: {
-//             id: user.id,
-//             userName: user.userName,
-//             email: user.email,
-//         },
-//     };
-
-//     // Sign the JWT token using secret key
-//     const token = jwt.sign(payload, process.env.ACCESS_KEY, {
-//         expiresIn: '1hr',
-//     });
-
-//     return token;
-// };
-
 exports.signin = async (req, res) => {
     // Extract data from request body
     const { email, password } = req.body;
@@ -36,18 +18,17 @@ exports.signin = async (req, res) => {
         // Verify the password
         const match = await bcrypt.compare(password, user.password);
         if (match) {
-            const roles = Object.values(user.roles).filter(Boolean);
             // create JWTs
             const accessToken = jwt.sign(
                 {
                     "UserInfo": {
                         "userName": user.userName,
                         "email": user.email,
-                        "roles": roles
+                        "role": user.role
                     }
                 },
                 process.env.ACCESS_KEY,
-                { expiresIn: '15m' }
+                { expiresIn: '10m' }
             );
             const refreshToken = jwt.sign(
                 { "email": user.email },
@@ -58,13 +39,13 @@ exports.signin = async (req, res) => {
             user.refreshToken = refreshToken;
             const result = await user.save();
             console.log(result);
-            console.log(roles);
+            console.log(user.role);
     
             // Creates Secure Cookie with refresh token
             res.cookie('jwt', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 3 * 24 * 60 * 60 * 1000 });
     
             // Send authorization roles and access token to user
-            res.json({ roles, accessToken });
+            res.json({ role: user.role, accessToken });
     
         } else {
             res.sendStatus(401);
@@ -77,7 +58,10 @@ exports.signin = async (req, res) => {
 
 exports.signup = async (req, res) => {
     // Extract user data from request body
-    const { userName, email, password } = req.body;
+    const { userName, email, role, password } = req.body;
+    if (!userName || !email || !password) {
+        return res.status(400).json({ 'msg': "Please fill out all entries" });
+    }
 
     try {
         // check if user exists
@@ -87,6 +71,18 @@ exports.signup = async (req, res) => {
             return res.status(400).json({ msg: 'User already exists' });
         }
 
+         
+        // Set default role to "User"
+        let selectedRole = role || "User";
+
+        // Verify and set the role
+        if (role === "Admin") {
+            selectedRole = "Admin";
+        } else {
+            return res.status(400).json({ msg: "Invalid Selection" });
+        }
+        
+
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -94,7 +90,7 @@ exports.signup = async (req, res) => {
         user = new User({
             userName,
             email,
-            "roles": { "User": 2001 },
+            role: selectedRole,
             password: hashedPassword,
         });
 

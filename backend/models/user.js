@@ -10,13 +10,10 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    roles: {
-        User: {
-            type: Number,
-            default: 2001
-        },
-        Editor: Number,
-        Admin: Number
+    role: {
+        type: String,
+        enum: ['Admin', 'User'],
+        default: 'User',
     },
     password: {
         type: String,
