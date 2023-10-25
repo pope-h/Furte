@@ -52,8 +52,9 @@ function SignIn() {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log(data.token);
-                const userToken = data.token;
+                console.log(data.accessToken);
+                console.log(data.role);
+                const userToken = data.accessToken;
                 const role = data.role;
 
                 login(userToken);
