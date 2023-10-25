@@ -1,0 +1,24 @@
+.landingpage {
+    background: url('backgroundmain.jpg');
+}
+
+.container .lp h1 {
+    color: #e4e4e4;
+}
+
+.lp .login-register {
+    font-size: 14.5px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.login-register a {
+    color: #e4e4e4;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-register a:hover {
+    text-decoration: underline;
+}
