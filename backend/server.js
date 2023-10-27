@@ -29,6 +29,7 @@ app.use('/logout', require('./routes/logout')); // Another way of handling
 app.use(verifyJWT);
 app.use(dashboardRoute);
 app.use('/products', require('./routes/api/products'));
+app.use('/users', require('./routes/api/users'));
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

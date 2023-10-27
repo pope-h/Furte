@@ -79,6 +79,8 @@ exports.signup = async (req, res) => {
         // Verify and set the role
         if (role === "Admin") {
             selectedRole = "Admin";
+        } else if (!role) {
+            selectedRole = "User";
         } else {
             return res.status(400).json({ msg: "Invalid Selection" });
         }
