@@ -42,7 +42,8 @@ exports.signin = async (req, res) => {
             console.log(user.role);
     
             // Creates Secure Cookie with refresh token
-            res.cookie('jwt', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 3 * 24 * 60 * 60 * 1000 });
+            // Remember to add `, secure: true` after testing
+            res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', maxAge: 3 * 24 * 60 * 60 * 1000 });
     
             // Send authorization roles and access token to user
             res.json({ role: user.role, accessToken });

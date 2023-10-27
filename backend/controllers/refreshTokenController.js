@@ -26,7 +26,7 @@ const handleRefreshToken = async (req, res) => {
                 process.env.ACCESS_KEY,
                 { expiresIn: '10m' }
             );
-            res.json({ role: foundUser.role, accessToken })
+            res.json({ role, accessToken });
         }
     );
 }
