@@ -1,30 +1,36 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const userSchema = new mongoose.Schema({
-    userName: {
+const productSchema = new Schema({
+    name: {
         type: String,
-        required: true,
+        required: true
     },
-    email: {
+    description: {
         type: String,
-        required: true,
-        unique: true,
+        required: true
     },
-    role: {
+    category: {
         type: String,
-        enum: ['Admin', 'User'],
-        default: 'User',
+        required: true
     },
-    password: {
+    price: {
+        type: Number,
+        required: true
+    },
+    quantity: {
+        type: Number,
+        required: true
+    },
+    imageUrl: {
         type: String,
-        required: true,
+        required: true
     },
-    refreshToken: String,
     ratings: [{
         rating: Number,
         user: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Product'
+            ref: 'User'
         }
     }],
     reviews: [{
@@ -32,7 +38,7 @@ const userSchema = new mongoose.Schema({
         content: String,
         user: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Product'
+            ref: 'User'
         }
     }],
     createdAt: {
@@ -41,6 +47,4 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+module.exports = mongoose.model('Product', productSchema);
