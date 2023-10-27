@@ -66,9 +66,9 @@ const updateProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
     if (!req?.body?.id) return res.status(400).json({ 'msg': 'Product ID required.' });
 
-    const product = await Product.findOne({ _id: req.params.id }).exec();
+    const product = await Product.findOne({ _id: req.body.id }).exec();
     if (!product) {
-        return res.status(204).json({ 'msg': `No product matches ID ${req.params.id}.` });
+        return res.status(204).json({ 'msg': `No product matches ID ${req.body.id}.` });
     }
     const result = await product.deleteOne();
     res.json(result);
