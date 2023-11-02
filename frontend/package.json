@@ -15,7 +15,13 @@
     "zustand": "^4.4.3"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@babel/plugin-proposal-private-property-in-object": "^7.18.9"
+  },
+  "overrides": {
+    "react": "^18.2.0",
+    "@svgr/webpack": "$@svgr/webpack",
+    "react-dom": "^18.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
