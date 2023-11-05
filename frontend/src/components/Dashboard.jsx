@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "./Header";
 
 const DashBoard = () => {
@@ -6,7 +5,7 @@ const DashBoard = () => {
     <>
       <div className="container">
         <Header />
-        <div className="content text-sci">
+        <div className="content text-sci text-3xl font-bold underline">
           This is the DashBoard
         </div>
       </div>
