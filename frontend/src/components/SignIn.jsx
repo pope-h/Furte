@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
@@ -132,7 +132,7 @@ function SignIn() {
                             </div>
                             <button type="submit" className="btn">Sign In</button>
                             <div className="login-register">
-                                <p>Don't have an account? <Link to="/signup" className="register-link">Sign Up</Link></p>
+                                <p>{"Don't have an account? "}<Link to="/signup" className="register-link">Sign Up</Link></p>
                                 { isLoading && <LoadingSpinner /> }
                             </div>
                         </form>
