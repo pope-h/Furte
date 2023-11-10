@@ -1,6 +1,6 @@
 import { CustomerReviews, Footer, Hero, PopularProducts,
 Services, SpecialOffer, Subscribe, SuperQuality } from "../sections";
-import Nav from "./Nav";
+import Nav from "../components/Nav";
 
 const LandingPage = () => {
     return (

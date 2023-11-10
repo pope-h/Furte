@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import Header from "./Header";
-import LoadingSpinner from "./LoadingSpinner";
+import Header from "../components/Header";
+import useStorePackage from "../store";
+import LoadingSpinner from "../components/LoadingSpinner";
 
-function SignUp() {
+function SignIn() {
 
+    const login = useStorePackage(state => state.login);
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
 
-    const [newDetails, setNewDetails] = useState({
-        userName: "",
+    const [userDetails, setUserDetails] = useState({
         email: "",
         password: ""
     });
@@ -18,7 +19,7 @@ function SignUp() {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        setNewDetails(prevValue => {
+        setUserDetails(prevValue => {
             return {
                 ...prevValue,
                 [name]: value
@@ -28,29 +29,59 @@ function SignUp() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({...newDetails});
+        console.log({...userDetails});
 
         setIsLoading(true);
 
+        const { email, password } = userDetails;
+
+        const payload = {
+            email,
+            password,
+        };
+
         try {
-            const response = await fetch('http://localhost:3001/signup', {
+            // Send a POST request to the backend
+            const response = await fetch('http://localhost:3001/signin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(newDetails),
+                body: JSON.stringify(payload),
             });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                console.error(errorData);
-            }
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data.accessToken);
+                console.log(data.role);
+                const userToken = data.accessToken;
+                const role = data.role;
 
-            const successData = await response.json();
-            console.log(successData);
-            navigate('/signin');
+                login(userToken);
+                console.log('Successfully signed in:', data);
+
+                // The below will be used oce the database is populated and 
+                // the dashboard get much from it.
+                // setTimeout(() => {
+                //     navigate('/dashboard');
+                // }, 5000);
+                if (role === "Admin") {
+                    navigate('/admin-dashboard');
+                } else {
+                    navigate('/dashboard');
+                }
+            } else {
+                // The below code should be uncommented.
+
+                // if (response.status === 401) {
+                //     return await sendRefreshToken();
+                // }
+                // throw new Error(`$(response.status) $(response.statusText)`);
+                const errorData = await response.json();
+                console.error('Sign In failed:', errorData.msg);
+            }
         } catch (err) {
-            console.error('An error occured:', err);
+            console.error('Error during sign in:', err);
         }
         setIsLoading(false);
     };
@@ -77,36 +108,31 @@ function SignUp() {
                         </div>
                     </div>
                 </div>
-            
                 <div className="logreg-box">
                     <div className="form-box login">
                         <form onSubmit={handleSubmit}>
-                            <h2>Sign Up</h2>
+                            <h2>Sign In</h2>
 
                             <div className="input-box">
-                                <span className="icon"><i className='bx bxs-user'></i></span>
-                                <input value={newDetails.uName} onChange={handleChange} type="text" id="userName" name="userName" required />
-                                <label htmlFor="userName">User Name</label>  
-                            </div>
-                            <div className="input-box">
                                 <span className="icon"><i className='bx bxs-envelope'></i></span>
-                                <input value={newDetails.email} onChange={handleChange} type="email" id="email" name="email" required />
-                                <label htmlFor="email">Email</label>
+                                <input value={userDetails.email} onChange={handleChange} type="email" id="email" name="email" required />
+                                <label htmlFor="email">Email</label>  
                             </div>
                             <div className="input-box">
                                 <span className="icon"><i className='bx bxs-lock-alt'></i></span>
-                                <input value={newDetails.password} onChange={handleChange} type="password" id="password" name="password" required />
+                                <input value={userDetails.password} onChange={handleChange} type="password" id="password" name="password" required />
                                 <label htmlFor="password">Password</label>
                             </div>
                             <div className="remember-forgot">
                                 <label>
                                     <input type="checkbox" />
-                                    I agree to the terms & conditions.
+                                    Remember me
                                 </label>
+                                <Link to="#">Forgot Password?</Link>
                             </div>
-                            <button type="submit" className="btn">Sign Up</button>
+                            <button type="submit" className="btn">Sign In</button>
                             <div className="login-register">
-                                <p>Already have an account? <Link to="/signin" className="register-link">Sign In</Link></p>
+                                <p>{"Don't have an account? "}<Link to="/signup" className="register-link">Sign Up</Link></p>
                                 { isLoading && <LoadingSpinner /> }
                             </div>
                         </form>
@@ -117,4 +143,4 @@ function SignUp() {
     );
 }
 
-export default SignUp;
+export default SignIn;
