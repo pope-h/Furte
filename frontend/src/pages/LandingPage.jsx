@@ -4,7 +4,7 @@ import Nav from "../components/Nav";
 
 const LandingPage = () => {
     return (
-        <main className="relative bg-white-400">
+        <main className="relative">
             <Nav />
             <section className="xl:padding-l wide:padding-r padding-b">
                 <Hero />

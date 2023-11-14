@@ -111,8 +111,8 @@ export const footerLinks = [
     {
         title: "Get in touch",
         links: [
-            { name: "customer@nike.com", link: "mailto:customer@nike.com" },
-            { name: "+92554862354", link: "tel:+92554862354" },
+            { name: "customer@furte.com", link: "mailto:customer@furte.com" },
+            { name: "+234 708 668 1344", link: "tel:+234 708 668 1344" },
         ],
     },
 ];
@@ -121,4 +121,63 @@ export const socialMedia = [
     { src: facebook, alt: "facebook logo" },
     { src: twitter, alt: "twitter logo" },
     { src: instagram, alt: "instagram logo" },
+];
+
+export const hero = [
+    {
+        id: 1,
+        src:"https://cdn.pixabay.com/photo/2016/09/22/11/55/kitchen-1687121_1280.jpg",
+        srcset:"https://cdn.pixabay.com/photo/2016/09/22/11/55/kitchen-1687121_640.jpg 1x, https://cdn.pixabay.com/photo/2016/09/22/11/55/kitchen-1687121_1280.jpg 2x",
+        alt:"Kitchen Living Room illustration and picture",
+        title:"Kitchen Living Room",
+        style: { maxWidth: '100%', maxHeight: '100%' }
+    },
+    {
+        id: 2,
+        src:"https://cdn.pixabay.com/photo/2018/01/26/08/15/dining-room-3108037_1280.jpg",
+        srcset:"https://cdn.pixabay.com/photo/2018/01/26/08/15/dining-room-3108037_640.jpg 1x, https://cdn.pixabay.com/photo/2018/01/26/08/15/dining-room-3108037_1280.jpg 2x",
+        alt:"Dining Room Living Room photo and picture",
+        title:"Dining Room Living Room",
+        style: { maxWidth: '100%', maxHeight: '100%' }
+    },
+    {
+        id: 3,
+        src:"https://cdn.pixabay.com/photo/2014/12/27/14/37/living-room-581073_1280.jpg",
+        srcset:"https://cdn.pixabay.com/photo/2014/12/27/14/37/living-room-581073_640.jpg 1x, https://cdn.pixabay.com/photo/2014/12/27/14/37/living-room-581073_1280.jpg 2x",
+        alt:"Living Room Victorian photo and picture",
+        title:"Living Room Victorian",
+        style: { maxWidth: '100%', maxHeight: '100%' }
+    },
+    {
+        id: 4,
+        src:"https://cdn.pixabay.com/photo/2015/10/20/18/57/furniture-998265_1280.jpg",
+        srcset:"https://cdn.pixabay.com/photo/2015/10/20/18/57/furniture-998265_640.jpg 1x, https://cdn.pixabay.com/photo/2015/10/20/18/57/furniture-998265_1280.jpg 2x",
+        alt:"Furniture Living Room photo and picture",
+        title:"Furniture Living Room",
+        style: { maxWidth: '100%', maxHeight: '100%' }
+    },
+    {
+        id: 5,
+        src:"https://cdn.pixabay.com/photo/2017/01/07/17/48/interior-1961070_1280.jpg",
+        srcset:"https://cdn.pixabay.com/photo/2017/01/07/17/48/interior-1961070_640.jpg 1x, https://cdn.pixabay.com/photo/2017/01/07/17/48/interior-1961070_1280.jpg 2x",
+        alt:"Interior Living Room photo and picture",
+        title:"Interior Living Room",
+        style: { maxWidth: '100%', maxHeight: '100%' }
+    },
+    {
+        id: 6,
+        src:"https://cdn.pixabay.com/photo/2014/08/11/21/40/bedroom-416062_1280.jpg",
+        srcset:"https://cdn.pixabay.com/photo/2014/08/11/21/40/bedroom-416062_640.jpg 1x, https://cdn.pixabay.com/photo/2014/08/11/21/40/bedroom-416062_1280.jpg 2x",
+        alt:"Bedroom Bed photo and picture",
+        title:"Bedroom Bed",
+        style: { maxWidth: '100%', maxHeight: '100%' }
+    },
+    {
+        id: 7,
+        src:"https://cdn.pixabay.com/photo/2015/04/20/06/46/office-730681_1280.jpg",
+        srcset:"https://cdn.pixabay.com/photo/2015/04/20/06/46/office-730681_640.jpg 1x, https://cdn.pixabay.com/photo/2015/04/20/06/46/office-730681_1280.jpg 2x",
+        alt:"Office Sitting Room photo and picture",
+        title:"Office Sitting Room",
+        style: { maxWidth: '100%', maxHeight: '100%' }
+    }
 ];

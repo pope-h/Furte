@@ -1,5 +1,4 @@
 import { copyrightSign } from "../assets/icons"
-import { footerLogo } from "../assets/images"
 import { footerLinks, socialMedia } from "../constants"
 
 const Footer = () => {
@@ -7,19 +6,13 @@ const Footer = () => {
     <footer className="max-container">
       <div className="flex justify-between items-start gap-20 flex-wrap max-lg:flex-col">
         <div className="flex flex-col items-start">
-          <a href="/">
-            <img
-              src={footerLogo}
-              width={150}
-              height={46}
-            />
-          </a>
+          <h1 className="font-bold font-palanquin text-white cursor-pointer text-4xl pr-8"><i className='bx bxl-firebase'></i>Furte</h1>
           <p className="mt-6 text-base leading-7 font-montserrat text-white-400 sm:max-w-sm">
-            Get shoes ready for the new term at your nearest Nike store. Find Your perfect Size In Store. Get Rewards
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
           <div className="flex items-center gap-5 mt-8">
             {socialMedia.map((icon) => (
-              <div className="flex justify-center items-center w-12 h-12 bg-white rounded-full" key={icon}>
+              <div className="flex justify-center items-center w-12 h-12 bg-white rounded-full cursor-pointer" key={icon}>
                 <img
                   src={icon.src}
                   alt={icon.alt}
