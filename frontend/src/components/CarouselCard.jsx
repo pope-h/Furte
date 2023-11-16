@@ -5,9 +5,13 @@ const CarouselCard = (props) => {
         srcSet={props.srcset}
         alt={props.alt}
         title={props.title}
-        // style={{ ...props.style, maxWidth: '100%', maxHeight: '100%' }}
+        style={{ 
+          maxWidth: '100%',
+          width: '100%',
+          height: '500px',
+          objectFit: 'cover',
+        }}
         loading="lazy"
-        className="object-cover rounded-2xl max-h-full w-full border-2 border-green-500"
     />
   )
 }

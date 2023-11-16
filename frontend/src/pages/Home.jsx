@@ -1,13 +1,17 @@
-// import Nav from "../components/Nav"
+import Nav from "../components/Nav"
 import { Footer } from "../sections"
 import CarouselHero from "../sections/CarouselHero"
+import Intro from "../sections/Intro"
 
 const Home = () => {
   return (
     <main className="relative bg-white-400">
-        {/* <Nav /> */}
-        <section className="xl:padding-l wide:padding-r padding-b">
+        <Nav />
+        <section className="sm:pb-12 pb-6 padding-t">
             <CarouselHero />
+        </section>
+        <section>
+          <Intro />
         </section>
         <section>
             <h1>Products</h1>

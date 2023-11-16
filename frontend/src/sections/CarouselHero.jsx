@@ -7,87 +7,52 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import '../styles/styles.css';
-
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import CarouselCard from '../components/CarouselCard';
+import Button from '../components/Button';
+import { arrowRight } from '../assets/icons';
 
 export default function CarouselHero() {
   return (
     <>
       <Swiper
-        spaceBetween={30}
+        spaceBetween={0}
         centeredSlides={true}
         autoplay={{
-          delay: 2500,
+          delay: 5000,
           disableOnInteraction: false,
         }}
+        lazy={true}
         pagination={{
           clickable: true,
         }}
         navigation={true}
+        speed={1000}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        loop={true}
+        className='relative group'
       >
-        <SwiperSlide>
-            <img 
-                src={hero[0].src}
-                srcSet={hero[0].srcset}
-                alt={hero[0].alt}
-                title={hero[0].title}
-                // style={{ ...props.style, maxWidth: '100%', maxHeight: '100%' }}
-                loading="lazy"
-                className="object-cover rounded-2xl max-h-full w-full border-2 border-green-500"
-            />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img 
-                src={hero[1].src}
-                srcSet={hero[1].srcset}
-                alt={hero[1].alt}
-                title={hero[1].title}
-                // style={{ ...props.style, maxWidth: '100%', maxHeight: '100%' }}
-                loading="lazy"
-                className="object-cover rounded-2xl max-h-full w-full border-2 border-green-500"
-            />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img 
-                src={hero[2].src}
-                srcSet={hero[2].srcset}
-                alt={hero[2].alt}
-                title={hero[2].title}
-                // style={{ ...props.style, maxWidth: '100%', maxHeight: '100%' }}
-                loading="lazy"
-                className="object-cover rounded-2xl max-h-full w-full border-2 border-green-500"
-            />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img 
-                src={hero[3].src}
-                srcSet={hero[3].srcset}
-                alt={hero[3].alt}
-                title={hero[3].title}
-                // style={{ ...props.style, maxWidth: '100%', maxHeight: '100%' }}
-                loading="lazy"
-                className="object-cover rounded-2xl max-h-full w-full border-2 border-green-500"
-            />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img 
-                src={hero[4].src}
-                srcSet={hero[4].srcset}
-                alt={hero[4].alt}
-                title={hero[4].title}
-                // style={{ ...props.style, maxWidth: '100%', maxHeight: '100%' }}
-                loading="lazy"
-                className="object-cover rounded-2xl max-h-full w-full border-2 border-green-500"
-            />
-        </SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        {hero.map((item) => (
+          <SwiperSlide key={item.id}>
+            <CarouselCard {...item} />
+            <div 
+              className='absolute inset-0 flex flex-1 items-center justify-center'
+            >
+              <div className="max-lg:hidden text-center text-white transform translate-y-1/2 group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
+                <h1 className="mt-10 font-palanquin text-8xl font-bold">{item.title}</h1>
+                <p className="hidden group-hover:block transition-opacity duration-300 ease-in-out font-montserrat text-lg leading-8 mt-6 mb-14 px-48"
+                >{item.text}</p>
+                <div className="hidden group-hover:flex flex-col items-center mt-10 transition-opacity duration-300 ease-in-out transform hover:scale-105">
+                  <Button
+                    label="Shop Now"
+                    iconURL={arrowRight}
+                  />
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   );

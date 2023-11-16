@@ -128,16 +128,18 @@ export const hero = [
         id: 1,
         src:"https://cdn.pixabay.com/photo/2016/09/22/11/55/kitchen-1687121_1280.jpg",
         srcset:"https://cdn.pixabay.com/photo/2016/09/22/11/55/kitchen-1687121_640.jpg 1x, https://cdn.pixabay.com/photo/2016/09/22/11/55/kitchen-1687121_1280.jpg 2x",
-        alt:"Kitchen Living Room illustration and picture",
-        title:"Kitchen Living Room",
+        alt:"Kitchen illustration and picture",
+        title:"Kitchen",
+        text:"A functional and stylish space designed for cooking, dining, and socializing. Modern kitchens often feature sleek appliances, ample storage, and contemporary design elements.",
         style: { maxWidth: '100%', maxHeight: '100%' }
     },
     {
         id: 2,
         src:"https://cdn.pixabay.com/photo/2018/01/26/08/15/dining-room-3108037_1280.jpg",
         srcset:"https://cdn.pixabay.com/photo/2018/01/26/08/15/dining-room-3108037_640.jpg 1x, https://cdn.pixabay.com/photo/2018/01/26/08/15/dining-room-3108037_1280.jpg 2x",
-        alt:"Dining Room Living Room photo and picture",
-        title:"Dining Room Living Room",
+        alt:"Dining Room photo and picture",
+        title:"Dining Room",
+        text:"A designated area for enjoying meals with family and friends. Dining rooms typically include a table and chairs, creating a welcoming environment for shared meals and special occasions.",
         style: { maxWidth: '100%', maxHeight: '100%' }
     },
     {
@@ -146,6 +148,7 @@ export const hero = [
         srcset:"https://cdn.pixabay.com/photo/2014/12/27/14/37/living-room-581073_640.jpg 1x, https://cdn.pixabay.com/photo/2014/12/27/14/37/living-room-581073_1280.jpg 2x",
         alt:"Living Room Victorian photo and picture",
         title:"Living Room Victorian",
+        text:"A living room inspired by the Victorian era, characterized by ornate details, rich colors, and elegant furnishings. Victorian living rooms often showcase intricate patterns, plush upholstery, and antique furniture.",
         style: { maxWidth: '100%', maxHeight: '100%' }
     },
     {
@@ -154,6 +157,7 @@ export const hero = [
         srcset:"https://cdn.pixabay.com/photo/2015/10/20/18/57/furniture-998265_640.jpg 1x, https://cdn.pixabay.com/photo/2015/10/20/18/57/furniture-998265_1280.jpg 2x",
         alt:"Furniture Living Room photo and picture",
         title:"Furniture Living Room",
+        text:"A collection of furniture pieces curated for the living room. This may include sofas, chairs, coffee tables, and entertainment units designed to enhance comfort and style in the central space of the home.",
         style: { maxWidth: '100%', maxHeight: '100%' }
     },
     {
@@ -162,6 +166,7 @@ export const hero = [
         srcset:"https://cdn.pixabay.com/photo/2017/01/07/17/48/interior-1961070_640.jpg 1x, https://cdn.pixabay.com/photo/2017/01/07/17/48/interior-1961070_1280.jpg 2x",
         alt:"Interior Living Room photo and picture",
         title:"Interior Living Room",
+        text:"The overall aesthetic and arrangement of the living room's interior design. It encompasses the choice of colors, furniture layout, decor, and accessories, creating a cohesive and harmonious look.",
         style: { maxWidth: '100%', maxHeight: '100%' }
     },
     {
@@ -170,6 +175,7 @@ export const hero = [
         srcset:"https://cdn.pixabay.com/photo/2014/08/11/21/40/bedroom-416062_640.jpg 1x, https://cdn.pixabay.com/photo/2014/08/11/21/40/bedroom-416062_1280.jpg 2x",
         alt:"Bedroom Bed photo and picture",
         title:"Bedroom Bed",
+        text:"A comfortable and inviting sleeping space centered around a bed. Bedroom design often focuses on creating a relaxing atmosphere, with attention to bedding, lighting, and personalized decor.",
         style: { maxWidth: '100%', maxHeight: '100%' }
     },
     {
@@ -178,6 +184,7 @@ export const hero = [
         srcset:"https://cdn.pixabay.com/photo/2015/04/20/06/46/office-730681_640.jpg 1x, https://cdn.pixabay.com/photo/2015/04/20/06/46/office-730681_1280.jpg 2x",
         alt:"Office Sitting Room photo and picture",
         title:"Office Sitting Room",
+        text:"A versatile space designed for work and relaxation. An office sitting room may feature a comfortable seating area alongside a functional workspace, combining productivity with comfort for remote work or quiet reading.",
         style: { maxWidth: '100%', maxHeight: '100%' }
     }
 ];
