@@ -188,3 +188,60 @@ export const hero = [
         style: { maxWidth: '100%', maxHeight: '100%' }
     }
 ];
+
+export const categories = [
+    {
+        id: 1,
+        src:"https://cdn.pixabay.com/photo/2017/08/27/10/16/interior-2685521_960_720.jpg",
+        srcset:"https://cdn.pixabay.com/photo/2017/08/27/10/16/interior-2685521_960_720.jpg 1x, https://cdn.pixabay.com/photo/2017/08/27/10/16/interior-2685521_1280.jpg 2x",
+        alt:"Interior Living Room photo and picture",
+        title:"Interior Living Room",
+        text:"The overall aesthetic and arrangement of the living room's interior design. It encompasses the choice of colors, furniture layout, decor, and accessories, creating a cohesive and harmonious look.",
+        style: { maxWidth: '100%', maxHeight: '100%' }
+    },
+    {
+        id: 2,
+        src:"https://cdn.pixabay.com/photo/2020/11/24/11/36/bedroom-5772286_640.jpg",
+        srcset:"https://cdn.pixabay.com/photo/2020/11/24/11/36/bedroom-5772286_640.jpg 1x, https://cdn.pixabay.com/photo/2020/11/24/11/36/bedroom-5772286_1280.jpg 2x",
+        alt:"Bedroom Interior Design photo and picture",
+        title:"Bedroom Interior Design",
+        text:"A comfortable and inviting sleeping space centered around a bed. Bedroom design often focuses on creating a relaxing atmosphere, with attention to bedding, lighting, and personalized decor.",
+        style: { maxWidth: '100%', maxHeight: '100%' }
+    },
+    {
+        id: 3,
+        src:"https://cdn.pixabay.com/photo/2015/12/05/23/42/dining-room-1078930_640.jpg",
+        srcset:"https://cdn.pixabay.com/photo/2015/12/05/23/42/dining-room-1078930_640.jpg 1x, https://cdn.pixabay.com/photo/2015/12/05/23/42/dining-room-1078930_1280.jpg 2x",
+        alt:"Dining Room photo and picture",
+        title:"Dining Room",
+        text:"A designated area for enjoying meals with family and friends. Dining rooms typically include a table and chairs, creating a welcoming environment for shared meals and special occasions.",
+        style: { maxWidth: '100%', maxHeight: '100%' }
+    },
+    {
+        id: 4,
+        src:"https://cdn.pixabay.com/photo/2015/03/14/19/59/kitchen-673729_640.jpg",
+        srcset:"https://cdn.pixabay.com/photo/2015/03/14/19/59/kitchen-673729_640.jpg 1x, https://cdn.pixabay.com/photo/2015/03/14/19/59/kitchen-673729_1280.jpg 2x",
+        alt:"Kitchen Design illustration and picture",
+        title:"Kitchen Design",
+        text:"A functional and stylish space designed for cooking, dining, and socializing. Modern kitchens often feature sleek appliances, ample storage, and contemporary design elements.",
+        style: { maxWidth: '100%', maxHeight: '100%' }
+    },
+    {
+        id: 5,
+        src:"https://cdn.pixabay.com/photo/2020/08/25/18/28/workplace-5517744_640.jpg",
+        srcset:"https://cdn.pixabay.com/photo/2020/08/25/18/28/workplace-5517744_640.jpg 1x, https://cdn.pixabay.com/photo/2020/08/25/18/28/workplace-5517744_1280.jpg 2x",
+        alt:"Workplace Workspace photo and picture",
+        title:"Workplace Workspace",
+        text:"A designated area for working, studying, or pursuing hobbies. A workspace may include a desk, chair, and storage, creating a functional and productive environment.",
+        style: { maxWidth: '100%', maxHeight: '100%' }
+    },
+    {
+        id: 6,
+        src:"https://cdn.pixabay.com/photo/2018/08/16/05/43/picnic-table-3609712_640.jpg",
+        srcset:"https://cdn.pixabay.com/photo/2018/08/16/05/43/picnic-table-3609712_640.jpg 1x, https://cdn.pixabay.com/photo/2018/08/16/05/43/picnic-table-3609712_1280.jpg 2x",
+        alt:"Outdoor Furniture photo and picture",
+        title:"Outdoor Furniture",
+        text:"Furniture designed for outdoor use, such as patios, decks, and gardens. Outdoor furniture may include chairs, tables, and lounges, creating a comfortable and inviting space for relaxing and entertaining.",
+        style: { maxWidth: '100%', maxHeight: '100%' }
+    }
+]
