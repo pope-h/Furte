@@ -20,9 +20,9 @@ const Nav = () => {
                 ))}
             </ul>
             <div className='flex flex-1 justify-end items-center gap-4 max-lg:hidden text-slate-gray'>
-                <i className='bx bx-search bx-sm hover:text-red-600'></i>
-                <i className='bx bx-user bx-sm hover:text-red-600'></i>
-                <i className='bx bx-cart bx-sm hover:text-red-600'></i>
+                <i className='bx bx-search bx-sm hover:text-red-600 cursor-pointer'></i>
+                <i className='bx bx-user bx-sm hover:text-red-600 cursor-pointer'></i>
+                <i className='bx bx-cart bx-sm hover:text-red-600 cursor-pointer'></i>
             </div>
             <div className='hidden max-lg:block'>
                 <img
