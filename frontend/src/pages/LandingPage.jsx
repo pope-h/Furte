@@ -1,4 +1,4 @@
-import { CustomerReviews, Footer, Hero, PopularProducts,
+import { CustomerReviews, Footer, Hero, PopularProductSample as PopularProducts,
 Services, SpecialOffer, Subscribe, SuperQuality } from "../sections";
 import Nav from "../components/Nav";
 

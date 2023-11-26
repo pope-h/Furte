@@ -245,3 +245,98 @@ export const categories = [
         style: { maxWidth: '100%', maxHeight: '100%' }
     }
 ]
+
+export const DASHBOARD_SIDEBAR_LINKS = [
+	{
+		key: 'dashboard',
+		label: 'Dashboard',
+		path: '/admin',
+		icon: <i className='bx bx-grid-alt'></i>
+	},
+	{
+		key: 'products',
+		label: 'Products',
+		path: '/admin/products',
+		icon: <i className='bx bx-cube-alt'></i>
+	},
+	{
+		key: 'orders',
+		label: 'Orders',
+		path: '/admin/orders',
+		icon: <i className='bx bx-cart' ></i>
+	},
+	{
+		key: 'customers',
+		label: 'Customers',
+		path: '/admin/customers',
+		icon: <i className='bx bxs-user-detail'></i>
+	},
+	{
+		key: 'transactions',
+		label: 'Transactions',
+		path: '/admin/transactions',
+		icon: <i className='bx bx-detail'></i>
+	},
+	{
+		key: 'messages',
+		label: 'Messages',
+		path: '/admin/messages',
+		icon: <i className='bx bx-chat' ></i>
+	}
+]
+
+export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
+	{
+		key: 'settings',
+		label: 'Settings',
+		path: '/admin/settings',
+		icon: <i className='bx bx-cog' ></i>
+	},
+	{
+		key: 'support',
+		label: 'Help & Support',
+		path: '/admin/support',
+		icon: <i className='bx bx-help-circle'></i>
+	}
+]
+
+export function getOrderStatus(status) {
+	switch (status) {
+		case 'PLACED':
+			return (
+				<span className="capitalize py-1 px-2 rounded-md text-xs text-sky-600 bg-sky-100">
+					{status.replaceAll('_', ' ').toLowerCase()}
+				</span>
+			)
+		case 'CONFIRMED':
+			return (
+				<span className="capitalize py-1 px-2 rounded-md text-xs text-orange-600 bg-orange-100">
+					{status.replaceAll('_', ' ').toLowerCase()}
+				</span>
+			)
+		case 'SHIPPED':
+			return (
+				<span className="capitalize py-1 px-2 rounded-md text-xs text-teal-600 bg-teal-100">
+					{status.replaceAll('_', ' ').toLowerCase()}
+				</span>
+			)
+		case 'OUT_FOR_DELIVERY':
+			return (
+				<span className="capitalize py-1 px-2 rounded-md text-xs text-yellow-600 bg-yellow-100">
+					{status.replaceAll('_', ' ').toLowerCase()}
+				</span>
+			)
+		case 'DELIVERED':
+			return (
+				<span className="capitalize py-1 px-2 rounded-md text-xs text-green-600 bg-green-100">
+					{status.replaceAll('_', ' ').toLowerCase()}
+				</span>
+			)
+		default:
+			return (
+				<span className="capitalize py-1 px-2 rounded-md text-xs text-gray-600 bg-gray-100">
+					{status.replaceAll('_', ' ').toLowerCase()}
+				</span>
+			)
+	}
+}

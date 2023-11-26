@@ -5,7 +5,7 @@ const Nav = () => {
   return (
     <header className='padding-x py-8 absolute z-10 w-full'>
         <nav className='flex justify-between items-center max-container'>
-            <h1 className="font-bold font-palanquin cursor-pointer text-3xl pr-8 text-black hover:text-red-600"><i className='bx bxl-firebase'></i>Furte</h1>
+            <h1 className="font-bold font-palanquin cursor-pointer text-3xl pr-8 text-black hover:text-coral-red"><i className='bx bxl-firebase'></i>Furte</h1>
             <ul className='flex-1 flex justify-start items-center gap-4 max-lg:hidden'>
                 {navLinks.map((item) => (
                     <li key={item.label}>

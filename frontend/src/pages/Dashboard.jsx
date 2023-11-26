@@ -1,15 +1,22 @@
-import Header from "../components/Header";
+import BuyersProfilePieChart from "../sections/BuyersProfilePieChart";
+import DashboardStatsGrid from "../sections/DashboardStatsGrid";
+import PopularProducts from "../sections/PopularProducts";
+import RecentOrders from "../sections/RecentOrders";
+import TransactionChart from "../sections/TransactionChart";
 
 const DashBoard = () => {
   return (
-    <>
-      <div className="container">
-        <Header />
-        <div className="content text-sci text-3xl font-bold underline">
-          This is the DashBoard
-        </div>
-      </div>
-    </>
+    <main className="flex flex-col gap-4">
+      <DashboardStatsGrid />
+      <section className="flex flex-row gap-4 w-full">
+        <TransactionChart />
+        <BuyersProfilePieChart />
+      </section>
+      <section className="flex flex-row gap-4 w-full">
+				<RecentOrders />
+				<PopularProducts />
+			</section>
+    </main>
   );
 };
 
