@@ -1,5 +1,5 @@
 import { facebook, instagram, shieldTick, support, truckFast, twitter } from "../assets/icons";
-import { bigShoe1, bigShoe2, bigShoe3, customer1, customer2, shoe4, shoe5, shoe6, shoe7, thumbnailShoe1, thumbnailShoe2, thumbnailShoe3 } from "../assets/images";
+import { bigShoe1, bigShoe2, bigShoe3, customer1, customer2, shoe4, shoe5, shoe6, shoe7, thumbnailShoe1, thumbnailShoe2, thumbnailShoe3, couch2, table, stool, vintageBedframe, wardrobe, workplace } from "../assets/images";
 
 export const navLinks = [
     { href: "#home", label: "Home" },
@@ -51,6 +51,114 @@ export const products = [
         price: "$230.20",
     },
 ];
+
+export const thumbnails = [
+    {
+        id: 4324,
+        product_thumbnail: couch2,
+        product_name: "Couch",
+        product_price: "$200.20",
+        product_stock: 8,
+    },
+    {
+        id: 1546,
+        product_thumbnail: table,
+        product_name: "Table",
+        product_price: "$200.20",
+        product_stock: 26,
+    },
+    {
+        id: 1092,
+        product_thumbnail: stool,
+        product_name: "Stool",
+        product_price: "$200.20",
+        product_stock: 43,
+    },
+    {
+        id: 2103,
+        product_thumbnail: vintageBedframe,
+        product_name: "Vintage Bedframe",
+        product_price: "$200.20",
+        product_stock: 0,
+    },
+    {
+        id: 2007,
+        product_thumbnail: wardrobe,
+        product_name: "Wardrobe",
+        product_price: "$200.20",
+        product_stock: 18,
+    },
+    {
+        id: 5241,
+        product_thumbnail: workplace,
+        product_name: "Workplace",
+        product_price: "$200.20",
+        product_stock: 9,
+    }
+]
+
+export const recentOrderData = [
+	{
+		id: '1',
+		product_id: '4324',
+		customer_id: '23143',
+		customer_name: 'Shirley A. Lape',
+		order_date: '2022-05-17T03:24:00',
+		order_total: '$435.50',
+		current_order_status: 'PLACED',
+		shipment_address: 'Cottage Grove, OR 97424'
+	},
+	{
+		id: '7',
+		product_id: '7453',
+		customer_id: '96453',
+		customer_name: 'Ryan Carroll',
+		order_date: '2022-05-14T05:24:00',
+		order_total: '$96.35',
+		current_order_status: 'CONFIRMED',
+		shipment_address: 'Los Angeles, CA 90017'
+	},
+	{
+		id: '2',
+		product_id: '5434',
+		customer_id: '65345',
+		customer_name: 'Mason Nash',
+		order_date: '2022-05-17T07:14:00',
+		order_total: '$836.44',
+		current_order_status: 'SHIPPED',
+		shipment_address: 'Westminster, CA 92683'
+	},
+	{
+		id: '3',
+		product_id: '9854',
+		customer_id: '87832',
+		customer_name: 'Luke Parkin',
+		order_date: '2022-05-16T12:40:00',
+		order_total: '$334.50',
+		current_order_status: 'SHIPPED',
+		shipment_address: 'San Mateo, CA 94403'
+	},
+	{
+		id: '4',
+		product_id: '8763',
+		customer_id: '09832',
+		customer_name: 'Anthony Fry',
+		order_date: '2022-05-14T03:24:00',
+		order_total: '$876.00',
+		current_order_status: 'OUT_FOR_DELIVERY',
+		shipment_address: 'San Mateo, CA 94403'
+	},
+	{
+		id: '5',
+		product_id: '5627',
+		customer_id: '97632',
+		customer_name: 'Ryan Carroll',
+		order_date: '2022-05-14T05:24:00',
+		order_total: '$96.35',
+		current_order_status: 'DELIVERED',
+		shipment_address: 'Los Angeles, CA 90017'
+	}
+]
 
 export const services = [
     {

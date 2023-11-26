@@ -1,5 +1,4 @@
-import Nav from "../components/Nav"
-import { CustomerReviews, Footer, Services, Subscribe } from "../sections"
+import { CustomerReviews, Services, Subscribe } from "../sections"
 import CarouselHero from "../sections/CarouselHero"
 import Intro from "../sections/Intro"
 import ProductCategory from "../sections/ProductCategory"
@@ -7,7 +6,6 @@ import ProductCategory from "../sections/ProductCategory"
 const Home = () => {
   return (
     <main className="relative bg-white-400">
-        <Nav />
         <section className="sm:pb-12 pb-6 padding-t max-md:pt-24">
           <CarouselHero />
         </section>
@@ -25,9 +23,6 @@ const Home = () => {
         </section>
         <section className="padding-x sm:py-32 py-12 w-full">
           <Subscribe />
-        </section>
-        <section className="bg-black padding-x padding-t pb-12">
-          <Footer />
         </section>
     </main>
   )

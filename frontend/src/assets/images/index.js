@@ -21,6 +21,17 @@ import thumbnailShoe1 from './thumbnail-shoe1.svg'
 import thumbnailShoe2 from './thumbnail-shoe2.svg'
 import thumbnailShoe3 from './thumbnail-shoe3.svg'
 
+import couch from './couch-447484_640.jpg';
+import couch2 from './living-2882718_640.jpg';
+import bedframe from './furniture-8152531_640.jpg';
+import table from './home-office-1867761_640.jpg';
+import picnicTable from './picnic-table-3609712_640.jpg';
+import stool from './stool-981213_640.jpg';
+import vintageBedframe from './vintage-5383025_640.jpg';
+import wardrobe from './wardrobe-2605328_640.jpg';
+import wardrobe2 from './wardrobe-5974515_640.jpg';
+import workplace from './workplace-5517744_640.jpg';
+
 export {
     bigShoe1,
     bigShoe2,
@@ -42,5 +53,16 @@ export {
     thumbnailBackground,
     thumbnailShoe1,
     thumbnailShoe2,
-    thumbnailShoe3
+    thumbnailShoe3,
+
+    couch,
+    couch2,
+    bedframe,
+    table,
+    picnicTable,
+    stool,
+    vintageBedframe,
+    wardrobe,
+    wardrobe2,
+    workplace
 }

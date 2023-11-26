@@ -12,18 +12,23 @@ import Transactions from "./pages/Transactions";
 import Messages from "./pages/Messages";
 import Settings from "./pages/Settings";
 import Support from "./pages/Support";
+import Layout from "./pages/Layout";
+import Products from "./pages/Products";
 
 const App = () => {
     return (
-        <Router basename={"/"}>
+        <Router>
             <Routes>
-                <Route index element={<LandingPage />} />
+                {/* <Route index={"/test"} element={<LandingPage />} /> */}
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
-                {/* <Route path="/dashboard" element={<DashBoard />} /> */}
-                {/* <Route path="/admin" element={<AdminDashBoard />} /> */}
-                <Route path="/home" element={<Home />} />
-                <Route path="*" element={<h1>Still in Production</h1>} />
+                
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Home />} />
+                    <Route path="nike" element={<LandingPage />} />
+                    <Route path="products" element={<Products />} />
+                    <Route path="*" element={<h1>Still in Production</h1>} />
+                </Route>
 
                 <Route path="/admin" element={<AdminDashBoardLayout />}>
                     <Route index element={<DashBoard />} />
