@@ -42,8 +42,8 @@ const AdminProducts = () => {
           <table className="w-full text-gray-700">
             <thead>
               <tr>
-                <th>Product ID</th>
 				<th>Image</th>
+                <th>Product ID</th>
                 <th>Name</th>
                 <th>Category</th>
                 <th>Price</th>
@@ -57,14 +57,14 @@ const AdminProducts = () => {
               {products.map((product) => (
                 <tr key={product._id}>
 					<td>
-						<Link to={`/admin/${product.id}`}>#{product._id}</Link>
-					</td>
-					<td>
 						<img
 						src={product.imageUrl}
 						alt={product.name}
 						className="w-12 h-12 object-cover rounded"
 						/>
+					</td>
+					<td>
+						<Link to={`/admin/${product.id}`}>#{product._id}</Link>
 					</td>
 					<td>
 						<Link to={`/admin/${product.product_id}`}>{product.name}</Link>

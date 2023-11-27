@@ -4,10 +4,18 @@ import FormStyles from './FormStyles'
 import { createProductSchema } from '../schemas'
 import CustomSelect from './CustomSelect'
 import CustomCheckbox from './CustomCheckbox'
+import { postProduct } from '../API'
 
 const onSubmit = async (values, actions) => {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  actions.resetForm();
+  try {
+    await postProduct(values);
+    actions.resetForm();
+    alert('Product added successfully!');
+  } catch (err) {
+    console.error('Error submitting form:', err);
+    alert('Error submitting form!');
+    actions.setSubmitting(false);
+}
 };
 
 const CreateProduct = () => {

@@ -1,7 +1,7 @@
 const FormStyles = {
   app: {
     textAlign: 'center',
-    padding: '5rem 1rem',
+    padding: '2rem 1rem',
   },
   error: {
     color: '#fc8181',
@@ -17,7 +17,7 @@ const FormStyles = {
   },
   form: {
     width: '95%',
-    maxWidth: '400px',
+    maxWidth: '800px',
     margin: '0 auto',
   },
   formLabel: {
