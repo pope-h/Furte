@@ -448,3 +448,15 @@ export function getOrderStatus(status) {
 			)
 	}
 }
+
+
+export const product_details = [
+    {
+        name: 'Outdoor Chair Seating',
+        description: '',
+        category: 'outdoor',
+        price: 200.20,
+        quantity: 10,
+        imageUrl: '',
+    }
+]

@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { fetchProducts } from '../API';
+import { deleteProduct, fetchProducts } from '../API';
 
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
@@ -21,6 +21,20 @@ const AdminProducts = () => {
 
     getProducts();
   }, []);
+
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this product?');
+
+    if (confirmDelete) {
+      try {
+        await deleteProduct(id);
+        setProducts(products.filter((product) => product._id !== id));
+      } catch (err) {
+        console.error('Error deleting product:', err);
+      }
+    }
+	
+  }
 
   return (
     <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
@@ -42,7 +56,7 @@ const AdminProducts = () => {
           <table className="w-full text-gray-700">
             <thead>
               <tr>
-				<th>Image</th>
+                <th>Image</th>
                 <th>Product ID</th>
                 <th>Name</th>
                 <th>Category</th>
@@ -56,32 +70,32 @@ const AdminProducts = () => {
             <tbody>
               {products.map((product) => (
                 <tr key={product._id}>
-					<td>
-						<img
-						src={product.imageUrl}
-						alt={product.name}
-						className="w-12 h-12 object-cover rounded"
-						/>
-					</td>
-					<td>
-						<Link to={`/admin/${product.id}`}>#{product._id}</Link>
-					</td>
-					<td>
-						<Link to={`/admin/${product.product_id}`}>{product.name}</Link>
-					</td>
-					<td>
-						<Link to={`/admin/${product.customer_id}`}>{product.category}</Link>
-					</td>
-					<td>${product.price}</td>
-					<td>{product.quantity} Units</td>
-					<td>{format(new Date(product.createdAt), 'dd MMM yyyy')}</td>
-					<td>
+                  <td>
+                    <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    className="w-12 h-12 object-cover rounded"
+                    />
+                  </td>
+                  <td>
+                    <Link to={`/admin/${product.id}`}>#{product._id}</Link>
+                  </td>
+                  <td>
+                    <Link to={`/admin/${product.product_id}`}>{product.name}</Link>
+                  </td>
+                  <td>
+                    <Link to={`/admin/${product.customer_id}`}>{product.category}</Link>
+                  </td>
+                  <td>${product.price}</td>
+                  <td>{product.quantity} Units</td>
+                  <td>{format(new Date(product.createdAt), 'dd MMM yyyy')}</td>
+                  <td>
                     <Link to={`/admin/edit/${product._id}`} className="text-blue-500 hover:text-coral-red">
                       Edit
                     </Link>
                   </td>
                   <td>
-                    <i className='bx bx-trash text-coral-red cursor-pointer' ></i>
+                    <i className='bx bx-trash text-coral-red cursor-pointer' onClick={() => handleDelete(product._id)} ></i>
                   </td>
                 </tr>
               ))}

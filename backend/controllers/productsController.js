@@ -65,6 +65,7 @@ const updateProduct = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
     if (!req?.body?.id) return res.status(400).json({ 'msg': 'Product ID required.' });
+    // console.log(req.body.id);
 
     const product = await Product.findOne({ _id: req.body.id }).exec();
     if (!product) {
