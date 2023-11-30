@@ -16,6 +16,7 @@ import Layout from "./pages/Layout";
 import Products from "./pages/Products";
 import CreateProduct from "./components/CreateProduct";
 import EditProduct from "./components/EditProduct";
+import EditUser from "./components/EditUser";
 
 const App = () => {
     return (
@@ -42,7 +43,8 @@ const App = () => {
                     <Route path="settings" element={<Settings />} />
                     <Route path="support" element={<Support />} />
                     <Route path="create-product" element={<CreateProduct />} />
-                    <Route path="edit/:id" element={<EditProduct />} />
+                    <Route path="edit/product/:id" element={<EditProduct />} />
+                    <Route path="edit/user/:id" element={<EditUser />} />
                     <Route path="*" element={<h1>Still in Production</h1>} />
                 </Route>
             </Routes>

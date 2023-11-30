@@ -29,3 +29,49 @@ export const createProductSchema = yup.object().shape({
         .boolean()
         .oneOf([true], "Please accept the terms of service"),
 });
+
+export const createUserSchema = yup.object().shape({
+    userName: yup
+        .string()
+        .min(5, "Username must be at least 4 characters long")
+        .required("Required"),
+    password: yup
+        .string()
+        .min(8, "Password must be at least 8 characters long")
+        .required("Required"),
+    role: yup
+        .string()
+        .oneOf(["admin", "user"], "Invalid Role")
+        .required("Required"),
+    firstName: yup
+        .string()
+        .min(2, "First name must be at least 2 characters long")
+        .required("Required"),
+    lastName: yup
+        .string()
+        .min(2, "Last name must be at least 2 characters long")
+        .required("Required"),
+    email: yup
+        .string()
+        .email("Please enter a valid email")
+        .required("Required"),
+    address: yup
+        .string()
+        .min(5, "Address must be at least 10 characters long")
+        .required("Required"),
+    city: yup
+        .string()
+        .min(5, "City must be at least 4 characters long")
+        .required("Required"),
+    country: yup
+        .string()
+        .min(5, "Country must be at least 5 characters long")
+        .required("Required"),
+    phoneNumber: yup
+        .string()
+        .min(5, "Phone number must be at least 5 characters long")
+        .required("Required"),
+    acceptedTos: yup
+        .boolean()
+        .oneOf([true], "Please accept the terms of service"),
+});

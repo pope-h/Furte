@@ -62,7 +62,7 @@ const AdminProducts = () => {
                 <th>Category</th>
                 <th>Price</th>
                 <th>Quantity</th>
-                <th>Date</th>
+                <th>Added</th>
                 <th>Update</th>
                 <th>Remove</th>
               </tr>
@@ -90,7 +90,7 @@ const AdminProducts = () => {
                   <td>{product.quantity} Units</td>
                   <td>{format(new Date(product.createdAt), 'dd MMM yyyy')}</td>
                   <td>
-                    <Link to={`/admin/edit/${product._id}`} className="text-blue-500 hover:text-coral-red">
+                    <Link to={`/admin/edit/product/${product._id}`} className="text-blue-500 hover:text-coral-red">
                       Edit
                     </Link>
                   </td>
