@@ -27,7 +27,7 @@ export const createProductSchema = yup.object().shape({
         .required("Required"),
     acceptedTos: yup
         .boolean()
-        .oneOf([true], "Please accept the terms of service"),
+        .oneOf([true], "Please double check your information before submitting"),
 });
 
 export const createUserSchema = yup.object().shape({
@@ -73,5 +73,5 @@ export const createUserSchema = yup.object().shape({
         .required("Required"),
     acceptedTos: yup
         .boolean()
-        .oneOf([true], "Please accept the terms of service"),
+        .oneOf([true], "I the user's permission to make this changes and understand tthis activity will be logged in my name"),
 });
