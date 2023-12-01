@@ -27,7 +27,7 @@ const ProductCard = (props) => {
             </div>
             <div className="inset-0 flex flex-col items-center justify-center text-black cursor-pointer">
                 <h2 className="text-2xl leading-normal font-palanquin  group-hover:text-coral-red transition-colors">{props.title}</h2>
-                <p className="font-montserrat text-xl leading-normal text-slate-gray  group-hover:text-coral-red transition-colors">furte</p>
+                <p className="font-montserrat text-xl leading-normal text-slate-gray  group-hover:text-coral-red transition-colors">Furte</p>
             </div>
         </section>
     );

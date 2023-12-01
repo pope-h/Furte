@@ -73,5 +73,5 @@ export const createUserSchema = yup.object().shape({
         .required("Required"),
     acceptedTos: yup
         .boolean()
-        .oneOf([true], "I the user's permission to make this changes and understand tthis activity will be logged in my name"),
+        .oneOf([true], "I have the user's permission to make this changes and understand tthis activity will be logged in my name"),
 });
