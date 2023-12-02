@@ -17,6 +17,7 @@ import Products from "./pages/Products";
 import CreateProduct from "./components/CreateProduct";
 import EditProduct from "./components/EditProduct";
 import EditUser from "./components/EditUser";
+import ProductDetail from "./pages/ProductDetail";
 
 const App = () => {
     return (
@@ -30,6 +31,7 @@ const App = () => {
                     <Route index element={<Home />} />
                     <Route path="nike" element={<LandingPage />} />
                     <Route path="products" element={<Products />} />
+                    <Route path="products/details/:id" element={<ProductDetail />} />
                     <Route path="*" element={<h1>Still in Production</h1>} />
                 </Route>
 

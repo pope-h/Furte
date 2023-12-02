@@ -77,20 +77,18 @@ const AdminProducts = () => {
                     className="w-12 h-12 object-cover rounded"
                     />
                   </td>
+                  <td>#{product._id}</td>
                   <td>
-                    <Link to={`/admin/${product.id}`}>#{product._id}</Link>
+                    <Link to={`/products/details/${product._id}`} className='hover:no-underline hover:text-coral-red'>{product.name}</Link>
                   </td>
                   <td>
-                    <Link to={`/admin/${product.product_id}`}>{product.name}</Link>
-                  </td>
-                  <td>
-                    <Link to={`/admin/${product.customer_id}`}>{product.category}</Link>
+                    <Link to={`/admin/${product.category}`} className='hover:no-underline hover:text-coral-red'>{product.category}</Link>
                   </td>
                   <td>${product.price}</td>
                   <td>{product.quantity} Units</td>
                   <td>{format(new Date(product.createdAt), 'dd MMM yyyy')}</td>
                   <td>
-                    <Link to={`/admin/edit/product/${product._id}`} className="text-blue-500 hover:text-coral-red">
+                    <Link to={`/admin/edit/product/${product._id}`} className="text-blue-500 hover:no-underline hover:text-coral-red">
                       Edit
                     </Link>
                   </td>
