@@ -198,12 +198,12 @@ export const footerLinks = [
     {
         title: "Products",
         links: [
-            { name: "Air Force 1", link: "/" },
-            { name: "Air Max 1", link: "/" },
-            { name: "Air Jordan 1", link: "/" },
-            { name: "Air Force 2", link: "/" },
-            { name: "Nike Waffle Racer", link: "/" },
-            { name: "Nike Cortez", link: "/" },
+            { name: "Living Room", link: "/products/livingroom" },
+            { name: "Bedroom", link: "/products/bedroom" },
+            { name: "Dining", link: "/products/dining" },
+            { name: "Kitchen", link: "/products/kitchen" },
+            { name: "Workplace", link: "/products/workplace" },
+            { name: "Outdoor", link: "/products/outdoor" },
         ],
     },
     {

@@ -18,6 +18,7 @@ import CreateProduct from "./components/CreateProduct";
 import EditProduct from "./components/EditProduct";
 import EditUser from "./components/EditUser";
 import ProductDetail from "./pages/ProductDetail";
+import Cart from "./pages/Cart";
 
 const App = () => {
     return (
@@ -30,6 +31,7 @@ const App = () => {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="nike" element={<LandingPage />} />
+                    <Route path="cart/:id" element={<Cart />} />
                     <Route path="products" element={<Products />} />
                     <Route path="products/details/:id" element={<ProductDetail />} />
                     <Route path="*" element={<h1>Still in Production</h1>} />

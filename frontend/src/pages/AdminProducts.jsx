@@ -48,7 +48,7 @@ const AdminProducts = () => {
       <div className="border-x border-gray-200 rounded-sm mt-3">
         {loading ? (
           // Show loading spinner while data is being fetched
-          <div className="flex items-center justify-center h-32">
+          <div className="flex items-center justify-center h-screen">
             <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-gray-900"></div>
           </div>
         ) : (

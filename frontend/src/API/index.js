@@ -1,4 +1,4 @@
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySW5mbyI6eyJ1c2VyTmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiJ9LCJpYXQiOjE3MDE1MjAyNzksImV4cCI6MTcwMTUyMDg3OX0.JXHBl_j90slqQYSSNNcphQdc4dno7HwCh4EYZK7jmTw";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySW5mbyI6eyJ1c2VyTmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiJ9LCJpYXQiOjE3MDE3MjUwNDQsImV4cCI6MTcwMTcyNTY0NH0.iUFVJdYOKbI9KwwtMZSftytYuFcxRiXFJChZ-yHJuoQ";
 
 export const fetchProducts = async () => {
   try {

@@ -3,7 +3,7 @@ import { footerLinks, socialMedia } from "../constants"
 
 const Footer = () => {
   return (
-    <footer className="max-container">
+    <footer className="max-container sticky bottom-0">
       <div className="flex justify-between items-start gap-20 flex-wrap max-lg:flex-col">
         <div className="flex flex-col items-start">
           <h1 className="font-bold font-palanquin text-white cursor-pointer text-4xl pr-8"><i className='bx bxl-firebase'></i>Furte</h1>
