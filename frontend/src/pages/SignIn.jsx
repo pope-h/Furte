@@ -1,146 +1,41 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import useStorePackage from "../store";
-import LoadingSpinner from "../components/LoadingSpinner";
+import { Link } from 'react-router-dom'
+import { background } from '../assets/images'
 
-function SignIn() {
+const SignIn = () => {
 
-    const login = useStorePackage(state => state.login);
-    const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState(false);
-
-    const [userDetails, setUserDetails] = useState({
-        email: "",
-        password: ""
-    });
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-
-        setUserDetails(prevValue => {
-            return {
-                ...prevValue,
-                [name]: value
-            };
-        });
-    }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log({...userDetails});
-
-        setIsLoading(true);
-
-        const { email, password } = userDetails;
-
-        const payload = {
-            email,
-            password,
-        };
-
-        try {
-            // Send a POST request to the backend
-            const response = await fetch('http://localhost:3001/signin', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(payload),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                console.log(data.accessToken);
-                console.log(data.role);
-                const userToken = data.accessToken;
-                const role = data.role;
-
-                login(userToken);
-                console.log('Successfully signed in:', data);
-
-                // The below will be used oce the database is populated and 
-                // the dashboard get much from it.
-                // setTimeout(() => {
-                //     navigate('/dashboard');
-                // }, 5000);
-                if (role === "Admin") {
-                    navigate('/admin-dashboard');
-                } else {
-                    navigate('/dashboard');
-                }
-            } else {
-                // The below code should be uncommented.
-
-                // if (response.status === 401) {
-                //     return await sendRefreshToken();
-                // }
-                // throw new Error(`$(response.status) $(response.statusText)`);
-                const errorData = await response.json();
-                console.error('Sign In failed:', errorData.msg);
-            }
-        } catch (err) {
-            console.error('Error during sign in:', err);
-        }
-        setIsLoading(false);
-    };
-
-    return (
-        <>
-            <div className="background"></div>
-            <div className="container">
-                <Header />
-                <div className="content">
-                    <h2 className="logo"><i className='bx bxl-firebase'></i>Furte</h2>
-                    <div className="text-sci">
-                        <h2>Welcome!<br /><span>To The Future Of Furniture.</span></h2>
-                        <p>
-                            Lorem ipsum dolor sit amet 
-                            consectetur adipisicing elit.
-                            Voluptatrum, unde.
-                        </p>
-                        <div className="social-icons">
-                            <Link to="#"><i className='bx bxl-linkedin'></i></Link>
-                            <Link to="#"><i className='bx bxl-meta' ></i></Link>
-                            <Link to="#"><i className='bx bxl-instagram' ></i></Link>
-                            <Link to="#"><i className='bx bxl-twitter' ></i></Link>
+  return (
+    <div className="text-white-400 h-[100vh] flex justify-center items-center bg-cover" style={{ backgroundImage: `url(${background})` }}
+    >
+        <div>
+            <div className='bg-slate-800 border-slate-400 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-sm bg-opacity-30 relative'>
+                <h1 className='text-4xl text-white-400 font-bold text-center mb-6'>Sign In</h1>
+                <form>
+                    <div className='relative my-6'>
+                        <input type='email' className='block w-72 py-2 px-0 text-sm text-white-400 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-coral-red focus:outline-none focus:ring-0 focus:text-white-400 focus:border-coral-red peer' placeholder='' />
+                        <label htmlFor='email' className='absolute text-sm text-white-400 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-coral-red peer-focus:dark:text-coral-red peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8'>Your Email</label>
+                        <i className='bx bxs-envelope absolute top-4 right-4'></i>
+                    </div>
+                    <div className='relative my-6'>
+                        <input type='password' className='block w-72 py-2 px-0 text-sm text-white-400 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-coral-red focus:outline-none focus:ring-0 focus:text-white-400 focus:border-coral-red peer' placeholder='' />
+                        <label htmlFor='email' className='absolute text-sm text-white-400 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-coral-red peer-focus:dark:text-coral-red peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8'>Your Password</label>
+                        <i className='bx bxs-lock-alt absolute top-4 right-4'></i>
+                    </div>
+                    <div className='flex justify-between items-center'>
+                        <div className='flex gap-2 items-center'>
+                            <input type='checkbox' name='' id='' />
+                            <label htmlFor='Remember Me'>Remember me</label>
                         </div>
+                        <Link to='' className='text-coral-red hover:no-underline hover:text-rose-600'>Forgot Password?</Link>
                     </div>
-                </div>
-                <div className="logreg-box">
-                    <div className="form-box login">
-                        <form onSubmit={handleSubmit}>
-                            <h2>Sign In</h2>
-
-                            <div className="input-box">
-                                <span className="icon"><i className='bx bxs-envelope'></i></span>
-                                <input value={userDetails.email} onChange={handleChange} type="email" id="email" name="email" required />
-                                <label htmlFor="email">Email</label>  
-                            </div>
-                            <div className="input-box">
-                                <span className="icon"><i className='bx bxs-lock-alt'></i></span>
-                                <input value={userDetails.password} onChange={handleChange} type="password" id="password" name="password" required />
-                                <label htmlFor="password">Password</label>
-                            </div>
-                            <div className="remember-forgot">
-                                <label>
-                                    <input type="checkbox" />
-                                    Remember me
-                                </label>
-                                <Link to="#">Forgot Password?</Link>
-                            </div>
-                            <button type="submit" className="btn">Sign In</button>
-                            <div className="login-register">
-                                <p>{"Don't have an account? "}<Link to="/signup" className="register-link">Sign Up</Link></p>
-                                { isLoading && <LoadingSpinner /> }
-                            </div>
-                        </form>
+                    <button className='w-full mb-4 text-[18px] mt-6 rounded-full bg-coral-red text-white-400 hover:bg-white-400 hover:text-coral-red py-2 transition-colors duration-300' type='submit'>Sign In</button>
+                    <div>
+                        <span className='m-4'>{"Don't have an account? "}<Link className='text-coral-red hover:no-underline hover:text-rose-600' to="/signup">Sign Up</Link></span>
                     </div>
-                </div>
+                </form>
             </div>
-        </>
-    );
+        </div>
+    </div>
+  )
 }
 
-export default SignIn;
+export default SignIn
