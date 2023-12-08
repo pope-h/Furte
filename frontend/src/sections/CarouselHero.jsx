@@ -23,7 +23,7 @@ export default function CarouselHero() {
           delay: 5000,
           disableOnInteraction: false,
         }}
-        lazy={true}
+        lazy="true"
         pagination={{
           clickable: true,
         }}

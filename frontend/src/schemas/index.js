@@ -75,3 +75,17 @@ export const createUserSchema = yup.object().shape({
         .boolean()
         .oneOf([true], "I have the user's permission to make this changes and understand tthis activity will be logged in my name"),
 });
+
+export const signInSchema = yup.object().shape({
+    email: yup
+        .string()
+        .email("Please enter a valid email")
+        .required("Email is required"),
+    password: yup
+        .string()
+        .min(5, "Invalid password")
+        .required("Password is required"),
+    rememberMe: yup
+        .boolean()
+        .oneOf([true], "Please check the box to continue"),
+});

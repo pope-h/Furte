@@ -11,6 +11,8 @@ export default function AdminHeader() {
 			<div className="relative">
                 <span className="text-gray-400 absolute top-1/2 left-3 -translate-y-1/2"><i className='bx bx-search' ></i></span>
 				<input
+					name='search'
+					id='search'
 					type="text"
 					placeholder="Search..."
 					className="text-sm focus:outline-none active:outline-none border border-gray-300 w-[24rem] h-10 pl-11 pr-4 rounded-sm"

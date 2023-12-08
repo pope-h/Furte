@@ -1,4 +1,5 @@
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySW5mbyI6eyJ1c2VyTmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiJ9LCJpYXQiOjE3MDE3MzY4ODIsImV4cCI6MTcwMTczNzQ4Mn0.kauTw1rRWCbjOUbFS__alH2jZ-vVQhpA64LubVO3cbU";
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySW5mbyI6eyJ1c2VyTmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiJ9LCJpYXQiOjE3MDE5OTQ1NDcsImV4cCI6MTcwMTk5NTE0N30.5aCyEY_yEyb_PGNMlDvR5VIrFN4HilmWRdWlm9yjOLg";
 
 export const fetchProducts = async () => {
   try {
@@ -204,3 +205,23 @@ export const deleteUser = async (id) => {
     throw new Error('Error deleting user');
   }
 };
+
+export const postUser = async (userData) => {
+  try {
+    const res = await fetch('http://localhost:3001/signin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
+    if (!res.ok) {
+      alert(res.statusText);
+    }
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error('Error posting user:', err);
+    throw new Error('Error posting user');
+  }
+}
