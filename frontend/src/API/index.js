@@ -1,16 +1,16 @@
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySW5mbyI6eyJ1c2VyTmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiJ9LCJpYXQiOjE3MDE5OTQ1NDcsImV4cCI6MTcwMTk5NTE0N30.5aCyEY_yEyb_PGNMlDvR5VIrFN4HilmWRdWlm9yjOLg";
+const token = localStorage.getItem("userToken");
 
 export const fetchProducts = async () => {
   try {
-    const res = await fetch('http://localhost:3001/products', {
-      method: 'GET',
+    const res = await fetch("http://localhost:3001/products", {
+      method: "GET",
       headers: {
-        'Authorization': 'Bearer ' + token,
+        Authorization: "Bearer " + token,
       },
     });
     if (!res.ok) {
-      alert(res.statusText);
+      const errorMessage = await res.text();
+      console.error(`Error fetching products: ${errorMessage}`);
     }
     const products = await res.json();
     return products;
@@ -30,7 +30,8 @@ export const getProduct = async (id) => {
       },
     });
     if (!res.ok) {
-      alert(res.statusText);
+      const errorMessage = await res.text();
+      console.error(`Error fetching products: ${errorMessage}`);
     }
     const product = await res.json();
     return product;
@@ -51,7 +52,8 @@ export const postProduct = async (productData) => {
       body: JSON.stringify(productData),
     });
     if (!res.ok) {
-      alert(res.statusText);
+      const errorMessage = await res.text();
+      console.error(`Error fetching products: ${errorMessage}`);
     }
     const product = await res.json();
     return product;
@@ -73,7 +75,8 @@ export const updateProduct = async (id, productData) => {
       body: JSON.stringify({ id, ...productData }),
     });
     if (!res.ok) {
-      alert(res.statusText);
+      const errorMessage = await res.text();
+      console.error(`Error fetching products: ${errorMessage}`);
     }
     const product = await res.json();
     return product;
@@ -94,7 +97,8 @@ export const deleteProduct = async (id) => {
       body: JSON.stringify({ id }),
     });
     if (!res.ok) {
-      alert(res.statusText);
+      const errorMessage = await res.text();
+      console.error(`Error fetching products: ${errorMessage}`);
     }
     return;
   } catch (err) {
@@ -114,7 +118,8 @@ export const fetchUsers = async () => {
       },
     });
     if (!res.ok) {
-      alert(res.statusText);
+      const errorMessage = await res.text();
+      console.error(`Error fetching products: ${errorMessage}`);
     }
     const users = await res.json();
     return users;
@@ -134,7 +139,8 @@ export const getUser = async (id) => {
       },
     });
     if (!res.ok) {
-      alert(res.statusText);
+      const errorMessage = await res.text();
+      console.error(`Error fetching products: ${errorMessage}`);
     }
     const user = await res.json();
     return user;
@@ -155,7 +161,8 @@ export const updateUserRole = async (id, role) => {
       body: JSON.stringify({ id, role }),
     });
     if (!res.ok) {
-      alert(res.statusText);
+      const errorMessage = await res.text();
+      console.error(`Error fetching products: ${errorMessage}`);
     }
     const user = await res.json();
     return user;
@@ -176,7 +183,8 @@ export const updateUserInfo = async (id, userInfo) => {
       body: JSON.stringify({ id, ...userInfo }),
     });
     if (!res.ok) {
-      alert(res.statusText);
+      const errorMessage = await res.text();
+      console.error(`Error fetching products: ${errorMessage}`);
     }
     const user = await res.json();
     return user;
@@ -197,7 +205,8 @@ export const deleteUser = async (id) => {
       body: JSON.stringify({ id }),
     });
     if (!res.ok) {
-      alert(res.statusText);
+      const errorMessage = await res.text();
+      console.error(`Error fetching products: ${errorMessage}`);
     }
     return;
   } catch (err) {
@@ -206,7 +215,7 @@ export const deleteUser = async (id) => {
   }
 };
 
-export const postUser = async (userData) => {
+export const signInUser = async (userData) => {
   try {
     const res = await fetch('http://localhost:3001/signin', {
       method: 'POST',
@@ -216,12 +225,34 @@ export const postUser = async (userData) => {
       body: JSON.stringify(userData),
     });
     if (!res.ok) {
-      alert(res.statusText);
+      const errorMessage = await res.text();
+      console.error(`Error fetching products: ${errorMessage}`);
     }
     const data = await res.json();
     return data;
   } catch (err) {
-    console.error('Error posting user:', err);
-    throw new Error('Error posting user');
+    console.error('Error signing user in:', err);
+    throw new Error('Error signing user in');
+  }
+}
+
+export const signUpUser = async (userData) => {
+  try {
+    const res = await fetch('http://localhost:3001/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
+    if (!res.ok) {
+      const errorMessage = await res.json();
+      throw new Error(errorMessage.message);
+    }
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error('Error signing user up:', err);
+    throw new Error('Error signing user up');
   }
 }

@@ -89,3 +89,16 @@ export const signInSchema = yup.object().shape({
         .boolean()
         .oneOf([true], "Please check the box to continue"),
 });
+
+export const signUpSchema = yup.object().shape({
+  userName: yup
+    .string()
+    .min(5, "Username must be at least 5 characters")
+    .required("Required"),
+  email: yup.string().email("Please enter a valid email").required("Required"),
+  password: yup
+    .string()
+    .min(5, "Password must be at least 5 characters")
+    .required("Required"),
+  agreeCheckbox: yup.boolean().oneOf([true], "Please check the box to continue"),
+});

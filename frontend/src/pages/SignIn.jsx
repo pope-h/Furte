@@ -4,7 +4,7 @@ import { Form, Formik } from "formik";
 import CustomSignInput from "../components/CustomSignInput";
 import { signInSchema } from "../schemas";
 import CustomSignCheckbox from "../components/CustomSignCheckbox";
-import { postUser } from "../API";
+import { signInUser } from "../API";
 import useStorePackage from "../store";
 
 const SignIn = () => {
@@ -13,9 +13,8 @@ const SignIn = () => {
 
     const onSubmit = async (values, actions) => {
       try {
-        const data = await postUser(values);
-        login(data.token, data.role);
-        console.log(data);
+        const data = await signInUser(values);
+        login(data.accessToken, data.role);
         if (data.role === "Admin") {
           navigate("/admin");
         } else {

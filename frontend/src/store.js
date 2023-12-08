@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 
 const useStorePackage = create((set) => ({
-    userToken: localStorage.getItem('userToken') || null,
-    userRole: localStorage.getItem('userRole') || null,
+    userToken: localStorage.getItem('userToken') || '',
+    userRole: localStorage.getItem('userRole') || '',
 
     login: (token, role) => {
         set({ userToken: token, userRole: role });
