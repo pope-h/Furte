@@ -25,19 +25,27 @@ const updateUserInfo = async (req, res) => {
     try {
         const user = await User.findOne({ _id: req.body.id }).exec();
         if (!user) return res.status(204).json({ 'msg': `User ID ${req.body.id} not found` });
+
+        if (req.role !== "Admin" && req.body?.role) return res.status(403).json({ 'msg': 'You are not authorized to update user role' });
+        if (req.body?.role) user.role = req.body.role;
+
+        // if (req.role !== "User" && req.body?.userName) return res.status(403).json({ 'msg': 'You are not authorized to update user name' });
+        //unmute the above once the user profile dashboard is 
+        //Also remember to give Admin only the ability to update user role and not user name
         if (req.body?.userName) user.userName = req.body.userName;
+        
+        if (req.body?.city) user.city = req.body.city;
         if (req.body?.email) user.email = req.body.email;
         if (req.body?.firstName) user.firstName = req.body.firstName;
         if (req.body?.lastName) user.lastName = req.body.lastName;
         if (req.body?.address) user.address = req.body.address;
         if (req.body?.country) user.country = req.body.country;
         if (req.body?.phoneNumber) user.phoneNumber = req.body.phoneNumber;
-        if (req.body?.password) user.password = req.body.password;
         const result = await user.save();
         res.status(201).json({ 'msg': 'User info updated successfully.' });
     } catch(err) {
         console.error(err);
-        res.status(500).json({ 'msg': 'Server Error' });
+        res.status(500).json({ msg: "Server Error", error: err.message });
     }
 };
 

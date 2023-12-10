@@ -12,7 +12,7 @@ exports.signin = async (req, res) => {
         let user = await User.findOne({ email }).exec();
 
         if (!user) {
-            return res.sendStatus(401); //Unauthorized 
+            return res.status(401).send("Email not found"); //Unauthorized 
         }
 
         // Verify the password
@@ -46,10 +46,10 @@ exports.signin = async (req, res) => {
             res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', maxAge: 3 * 24 * 60 * 60 * 1000 });
     
             // Send authorization roles and access token to user
-            res.json({ role: user.role, accessToken });
+            res.json({ role: user.role, accessToken, userName: user.userName });
     
         } else {
-            res.sendStatus(401);
+            return res.status(401).send("Incorrect login information"); //Unauthorized
         }
     } catch (err) {
         console.error(err.message);

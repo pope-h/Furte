@@ -30,18 +30,14 @@ export const createProductSchema = yup.object().shape({
         .oneOf([true], "Please double check your information before submitting"),
 });
 
-export const createUserSchema = yup.object().shape({
+export const updateUserSchema = yup.object().shape({
     userName: yup
         .string()
         .min(5, "Username must be at least 4 characters long")
         .required("Required"),
-    password: yup
-        .string()
-        .min(8, "Password must be at least 8 characters long")
-        .required("Required"),
     role: yup
         .string()
-        .oneOf(["admin", "user"], "Invalid Role")
+        .oneOf(["Admin", "User"], "Invalid Role")
         .required("Required"),
     firstName: yup
         .string()
@@ -73,7 +69,7 @@ export const createUserSchema = yup.object().shape({
         .required("Required"),
     acceptedTos: yup
         .boolean()
-        .oneOf([true], "I have the user's permission to make this changes and understand tthis activity will be logged in my name"),
+        .oneOf([true], "Please check the box to continue"),
 });
 
 export const signInSchema = yup.object().shape({

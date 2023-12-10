@@ -7,8 +7,9 @@ const router = express.Router();
 
 router.route('/')
     .get(verifyRoles("Admin"), usersController.getAllUsers)
-    .post(verifyRoles("User"), usersController.updateUserInfo)
-    .post(verifyRoles("Admin") ,usersController.updateUserRole)
+    // .put(verifyRoles("User"), usersController.updateUserInfo)
+    //I decided to disable the above line so i can control the update from the usersController
+    .put(usersController.updateUserInfo)
     .delete(verifyRoles("Admin"), usersController.deleteUser);
 
 router.route('/:id')

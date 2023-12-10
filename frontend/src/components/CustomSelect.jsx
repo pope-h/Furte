@@ -6,7 +6,7 @@ const CustomSelect = ({ label, ...props }) => {
 
   return (
     <>
-      <label style={FormStyles.formLabel}>{label}</label>
+      <label htmlFor={props.id} style={FormStyles.formLabel}>{label}</label>
       <select
         {...field}
         {...props}

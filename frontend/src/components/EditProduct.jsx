@@ -41,80 +41,89 @@ const EditProduct = () => {
   };
 
   return (
-    <section className='bg-neutral-800' style={FormStyles.app}>
-        {product && (
-            <Formik
-                initialValues={{
-                    name: product.name,
-                    description: product.description,
-                    category: product.category,
-                    price: product.price,
-                    quantity: product.quantity,
-                    imageUrl: product.imageUrl,
-                    acceptedTos: false
-                }}
-                validationSchema={createProductSchema}
-                onSubmit={onSubmit}
-            >
-                {({isSubmitting}) => (
-                    <>
-                        <h1 className='text-white font-bold text-4xl mb-8'>Edit Product</h1>
-                        <Form style={FormStyles.form}>
-                            <CustomInput
-                                label="Name"
-                                name="name"
-                                type="text"
-                            />
-                            <CustomInput
-                                label="Description"
-                                name="description"
-                                as="textarea"
-                            />
-                            <CustomSelect 
-                                label="Category"
-                                name="category"
-                            >
-                                <option value="">Select product category</option>
-                                <option value="livingroom">Living Room</option>
-                                <option value="bedroom">Bedroom</option>
-                                <option value="dining">Dining</option>
-                                <option value="kitchen">Kitchen</option>
-                                <option value="workplace">Workplace</option>
-                                <option value="outdoor">Outdoor</option>
-                                <option value="other">Other</option>
-                            </CustomSelect>
-                            <CustomInput
-                                label="Price"
-                                name="price"
-                                type="number"
-                            />
-                            <CustomInput
-                                label="Quantity"
-                                name="quantity"
-                                type="number"
-                            />
-                            <CustomInput
-                                label="Image URL"
-                                name="imageUrl"
-                                type="text"
-                            />
-                            <CustomCheckbox type="checkbox" name="acceptedTos" />
-                            <button
-                                type="submit"
-                                style={{
-                                    ...FormStyles.button,
-                                    ...(isSubmitting ? FormStyles.buttonDisabled : {})
-                                }}
-                            >
-                                Submit
-                            </button>
-                        </Form>
-                    </>
-                )}
-            </Formik>
-        )}
+    <section className="bg-neutral-800" style={FormStyles.app}>
+      {product && (
+        <Formik
+          initialValues={{
+            name: product.name,
+            description: product.description,
+            category: product.category,
+            price: product.price,
+            quantity: product.quantity,
+            imageUrl: product.imageUrl,
+            acceptedTos: false,
+          }}
+          validationSchema={createProductSchema}
+          onSubmit={onSubmit}
+        >
+          {({ isSubmitting }) => (
+            <>
+              <h1 className="text-white font-bold text-4xl mb-8">
+                Edit Product
+              </h1>
+              <Form style={FormStyles.form}>
+                <CustomInput
+                  id="name"
+                  label="Name"
+                  name="name"
+                  type="text"
+                  autoComplete="off"
+                />
+                <CustomInput
+                  id="description"
+                  label="Description"
+                  name="description"
+                  as="textarea"
+                  autoComplete="off"
+                />
+                <CustomSelect id="category" label="Category" name="category">
+                  <option value="">Select product category</option>
+                  <option value="livingroom">Living Room</option>
+                  <option value="bedroom">Bedroom</option>
+                  <option value="dining">Dining</option>
+                  <option value="kitchen">Kitchen</option>
+                  <option value="workplace">Workplace</option>
+                  <option value="outdoor">Outdoor</option>
+                  <option value="other">Other</option>
+                </CustomSelect>
+                <CustomInput
+                  id="price"
+                  label="Price"
+                  name="price"
+                  type="number"
+                  autoComplete="off"
+                />
+                <CustomInput
+                  id="quantity"
+                  label="Quantity"
+                  name="quantity"
+                  type="number"
+                  autoComplete="off"
+                />
+                <CustomInput
+                  id="imageUrl"
+                  label="Image URL"
+                  name="imageUrl"
+                  type="text"
+                  autoComplete="off"
+                />
+                <CustomCheckbox type="checkbox" name="acceptedTos" />
+                <button
+                  type="submit"
+                  style={{
+                    ...FormStyles.button,
+                    ...(isSubmitting ? FormStyles.buttonDisabled : {}),
+                  }}
+                >
+                  Submit
+                </button>
+              </Form>
+            </>
+          )}
+        </Formik>
+      )}
     </section>
-  )
+  );
 }
 
 export default EditProduct;

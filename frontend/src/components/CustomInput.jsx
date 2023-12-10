@@ -9,7 +9,7 @@ const CustomInput = ({ label, as, ...props }) => {
 
   return (
     <>
-      <label style={FormStyles.formLabel}>{label}</label>
+      <label htmlFor={props.id} style={FormStyles.formLabel}>{label}</label>
       {isTextarea ? (
         <textarea
           {...field}
@@ -23,6 +23,7 @@ const CustomInput = ({ label, as, ...props }) => {
         />
       ) : (
         <input
+          onChange={props.handleChange}
           {...field}
           {...props}
           style={{

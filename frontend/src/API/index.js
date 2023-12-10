@@ -1,3 +1,5 @@
+import handleApiError from "./handleApiError";
+
 const token = localStorage.getItem("userToken");
 
 export const fetchProducts = async () => {
@@ -8,12 +10,7 @@ export const fetchProducts = async () => {
         Authorization: "Bearer " + token,
       },
     });
-    if (!res.ok) {
-      const errorMessage = await res.text();
-      console.error(`Error fetching products: ${errorMessage}`);
-    }
-    const products = await res.json();
-    return products;
+    return handleApiError(res);
   } catch (err) {
     console.error('Error fetching products:', err);
     throw new Error('Error fetching products');
@@ -29,12 +26,7 @@ export const getProduct = async (id) => {
         'Authorization': 'Bearer ' + token,
       },
     });
-    if (!res.ok) {
-      const errorMessage = await res.text();
-      console.error(`Error fetching products: ${errorMessage}`);
-    }
-    const product = await res.json();
-    return product;
+    return handleApiError(res);
   } catch (err) {
     console.error('Error fetching product:', err);
     throw new Error('Error fetching product');
@@ -51,12 +43,7 @@ export const postProduct = async (productData) => {
       },
       body: JSON.stringify(productData),
     });
-    if (!res.ok) {
-      const errorMessage = await res.text();
-      console.error(`Error fetching products: ${errorMessage}`);
-    }
-    const product = await res.json();
-    return product;
+    return handleApiError(res);
   } catch (err) {
     console.error('Error posting product:', err);
     throw new Error('Error fetching product');
@@ -74,12 +61,7 @@ export const updateProduct = async (id, productData) => {
       // here the id is passed in the body insteads of the params because the backend is expecting the id in the body
       body: JSON.stringify({ id, ...productData }),
     });
-    if (!res.ok) {
-      const errorMessage = await res.text();
-      console.error(`Error fetching products: ${errorMessage}`);
-    }
-    const product = await res.json();
-    return product;
+    return handleApiError(res);
   } catch (err) {
     console.error('Error updating product:', err);
     throw new Error('Error fetching product');
@@ -96,11 +78,7 @@ export const deleteProduct = async (id) => {
       },
       body: JSON.stringify({ id }),
     });
-    if (!res.ok) {
-      const errorMessage = await res.text();
-      console.error(`Error fetching products: ${errorMessage}`);
-    }
-    return;
+    return handleApiError(res);
   } catch (err) {
     console.error('Error deleting product:', err);
     throw new Error('Error fetching product');
@@ -117,12 +95,7 @@ export const fetchUsers = async () => {
         'Authorization': 'Bearer ' + token,
       },
     });
-    if (!res.ok) {
-      const errorMessage = await res.text();
-      console.error(`Error fetching products: ${errorMessage}`);
-    }
-    const users = await res.json();
-    return users;
+    return handleApiError(res);
   } catch (err) {
     console.error('Error fetching users:', err);
     throw new Error('Error fetching users');
@@ -138,12 +111,7 @@ export const getUser = async (id) => {
         'Authorization': 'Bearer ' + token,
       },
     });
-    if (!res.ok) {
-      const errorMessage = await res.text();
-      console.error(`Error fetching products: ${errorMessage}`);
-    }
-    const user = await res.json();
-    return user;
+    return handleApiError(res);
   } catch (err) {
     console.error('Error fetching user:', err);
     throw new Error('Error fetching user');
@@ -160,12 +128,7 @@ export const updateUserRole = async (id, role) => {
       },
       body: JSON.stringify({ id, role }),
     });
-    if (!res.ok) {
-      const errorMessage = await res.text();
-      console.error(`Error fetching products: ${errorMessage}`);
-    }
-    const user = await res.json();
-    return user;
+    return handleApiError(res);
   } catch (err) {
     console.error('Error updating user role:', err);
     throw new Error('Error updating user role');
@@ -182,12 +145,7 @@ export const updateUserInfo = async (id, userInfo) => {
       },
       body: JSON.stringify({ id, ...userInfo }),
     });
-    if (!res.ok) {
-      const errorMessage = await res.text();
-      console.error(`Error fetching products: ${errorMessage}`);
-    }
-    const user = await res.json();
-    return user;
+    return handleApiError(res);
   } catch (err) {
     console.error('Error updating user info:', err);
     throw new Error('Error updating user info');
@@ -204,11 +162,7 @@ export const deleteUser = async (id) => {
       },
       body: JSON.stringify({ id }),
     });
-    if (!res.ok) {
-      const errorMessage = await res.text();
-      console.error(`Error fetching products: ${errorMessage}`);
-    }
-    return;
+    return handleApiError(res);
   } catch (err) {
     console.error('Error deleting user:', err);
     throw new Error('Error deleting user');
@@ -224,12 +178,7 @@ export const signInUser = async (userData) => {
       },
       body: JSON.stringify(userData),
     });
-    if (!res.ok) {
-      const errorMessage = await res.text();
-      console.error(`Error fetching products: ${errorMessage}`);
-    }
-    const data = await res.json();
-    return data;
+    return handleApiError(res);
   } catch (err) {
     console.error('Error signing user in:', err);
     throw new Error('Error signing user in');
@@ -245,12 +194,7 @@ export const signUpUser = async (userData) => {
       },
       body: JSON.stringify(userData),
     });
-    if (!res.ok) {
-      const errorMessage = await res.json();
-      throw new Error(errorMessage.message);
-    }
-    const data = await res.json();
-    return data;
+    return handleApiError(res);
   } catch (err) {
     console.error('Error signing user up:', err);
     throw new Error('Error signing user up');
