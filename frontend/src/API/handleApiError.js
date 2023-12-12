@@ -4,7 +4,9 @@ const handleApiError = async (response) => {
     console.error(`API Error: ${errorMessage}`);
     throw new Error(`API Error: ${errorMessage}`);
   }
-  return response.json();
+
+  const data = await response.json();
+  return data;
 };
 
 export default handleApiError;

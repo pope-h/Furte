@@ -14,7 +14,7 @@ const SignIn = () => {
     const onSubmit = async (values, actions) => {
       try {
         const data = await signInUser(values);
-        console.log(data);
+        
         login(data.accessToken, data.role, data.userName);
         if (data.role === "Admin") {
           navigate("/admin");

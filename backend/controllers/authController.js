@@ -49,7 +49,7 @@ exports.signin = async (req, res) => {
             res.json({ role: user.role, accessToken, userName: user.userName });
     
         } else {
-            return res.status(401).send("Incorrect login information"); //Unauthorized
+            return res.status(401).send("Incorrect login credentials"); //Unauthorized
         }
     } catch (err) {
         console.error(err.message);
