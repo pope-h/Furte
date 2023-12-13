@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import { Menu } from "@headlessui/react";
 import { DropdownMenu } from "./popover/DropdownMenu";
 
-const UserSection = ({ userToken, userName, navigate, logout }) => {
-  if (userToken) {
-    console.log("User is logged in", userToken);
-    console.log("User Name:", userName);
+const UserSection = ({ accessToken, userName, navigate, logout }) => {
+  console.log("User is logged in", accessToken);
+  console.log("User Name:", userName);
+  if (accessToken) {
     // User is logged in
     return (
       <DropdownMenu

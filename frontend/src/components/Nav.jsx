@@ -9,8 +9,8 @@ import UserSection from './UserSection';
 const Nav = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
-    const { userToken, userName, logout } = useStorePackage();
-    console.log("User token:", userToken);
+    const { accessToken, userName, logout } = useStorePackage();
+    console.log("User token:", accessToken);
     console.log("User Name:", userName);
 
   return (
@@ -45,7 +45,7 @@ const Nav = () => {
         <div className="flex lg:flex-1 justify-end max-lg:pr-4 items-center gap-6 text-slate-gray">
           <i className="bx bx-search bx-sm hover:text-coral-red cursor-pointer"></i>
           <UserSection
-            userToken={userToken}
+            accessToken={accessToken}
             userName={userName}
             navigate={navigate}
             logout={logout}

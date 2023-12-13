@@ -21,17 +21,12 @@ const useStorePackage = create((set) => ({
   },
 
   logout: () => {
-    set({ accessToken: null });
+    set({ accessToken: "", userRole: "", userName: "" });
     Cookies.remove("accessToken", { sameSite: "Lax" });
     localStorage.removeItem("userRole");
     localStorage.removeItem("userName");
-    console.log(
-      "User logged out",
-      Cookies.get("accessToken"),
-      localStorage.getItem("userRole"),
-      localStorage.getItem("userName")
-    );
   },
+  
 }));
 
 export default useStorePackage;

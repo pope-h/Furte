@@ -19,6 +19,7 @@ import EditProduct from "./components/EditProduct";
 import EditUser from "./components/EditUser";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const App = () => {
     return (
@@ -34,7 +35,7 @@ const App = () => {
                     <Route path="cart/:id" element={<Cart />} />
                     <Route path="products" element={<Products />} />
                     <Route path="products/details/:id" element={<ProductDetail />} />
-                    <Route path="*" element={<h1>Still in Production</h1>} />
+                    <Route path="*" element={<NotFoundPage />} />
                 </Route>
 
                 <Route path="/admin" element={<AdminDashBoardLayout />}>
@@ -49,7 +50,7 @@ const App = () => {
                     <Route path="create-product" element={<CreateProduct />} />
                     <Route path="edit/product/:id" element={<EditProduct />} />
                     <Route path="edit/user/:id" element={<EditUser />} />
-                    <Route path="*" element={<h1>Still in Production</h1>} />
+                    <Route path="*" element={<NotFoundPage />} />
                 </Route>
             </Routes>
         </Router>   

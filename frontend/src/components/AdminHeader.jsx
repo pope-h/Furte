@@ -8,6 +8,7 @@ import useStorePackage from '../store'
 export default function AdminHeader() {
 	const navigate = useNavigate();
   const { logout, userName } = useStorePackage();
+  console.log("User Name:", userName);
 
 	return (
     <div className="bg-white h-16 px-4 flex items-center border-b border-gray-200 justify-between">
