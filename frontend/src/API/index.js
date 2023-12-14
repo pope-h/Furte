@@ -1,19 +1,19 @@
-import useStorePackage from "../store";
+// import useStorePackage from "../store";
 import handleApiError from "./handleApiError";
 
-const { accessToken: token } = useStorePackage.getState();
-console.log("token", token);
+// const { accessToken: token } = useStorePackage.getState();
+// console.log("token", token);
 
-const getAuthorizationHeader = () => ({
+const getAuthorizationHeader = (token) => ({
   Authorization: `Bearer ${token}`,
   "Content-Type": "application/json",
 });
 
-export const fetchProducts = async () => {
+export const fetchProducts = async (token) => {
   try {
     const res = await fetch("http://localhost:3001/products", {
       method: "GET",
-      headers: getAuthorizationHeader(),
+      headers: getAuthorizationHeader(token),
     });
     return handleApiError(res);
   } catch (err) {
@@ -22,11 +22,11 @@ export const fetchProducts = async () => {
   }
 };
 
-export const getProduct = async (id) => {
+export const getProduct = async (token, id) => {
   try {
     const res = await fetch(`http://localhost:3001/products/${id}`, {
       method: "GET",
-      headers: getAuthorizationHeader(),
+      headers: getAuthorizationHeader(token),
     });
     return handleApiError(res);
   } catch (err) {
@@ -35,11 +35,11 @@ export const getProduct = async (id) => {
   }
 };
 
-export const postProduct = async (productData) => {
+export const postProduct = async (token, productData) => {
   try {
     const res = await fetch("http://localhost:3001/products", {
       method: "POST",
-      headers: getAuthorizationHeader(),
+      headers: getAuthorizationHeader(token),
       body: JSON.stringify(productData),
     });
     return handleApiError(res);
@@ -49,11 +49,11 @@ export const postProduct = async (productData) => {
   }
 }
 
-export const updateProduct = async (id, productData) => {
+export const updateProduct = async (token, id, productData) => {
   try {
     const res = await fetch("http://localhost:3001/products", {
       method: "PUT",
-      headers: getAuthorizationHeader(),
+      headers: getAuthorizationHeader(token),
       // here the id is passed in the body insteads of the params because the backend is expecting the id in the body
       body: JSON.stringify({ id, ...productData }),
     });
@@ -64,11 +64,11 @@ export const updateProduct = async (id, productData) => {
   }
 }
 
-export const deleteProduct = async (id) => {
+export const deleteProduct = async (token, id) => {
   try {
     const res = await fetch("http://localhost:3001/products", {
       method: "DELETE",
-      headers: getAuthorizationHeader(),
+      headers: getAuthorizationHeader(token),
       body: JSON.stringify({ id }),
     });
     return handleApiError(res);
@@ -80,11 +80,11 @@ export const deleteProduct = async (id) => {
 
 
 // Users
-export const fetchUsers = async () => {
+export const fetchUsers = async (token) => {
   try {
     const res = await fetch("http://localhost:3001/users", {
       method: "GET",
-      headers: getAuthorizationHeader(),
+      headers: getAuthorizationHeader(token),
     });
     return handleApiError(res);
   } catch (err) {
@@ -93,11 +93,11 @@ export const fetchUsers = async () => {
   }
 };
 
-export const getUser = async (id) => {
+export const getUser = async (token, id) => {
   try {
     const res = await fetch(`http://localhost:3001/users/${id}`, {
       method: "GET",
-      headers: getAuthorizationHeader(),
+      headers: getAuthorizationHeader(token),
     });
     return handleApiError(res);
   } catch (err) {
@@ -106,11 +106,11 @@ export const getUser = async (id) => {
   }
 };
 
-export const updateUserRole = async (id, role) => {
+export const updateUserRole = async (token, id, role) => {
   try {
     const res = await fetch("http://localhost:3001/users", {
       method: "PUT",
-      headers: getAuthorizationHeader(),
+      headers: getAuthorizationHeader(token),
       body: JSON.stringify({ id, role }),
     });
     return handleApiError(res);
@@ -120,11 +120,11 @@ export const updateUserRole = async (id, role) => {
   }
 };
 
-export const updateUserInfo = async (id, userInfo) => {
+export const updateUserInfo = async (token, id, userInfo) => {
   try {
     const res = await fetch("http://localhost:3001/users", {
       method: "PUT",
-      headers: getAuthorizationHeader(),
+      headers: getAuthorizationHeader(token),
       body: JSON.stringify({ id, ...userInfo }),
     });
     return handleApiError(res);
@@ -134,11 +134,11 @@ export const updateUserInfo = async (id, userInfo) => {
   }
 };
 
-export const deleteUser = async (id) => {
+export const deleteUser = async (token, id) => {
   try {
     const res = await fetch("http://localhost:3001/users", {
       method: "DELETE",
-      headers: getAuthorizationHeader(),
+      headers: getAuthorizationHeader(token),
       body: JSON.stringify({ id }),
     });
     return handleApiError(res);
@@ -148,11 +148,11 @@ export const deleteUser = async (id) => {
   }
 };
 
-export const signInUser = async (userData) => {
+export const signInUser = async (token, userData) => {
   try {
     const res = await fetch("http://localhost:3001/signin", {
       method: "POST",
-      headers: getAuthorizationHeader(),
+      headers: getAuthorizationHeader(token),
       body: JSON.stringify(userData),
     });
     return handleApiError(res);
@@ -162,11 +162,11 @@ export const signInUser = async (userData) => {
   }
 }
 
-export const signUpUser = async (userData) => {
+export const signUpUser = async (token, userData) => {
   try {
     const res = await fetch("http://localhost:3001/signup", {
       method: "POST",
-      headers: getAuthorizationHeader(),
+      headers: getAuthorizationHeader(token),
       body: JSON.stringify(userData),
     });
     return handleApiError(res);

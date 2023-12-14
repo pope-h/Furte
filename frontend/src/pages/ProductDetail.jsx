@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getProduct } from "../API";
+import useStorePackage from "../store";
 
 const ProductDetail = () => {
     const { id: productId } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [showNotification, setShowNotification] = useState(false);
+    const token = useStorePackage().accessToken;
 
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const productFromServer = await getProduct(productId);
+                const productFromServer = await getProduct(token, productId);
                 setProduct(productFromServer);
                 setLoading(false);
             } catch (err) {
@@ -21,7 +23,7 @@ const ProductDetail = () => {
         };
 
         fetchProduct();
-    }, [productId]);
+    }, [productId, token]);
 
     if (loading || !product) {
         return (

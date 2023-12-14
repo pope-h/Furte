@@ -5,20 +5,23 @@ import { createProductSchema } from '../schemas'
 import CustomSelect from './CustomSelect'
 import CustomCheckbox from './CustomCheckbox'
 import { postProduct } from '../API'
-
-const onSubmit = async (values, actions) => {
-  try {
-    await postProduct(values);
-    actions.resetForm();
-    alert('Product added successfully!');
-  } catch (err) {
-    console.error('Error submitting form:', err);
-    alert('Error submitting form!');
-    actions.setSubmitting(false);
-}
-};
+import useStorePackage from '../store'
 
 const CreateProduct = () => {
+  const token = useStorePackage().accessToken;
+
+  const onSubmit = async (values, actions) => {
+    try {
+      await postProduct(token, values);
+      actions.resetForm();
+      alert("Product added successfully!");
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      alert("Error submitting form!");
+      actions.setSubmitting(false);
+    }
+  };
+
   return (
     <section className="bg-neutral-800" style={FormStyles.app}>
       <Formik

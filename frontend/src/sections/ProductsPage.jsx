@@ -2,15 +2,17 @@ import { useEffect, useState } from "react";
 import { fetchProducts } from "../API";
 import ProductsPageCard from "../components/ProductsPageCard";
 import { Link } from "react-router-dom";
+import useStorePackage from "../store";
 
 const ProductsPage = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const token = useStorePackage().accessToken;
 
     useEffect(() => {
         const getProducts = async () => {
             try {
-                const productsFromServer = await fetchProducts();
+                const productsFromServer = await fetchProducts(token);
                 setProducts(productsFromServer);
                 setLoading(false);
             } catch (err) {
@@ -20,7 +22,7 @@ const ProductsPage = () => {
         };
 
         getProducts();
-    });
+    }, [token]);
 
   return (
     <>

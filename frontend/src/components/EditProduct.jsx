@@ -7,16 +7,18 @@ import CustomCheckbox from './CustomCheckbox'
 import { useEffect, useState } from 'react'
 import { getProduct, updateProduct } from '../API'
 import { useNavigate, useParams } from 'react-router-dom';
+import useStorePackage from '../store'
 
 const EditProduct = () => {
     const { id: productId } = useParams();
     const [product, setProduct] = useState(null);
     const navigate = useNavigate();
+    const token = useStorePackage().accessToken;
 
     useEffect(() => {
         const fetchProductDetails = async () => {
            try {
-            const productData = await getProduct(productId);
+            const productData = await getProduct(token, productId);
             setProduct(productData);
            } catch (err) {
                console.error('Error fetching product details:', err);
@@ -26,11 +28,11 @@ const EditProduct = () => {
         };
 
         fetchProductDetails();
-    }, [productId]);
+    }, [productId, token]);
 
     const onSubmit = async (values, actions) => {
     try {
-      await updateProduct(productId, values);
+      await updateProduct(token, productId, values);
       actions.resetForm();
         alert('Product updated successfully!');
         navigate('/admin/products');

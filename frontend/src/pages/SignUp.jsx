@@ -5,13 +5,15 @@ import CustomSignInput from "../components/CustomSignInput";
 import { signUpSchema } from "../schemas";
 import CustomSignCheckbox from "../components/CustomSignCheckbox";
 import { signUpUser } from "../API";
+import useStorePackage from "../store";
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const token = useStorePackage().accessToken;
 
   const onSubmit = async (values, actions) => {
     try {
-      const res = await signUpUser(values);
+      const res = await signUpUser(token, values);
       console.log(res);
       if (res && res.msg === "User registered successfully") {
         console.log("Sign up successful:", res);

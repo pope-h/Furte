@@ -7,17 +7,19 @@ import CustomCheckbox from "./CustomCheckbox";
 import { useEffect, useState } from "react";
 import { getUser, updateUserInfo } from "../API";
 import { useNavigate, useParams } from "react-router-dom";
+import useStorePackage from "../store";
 
 const EditUser = () => {
   const { id: userId } = useParams();
   console.log("EditUser", userId);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const token = useStorePackage().accessToken;
 
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const userData = await getUser(userId);
+        const userData = await getUser(token, userId);
         setUser(userData);
       } catch (err) {
         console.error("Error fetching user details:", err);
@@ -27,11 +29,11 @@ const EditUser = () => {
     };
 
     fetchUserDetails();
-  }, [userId]);
+  }, [userId, token]);
 
   const onSubmit = async (values, actions) => {
     try {
-      await updateUserInfo(userId, values);
+      await updateUserInfo(token, userId, values);
       console.log("EditUser", userId, values);
       actions.resetForm();
       alert("User Info updated successfully!");

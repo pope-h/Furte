@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
-import { Navigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getProduct } from "../API";
+import useStorePackage from "../store";
 
 const Cart = () => {
     const [count, setCount] = useState(1);
     const { id: productId } = useParams();
     const [product, setProduct] = useState(null);
+    const navigate = useNavigate();
+    const token = useStorePackage().accessToken;
 
     const addCount = () => {
         setCount(count + 1);
@@ -15,7 +18,8 @@ const Cart = () => {
         if (count > 1) {
             setCount(count - 1);
         } else {
-            Navigate("/emptyCart");
+            navigate("/products");
+            alert("Item removed from cart");
         }
     }
 
@@ -28,14 +32,14 @@ const Cart = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const productFromServer = await getProduct(productId);
+                const productFromServer = await getProduct(token, productId);
                 setProduct(productFromServer);
             } catch (err) {
                 console.error(err);
             }
         };
         fetchProduct();
-    });
+    }, [productId, token]);
 
     const removeFromCart = () => {
         // Remove product from cart

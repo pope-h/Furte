@@ -10,10 +10,11 @@ import useStorePackage from "../store";
 const SignIn = () => {
     const { login } = useStorePackage();
     const navigate = useNavigate();
+    const token = useStorePackage().accessToken;
 
     const onSubmit = async (values, actions) => {
       try {
-        const data = await signInUser(values);
+        const data = await signInUser(token, values);
         
         login(data.accessToken, data.role, data.userName);
         if (data.role === "Admin") {

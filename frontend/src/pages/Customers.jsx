@@ -2,15 +2,17 @@ import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { deleteUser, fetchUsers } from "../API";
+import useStorePackage from "../store";
 
 const Customer = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const token = useStorePackage().accessToken;
 
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const usersFromServer = await fetchUsers();
+        const usersFromServer = await fetchUsers(token);
         setUsers(usersFromServer);
         setLoading(false);
       } catch (err) {
@@ -20,7 +22,7 @@ const Customer = () => {
     };
 
     getUsers();
-  }, []);
+  }, [token]);
 
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
@@ -29,7 +31,7 @@ const Customer = () => {
 
     if (confirmDelete) {
       try {
-        await deleteUser(id);
+        await deleteUser(token, id);
         setUsers(users.filter((user) => user._id !== id));
       } catch (err) {
         console.error("Error deleting user:", err);

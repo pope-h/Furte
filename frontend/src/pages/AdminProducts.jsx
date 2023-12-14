@@ -2,15 +2,17 @@ import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { deleteProduct, fetchProducts } from '../API';
+import useStorePackage from '../store';
 
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const token = useStorePackage().accessToken;
 
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const productsFromServer = await fetchProducts();
+        const productsFromServer = await fetchProducts(token);
         setProducts(productsFromServer);
         setLoading(false);
       } catch (err) {
@@ -20,14 +22,14 @@ const AdminProducts = () => {
     };
 
     getProducts();
-  }, []);
+  }, [token]);
 
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm('Are you sure you want to delete this product?');
 
     if (confirmDelete) {
       try {
-        await deleteProduct(id);
+        await deleteProduct(token, id);
         setProducts(products.filter((product) => product._id !== id));
       } catch (err) {
         console.error('Error deleting product:', err);
