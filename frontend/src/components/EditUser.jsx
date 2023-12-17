@@ -55,7 +55,6 @@ const EditUser = () => {
             lastName: user.lastName,
             email: user.email,
             address: user.address,
-            city: user.city,
             country: user.country,
             phoneNumber: user.phoneNumber,
             acceptedTos: false,
@@ -107,13 +106,6 @@ const EditUser = () => {
                   label="Address"
                   name="address"
                   as="textarea"
-                  autoComplete="on"
-                />
-                <CustomInput
-                  id="city"
-                  label="City"
-                  name="city"
-                  type="text"
                   autoComplete="on"
                 />
                 <CustomInput

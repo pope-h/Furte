@@ -1,8 +1,8 @@
 // Server-side validation middleware
 const validateShippingInfo = (req, res, next) => {
-  const { firstName, lastName, address, city, country } = req.body;
+  const { firstName, lastName, address, country } = req.body;
 
-  if (!firstName || !lastName || !address || !city || !country) {
+  if (!firstName || !lastName || !address || !country) {
     return res.status(400).json({ error: 'Missing required shipping information.' });
   }
 

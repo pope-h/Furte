@@ -60,10 +60,6 @@ export const updateUserSchema = yup.object().shape({
     .string()
     .min(5, "Address must be at least 10 characters long")
     .required("Required"),
-  city: yup
-    .string()
-    .min(5, "City must be at least 4 characters long")
-    .required("Required"),
   country: yup
     .string()
     .min(5, "Country must be at least 5 characters long")
