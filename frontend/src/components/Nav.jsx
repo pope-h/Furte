@@ -22,7 +22,7 @@ const Nav = () => {
         >
           <i className={`bx ${menuOpen ? "bx-x" : "bx-menu"} bx-md`}></i>
         </div>
-        <h1 className="font-bold font-palanquin cursor-pointer text-3xl lg:pr-8 text-black hover:text-coral-red">
+        <h1 className="font-bold font-palanquin cursor-pointer text-3xl lg:pr-8 text-black">
           <i className="bx bxl-firebase"></i>Furte
         </h1>
         <ul

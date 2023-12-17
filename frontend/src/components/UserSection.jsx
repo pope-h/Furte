@@ -17,7 +17,7 @@ const UserSection = ({ accessToken, userName, navigate, logout }) => {
         items={[
           {
             label: "Your Profile",
-            onClick: () => navigate("/profile"),
+            onClick: () => navigate("/dashboard"),
           },
           {
             label: "Settings",

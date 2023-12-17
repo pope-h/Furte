@@ -13,6 +13,6 @@ router.route('/')
     .delete(verifyRoles("Admin"), usersController.deleteUser);
 
 router.route('/:id')
-    .get(verifyRoles("Admin"), usersController.getUser);
+    .get(usersController.getUser);
 
 module.exports = router;

@@ -46,7 +46,7 @@ exports.signin = async (req, res) => {
             res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', maxAge: 3 * 24 * 60 * 60 * 1000 });
     
             // Send authorization roles and access token to user
-            res.json({ role: user.role, accessToken, userName: user.userName });
+            res.json({ role: user.role, accessToken, userName: user.userName, userId: user._id });
     
         } else {
             return res.status(401).send("Incorrect login credentials"); //Unauthorized

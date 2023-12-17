@@ -29,11 +29,8 @@ const updateUserInfo = async (req, res) => {
         if (req.role !== "Admin" && req.body?.role) return res.status(403).json({ 'msg': 'You are not authorized to update user role' });
         if (req.body?.role) user.role = req.body.role;
 
-        // if (req.role !== "User" && req.body?.userName) return res.status(403).json({ 'msg': 'You are not authorized to update user name' });
-        //unmute the above once the user profile dashboard is 
-        //Also remember to give Admin only the ability to update user role and not user name
-        if (req.body?.userName) user.userName = req.body.userName;
-        
+        if (req.role !== "User" && req.body?.userName) return res.status(403).json({ 'msg': 'You are not authorized to update user name' });
+        if (req.body?.userName) user.userName = req.body.userName; 
         if (req.body?.city) user.city = req.body.city;
         if (req.body?.email) user.email = req.body.email;
         if (req.body?.firstName) user.firstName = req.body.firstName;

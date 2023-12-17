@@ -61,7 +61,7 @@ export default function AdminHeader() {
           items={[
             {
               label: "Your Profile",
-              onClick: () => navigate("/profile"),
+              onClick: () => navigate("/dashboard"),
             },
             {
               label: "Settings",
