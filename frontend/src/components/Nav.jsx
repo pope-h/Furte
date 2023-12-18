@@ -35,7 +35,7 @@ const Nav = () => {
               <a
                 href={item.href}
                 className="text-slate-gray hover:text-red-600
-                            fonts-montserrat leading-normal text-lg max-lg:text-white-400 hover:no-underline"
+                            fonts-montserrat leading-normal text-lg max-xl:text-base max-lg:text-white-400 hover:no-underline"
               >
                 {item.label}
               </a>

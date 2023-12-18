@@ -46,8 +46,8 @@ const DashboardAddress = () => {
       <h2 className="font-semibold text-xl font-palanquin border-b-2 pb-2 border-b-gray-300">
         Your Address
       </h2>
-      <div className="flex gap-20 pt-4">
-        <div className="w-1/2">
+      <div className="flex max-md:flex-col gap-20 max-md:gap-10 pt-4">
+        <div className="w-1/2 max-md:w-full">
           {user && (
             <div className="flex flex-col gap-2 pt-6 border-b-2 border-b-gray-300 pb-4">
               <h3 className="text-xl font-semibold">Your Shipping Address</h3>
@@ -61,7 +61,7 @@ const DashboardAddress = () => {
             </div>
           )}
         </div>
-        <div className="w-1/2">
+        <div className="w-1/2 max-md:w-full">
           {user && (
             <Formik
               initialValues={{

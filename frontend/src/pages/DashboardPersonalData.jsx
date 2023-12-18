@@ -44,8 +44,8 @@ const DashboardPersonalData = () => {
       <h2 className="font-semibold text-xl font-palanquin border-b-2 pb-2 border-b-gray-300">
         Your Data
       </h2>
-      <div className="flex gap-20 pt-4">
-        <div className="w-1/2">
+      <div className="flex max-md:flex-col-reverse max-md:gap-10 gap-20 pt-4">
+        <div className="w-1/2 max-md:w-full">
           {user && (
             <Formik
               initialValues={{
@@ -92,7 +92,7 @@ const DashboardPersonalData = () => {
           )}
         </div>
         {user && (
-          <div className="flex flex-col gap-8 pt-6">
+          <div className="flex flex-col w-1/2 max-md:w-full gap-8 pt-6">
             <div className="flex flex-col gap-4">
               <h3 className="text-lg font-thin text-gray-400">
                 Your E-Mail address
