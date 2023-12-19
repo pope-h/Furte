@@ -10,7 +10,7 @@ const DashboardNavigation = () => {
         <li>
           <Link
             to="/dashboard"
-            className="text-slate-gray max-lg:text-black hover:text-red-600 fonts-montserrat leading-normal text-lg max-lg:text-white-400 hover:no-underline"
+            className="text-slate-gray hover:text-red-600 fonts-montserrat leading-normal text-lg hover:no-underline"
           >
             Summary
           </Link>
@@ -18,7 +18,7 @@ const DashboardNavigation = () => {
         <li>
           <Link
             to="/dashboard/orders"
-            className="text-slate-gray max-lg:text-black hover:text-red-600 fonts-montserrat leading-normal text-lg max-lg:text-white-400 hover:no-underline"
+            className="text-slate-gray hover:text-red-600 fonts-montserrat leading-normal text-lg hover:no-underline"
           >
             Orders
           </Link>
@@ -26,7 +26,7 @@ const DashboardNavigation = () => {
         <li>
           <Link
             to="/dashboard/personal-data"
-            className="text-slate-gray max-lg:text-black hover:text-red-600 fonts-montserrat leading-normal text-lg max-lg:text-white-400 hover:no-underline"
+            className="text-slate-gray hover:text-red-600 fonts-montserrat leading-normal text-lg hover:no-underline"
           >
             Personal Data
           </Link>
@@ -34,7 +34,7 @@ const DashboardNavigation = () => {
         <li>
           <Link
             to="/dashboard/address"
-            className="text-slate-gray max-lg:text-black hover:text-red-600 fonts-montserrat leading-normal text-lg max-lg:text-white-400 hover:no-underline"
+            className="text-slate-gray hover:text-red-600 fonts-montserrat leading-normal text-lg hover:no-underline"
           >
             Address
           </Link>
