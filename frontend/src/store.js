@@ -9,6 +9,7 @@ const useStorePackage = create((set) => ({
   userRole: localStorage.getItem("userRole") || "",
   userName: localStorage.getItem("userName") || "",
   userId: "",
+  searchQuery: "",
 
   login: (accessToken, role, userName, userId) => {
     console.log("User logged in", accessToken, role, userName, userId);
@@ -27,6 +28,8 @@ const useStorePackage = create((set) => ({
     localStorage.removeItem("userRole");
     localStorage.removeItem("userName");
   },
+
+  setSearchQuery: (searchQuery) => set({ searchQuery }),
   
 }));
 

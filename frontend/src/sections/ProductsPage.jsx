@@ -7,12 +7,12 @@ import useStorePackage from "../store";
 const ProductsPage = ({ selectedCategory }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const token = useStorePackage().accessToken;
+  const { accessToken: token, searchQuery } = useStorePackage();
 
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const productsFromServer = await fetchProducts(token);
+        const productsFromServer = await fetchProducts(token, searchQuery);
         setProducts(productsFromServer);
         setLoading(false);
       } catch (err) {
@@ -22,7 +22,7 @@ const ProductsPage = ({ selectedCategory }) => {
     };
 
     getProducts();
-  }, [token]);
+  }, [token, searchQuery]);
 
   // Filter products based on the selected category
   const filteredProducts = selectedCategory

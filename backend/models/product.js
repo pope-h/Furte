@@ -47,4 +47,7 @@ const productSchema = new Schema({
     }
 });
 
+// Enable text search on the 'name' and 'description' fields
+productSchema.index({ name: 'text', description: 'text' });
+
 module.exports = mongoose.model('Product', productSchema);

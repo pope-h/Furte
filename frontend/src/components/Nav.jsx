@@ -1,22 +1,31 @@
-import { useState } from 'react'
-import { navLinks } from '../constants'
-import { useNavigate } from 'react-router-dom';
-import PopoverButton from './popover/PopoverButton';
-import NotificationPopover from './popover/NotificationPopover';
-import useStorePackage from '../store';
-import UserSection from './UserSection';
+import { useState } from "react";
+import { navLinks } from "../constants";
+import { useNavigate } from "react-router-dom";
+import PopoverButton from "./popover/PopoverButton";
+import NotificationPopover from "./popover/NotificationPopover";
+import useStorePackage from "../store";
+import UserSection from "./UserSection";
 
 const Nav = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [searchOpen, setSearchOpen] = useState(false);
-    const navigate = useNavigate();
-    const { accessToken, userName, logout } = useStorePackage();
-    console.log("User token:", accessToken);
-    console.log("User Name:", userName);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const navigate = useNavigate();
+  const { accessToken, userName, logout, searchQuery, setSearchQuery } = useStorePackage();
+  console.log("User token:", accessToken);
+  console.log("User Name:", userName);
 
-    const toggleSearch = () => {
-      setSearchOpen(!searchOpen);
-    }
+  const handleSearchInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSearch = () => {
+    // Redirect to the products page with the search query
+    navigate(`/products?search=${encodeURIComponent(searchQuery)}`);
+  };
+
+  const toggleSearch = () => {
+    setSearchOpen(!searchOpen);
+  };
 
   return (
     <header className="padding-x py-6 z-10 absolute top-0 w-full">
@@ -88,14 +97,19 @@ const Nav = () => {
             Furte
           </h1>
           <div className="flex items-center gap-4 pt-2">
-            <i className="bx bx-search bx-sm"></i>
             <input
               type="text"
               id="search"
               placeholder="Search"
+              value={searchQuery}
+              onChange={handleSearchInputChange}
               className="border-b hover:border-b-slate-gray px-2 py-1 h-10 text-lg"
               style={{ width: "80vw" }}
             />
+            <i
+              className="bx bx-search bx-sm hover:text-coral-red cursor-pointer"
+              onClick={handleSearch}
+            ></i>
             <i
               className="bx bx-x bx-md hover:text-coral-red cursor-pointer"
               onClick={toggleSearch}
@@ -105,6 +119,6 @@ const Nav = () => {
       )}
     </header>
   );
-}
+};
 
-export default Nav
+export default Nav;

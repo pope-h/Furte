@@ -9,9 +9,13 @@ const getAuthorizationHeader = (token) => ({
   "Content-Type": "application/json",
 });
 
-export const fetchProducts = async (token) => {
+export const fetchProducts = async (token, searchQuery) => {
+  const apiUrl = searchQuery
+        ? `http://localhost:3001/products?search=${encodeURIComponent(searchQuery)}`
+        : 'http://localhost:3001/products';
+
   try {
-    const res = await fetch("http://localhost:3001/products", {
+    const res = await fetch(apiUrl, {
       method: "GET",
       headers: getAuthorizationHeader(token),
     });
