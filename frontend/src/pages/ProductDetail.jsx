@@ -73,7 +73,7 @@ const ProductDetail = () => {
                         <Link to="/products" className="bg-white-400 hover:bg-neutral-800 border-y-2 border-neutral-800 hover:text-white-400 text-neutral-800 h-12 hover:no-underline pt-[3%] w-full text-center">
                             CONTINUE SHOPPING
                         </Link>
-                        <Link to={`/cart/${product._id}`} className="bg-neutral-800 hover:bg-neutral-600 text-white-400 h-12 hover:no-underline pt-[3%] w-full text-center">
+                        <Link to="/cart" className="bg-neutral-800 hover:bg-neutral-600 text-white-400 h-12 hover:no-underline pt-[11px] w-full text-center">
                             CHECKOUT
                         </Link>
                     </div>

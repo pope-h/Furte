@@ -47,22 +47,56 @@ const useStorePackage = create((set) => ({
       };
     }),
 
-  removeFromCart: (productId) =>
+  removeOneItemFromCart: (productId) =>
     set((state) => {
-      const updatedProductIds = state.cartProductIds.filter(
-        (id) => id !== productId
+      const productToRemove = state.cart.find((p) => p._id === productId);
+
+      if (!productToRemove) {
+        // If the product is not in the cart, do nothing
+        return state;
+      }
+
+      // Check if the quantity is greater than 1, then decrement the quantity
+      if (productToRemove.quantity > 1) {
+        const updatedCart = state.cart.map((p) =>
+          p._id === productId ? { ...p, quantity: p.quantity - 1 } : p
+        );
+
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+        return {
+          ...state,
+          cart: updatedCart,
+          cartCount: state.cartCount - 1,
+        };
+      } else {
+        // If the quantity is 1, remove the product from the cart
+        const updatedCart = state.cart.filter((p) => p._id !== productId);
+
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+        return {
+          ...state,
+          cart: updatedCart,
+          cartCount: state.cartCount - 1,
+          cartProductIds: state.cartProductIds.filter((id) => id !== productId),
+        };
+      }
+    }),
+
+  removeProduct: (productId) =>
+    set((state) => {
+      const updatedCart = state.cart.filter(
+        (product) => product._id !== productId
       );
 
-      // Save the updated cart and counts to localStorage
-      localStorage.setItem(
-        "cart",
-        JSON.stringify(state.cart.filter((p) => p._id !== productId))
-      );
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
 
       return {
-        cart: state.cart.filter((p) => p._id !== productId),
+        ...state,
+        cart: updatedCart,
         cartCount: state.cartCount - 1,
-        cartProductIds: updatedProductIds,
+        cartProductIds: state.cartProductIds.filter((id) => id !== productId),
       };
     }),
 
