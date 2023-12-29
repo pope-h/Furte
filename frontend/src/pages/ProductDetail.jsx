@@ -9,6 +9,7 @@ const ProductDetail = () => {
     const [loading, setLoading] = useState(true);
     const [showNotification, setShowNotification] = useState(false);
     const token = useStorePackage().accessToken;
+    const addToCart = useStorePackage().addToCart;
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -34,6 +35,7 @@ const ProductDetail = () => {
   }
 
     const handleAddToCart = () => {
+        addToCart(product);
         setShowNotification(true);
     }
 

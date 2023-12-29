@@ -10,7 +10,21 @@ const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const navigate = useNavigate();
-  const { accessToken, userName, logout, searchQuery, setSearchQuery } = useStorePackage();
+  const {
+    accessToken,
+    userName,
+    logout,
+    searchQuery,
+    setSearchQuery,
+  } = useStorePackage();
+
+  const store = useStorePackage();
+
+  const totalQuantity = store.cart.reduce(
+    (total, product) => total + product.quantity,
+    0
+  );
+
   console.log("User token:", accessToken);
   console.log("User Name:", userName);
 
@@ -75,8 +89,18 @@ const Nav = () => {
               iconClass="bx bx-cart bx-sm hover:text-coral-red cursor-pointer"
               popoverContent={() => (
                 <NotificationPopover
-                  title="Shopping Cart"
-                  content="You have no items in your cart."
+                  title={`${
+                    !store.cart || store.cart.length === 0
+                      ? "Shopping Cart"
+                      : `${totalQuantity} item${
+                          totalQuantity > 1 ? "s" : ""
+                        } in your shopping cart.`
+                  }`}
+                  content={`${
+                    !store.cart || store.cart.length === 0
+                      ? "You have no item in your cart."
+                      : ""
+                  }`}
                   button={
                     <button onClick={() => navigate("/products")}>
                       PRODUCTS
