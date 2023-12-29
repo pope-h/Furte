@@ -17,7 +17,7 @@ const NotificationPopover = ({ title, content, button }) => {
       leaveFrom="transform opacity-100 scale-100"
       leaveTo="transform opacity-0 scale-95"
     >
-      <Popover.Panel className="absolute right-0 z-10 mt-2 transform w-80 origin-top-right focus:outline-none">
+      <Popover.Panel className="absolute right-0 z-10 mt-2 transform w-[333px] origin-top-right focus:outline-none">
         <div className="bg-white flex flex-col rounded-sm ring-1 ring-black ring-opacity-5 px-4 py-8 gap-4">
           <strong className="text-gray-700 text-lg border-b-2 pb-4 border-b-gray-300 font-medium pt-3">
             {title}

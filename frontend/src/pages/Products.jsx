@@ -20,13 +20,18 @@ const Products = () => {
   };
 
   return (
-    <main className="max-sm:my-12 mt-2 mb-24">
+    <main className="max-sm:my-12 mt-2 mb-24 overflow-hidden">
       <section className="pb-12 padding-t max-md:pt-12">
         <ProductsCarousel />
       </section>
       <section className="max-sm:mx-8 mx-16">
         <div className="flex gap-3 pb-4 border-b-2 border-b-gray-300">
-          <label htmlFor="category" className="text-lg font-extralight text-gray-500">Filter Products:</label>
+          <label
+            htmlFor="category"
+            className="text-lg font-extralight text-gray-500"
+          >
+            Filter Products:
+          </label>
           <select
             id="category"
             name="category"
@@ -43,7 +48,7 @@ const Products = () => {
             <option value="other">Other</option>
           </select>
         </div>
-        <ProductsPage selectedCategory={selectedCategory}  />
+        <ProductsPage selectedCategory={selectedCategory} />
       </section>
     </main>
   );

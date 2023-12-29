@@ -24,14 +24,14 @@ const NavCartItems = () => {
   }, [cart, token]);
 
   return (
-    <div>
+    <div className="max-h-60 overflow-y-auto flex flex-col gap-2">
       {productsFromServer.map((productFromServer, index) => {
         const cartProduct = cart[index]; // Get the corresponding product from the cart
 
         return (
           <div
             key={productFromServer?._id}
-            className="flex-1 flex gap-8 max-sm:flex-col max-sm:items-center"
+            className="flex-1 flex gap-4 max-sm:flex-col max-sm:items-center"
           >
             <img
               src={productFromServer?.imageUrl}
