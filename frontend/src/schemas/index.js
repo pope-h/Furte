@@ -1,5 +1,7 @@
 import * as yup from "yup";
 
+const phoneRegExp = /^\+\d{7,}$/;
+
 export const createProductSchema = yup.object().shape({
   name: yup
     .string()
@@ -66,8 +68,12 @@ export const updateUserSchema = yup.object().shape({
     .required("Required"),
   phoneNumber: yup
     .string()
-    .min(5, "Phone number must be at least 5 characters long")
-    .required("Required"),
+    .matches(
+      phoneRegExp,
+      "Phone number must start with + and shouldcontain only digits"
+    )
+    .min(10, "Phone number must be at least 7 digits")
+    .required("Phone number is required"),
   acceptedTos: yup.boolean().oneOf([true], "Please check the box to continue"),
 });
 
@@ -132,6 +138,37 @@ export const shippingAddressSchema = yup.object().shape({
     .required("Required"),
   phoneNumber: yup
     .string()
-    .min(5, "Please input your phone number")
+    .matches(
+      phoneRegExp,
+      "Phone number must start with + and shouldcontain only digits"
+    )
+    .min(10, "Phone number must be at least 7 digits")
+    .required("Phone number is required"),
+});
+
+export const checkoutSchema = yup.object().shape({
+  firstName: yup
+    .string()
+    .min(2, "Please input your first name")
     .required("Required"),
+  lastName: yup
+    .string()
+    .min(2, "Please input your last name")
+    .required("Required"),
+  email: yup.string().email("Please enter a valid email").required("Required"),
+  country: yup
+    .string()
+    .min(5, "Please input your country")
+    .required("Required"),
+  address: yup
+    .string()
+    .min(5, "Please input your address")
+    .required("Required"),
+  phoneNumber: yup
+    .string()
+    .matches(phoneRegExp, "Phone number must start with + and shouldcontain only digits")
+    .min(10, "Phone number must be at least 7 digits")
+    .required("Phone number is required"),
+  notes: yup.string(),
+  coupon: yup.string(),
 });

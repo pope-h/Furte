@@ -8,7 +8,8 @@ import { postProduct } from '../API'
 import useStorePackage from '../store'
 
 const CreateProduct = () => {
-  const token = useStorePackage().accessToken;
+  const store = useStorePackage();
+  const token = store.accessToken;
 
   const onSubmit = async (values, actions) => {
     try {

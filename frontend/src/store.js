@@ -11,7 +11,7 @@ const useStorePackage = create((set) => ({
   accessToken: Cookies.get("accessToken") || "",
   userRole: localStorage.getItem("userRole") || "",
   userName: localStorage.getItem("userName") || "",
-  userId: "",
+  userId: Cookies.get("userId") || "",
   searchQuery: "",
   cart: initialCart,
   cartCount: initialCart.length,
@@ -119,6 +119,7 @@ const useStorePackage = create((set) => ({
       expires: expirationTime,
       sameSite: "Lax", // set to None if using https
     });
+    Cookies.set("userId", userId, { sameSite: "Lax" });
     localStorage.setItem("userRole", role);
     localStorage.setItem("userName", userName);
   },
@@ -126,6 +127,7 @@ const useStorePackage = create((set) => ({
   logout: () => {
     set({ accessToken: "", userRole: "", userName: "", userId: "" });
     Cookies.remove("accessToken", { sameSite: "Lax" });
+    Cookies.remove("userId", { sameSite: "Lax" });
     localStorage.removeItem("userRole");
     localStorage.removeItem("userName");
   },

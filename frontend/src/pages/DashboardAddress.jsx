@@ -6,10 +6,11 @@ import useStorePackage from "../store";
 import { getUser, updateUserInfo } from "../API";
 
 const DashboardAddress = () => {
-  const userId = useStorePackage((state) => state.userId);
+  const store = useStorePackage();
+  const userId = store.userId;
   console.log("DashboardAddress", userId);
   const [user, setUser] = useState(null);
-  const token = useStorePackage().accessToken;
+  const token = store.accessToken;
 
   useEffect(() => {
     const fetchUserDetails = async () => {

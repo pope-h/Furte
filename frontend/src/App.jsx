@@ -25,6 +25,7 @@ import DashboardSummary from "./pages/DashboardSummary";
 import DashboardOrders from "./pages/DashboardOrders";
 import DashboardPersonalData from "./pages/DashboardPersonalData";
 import DashboardAddress from "./pages/DashboardAddress";
+import Checkout from "./pages/Checkout";
 
 const App = () => {
     return (
@@ -38,6 +39,7 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path="nike" element={<LandingPage />} />
             <Route path="cart" element={<Cart />} />
+            <Route path="checkout" element={<Checkout />} />
             <Route path="products" element={<Products />} />
             <Route path="products/details/:id" element={<ProductDetail />} />
             <Route path="dashboard" element={<DashboardLayout />}>

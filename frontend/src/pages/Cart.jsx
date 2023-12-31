@@ -195,7 +195,10 @@ const Cart = () => {
               ${calculateTotal()}
             </p>
           </div>
-          <button className="bg-neutral-800 hover:bg-neutral-600 text-white-400 h-12 w-full">
+          <button
+            className="bg-neutral-800 hover:bg-neutral-600 text-white-400 h-12 w-full"
+            onClick={() => navigate("/checkout")}
+          >
             CHECKOUT
           </button>
         </aside>

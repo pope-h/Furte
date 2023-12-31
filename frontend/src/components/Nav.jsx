@@ -41,18 +41,20 @@ const Nav = () => {
     setSearchOpen(!searchOpen);
   };
 
+  const filteredNavLinks = window.innerWidth > 768 ? navLinks.filter((item) => item.label !== "Dashboard" && item.label !== "Cart") : navLinks;
+
   return (
     <header className="padding-x py-6 z-10 absolute top-0 w-full">
       {!searchOpen ? (
-        <nav className="flex justify-between lg:items-center max-container">
+        <nav className="flex justify-between items-center max-container">
           <div
-            className="hidden max-lg:block cursor-pointer pt-2 max-lg:pl-4"
+            className="hidden max-lg:block cursor-pointer pt-2 max-lg:pl-2"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             <i className={`bx ${menuOpen ? "bx-x" : "bx-menu"} bx-md`}></i>
           </div>
           <h1
-            className="font-bold font-palanquin cursor-pointer text-3xl lg:pr-8 text-black"
+            className="font-bold max-md:font-semibold font-palanquin cursor-pointer text-3xl max-md:text-2xl lg:pr-8 text-black"
             onClick={() => navigate("/")}
           >
             <i className="bx bxl-firebase"></i>Furte
@@ -62,7 +64,7 @@ const Nav = () => {
               menuOpen ? "top-20 opacity-100" : "top-[-490px]"
             } lg:opacity-100 opacity-0`}
           >
-            {navLinks.map((item) => (
+            {filteredNavLinks.map((item) => (
               <li key={item.label}>
                 <a
                   href={item.href}
@@ -79,56 +81,58 @@ const Nav = () => {
               className="bx bx-search bx-sm hover:text-coral-red cursor-pointer"
               onClick={toggleSearch}
             ></i>
-            <UserSection
-              accessToken={accessToken}
-              userName={userName}
-              navigate={navigate}
-              logout={logout}
-            />
-            <PopoverButton
-              iconClass="bx bx-cart bx-sm hover:text-coral-red cursor-pointer"
-              popoverContent={() => (
-                <NotificationPopover
-                  title={`${
-                    !store.cart || store.cart.length === 0
-                      ? "Shopping Cart"
-                      : `${totalQuantity} item${
-                          totalQuantity > 1 ? "s" : ""
-                        } in your shopping cart.`
-                  }`}
-                  content={`${
-                    !store.cart || store.cart.length === 0
-                      ? "You have no item in your cart."
-                      : ""
-                  }`}
-                  button={
-                    <button onClick={() => navigate("/products")}>
-                      PRODUCTS
-                    </button>
-                  }
-                />
-              )}
-            />
-            <i className=""></i>
+            <div className="max-md:hidden flex gap-6 items-center">
+              <UserSection
+                accessToken={accessToken}
+                userName={userName}
+                navigate={navigate}
+                logout={logout}
+              />
+              <PopoverButton
+                iconClass="bx bx-cart bx-sm hover:text-coral-red cursor-pointer"
+                popoverContent={() => (
+                  <NotificationPopover
+                    title={`${
+                      !store.cart || store.cart.length === 0
+                        ? "Shopping Cart"
+                        : `${totalQuantity} item${
+                            totalQuantity > 1 ? "s" : ""
+                          } in your shopping cart.`
+                    }`}
+                    content={`${
+                      !store.cart || store.cart.length === 0
+                        ? "You have no item in your cart."
+                        : ""
+                    }`}
+                    button={
+                      <button onClick={() => navigate("/products")}>
+                        PRODUCTS
+                      </button>
+                    }
+                  />
+                )}
+              />
+              <i className=""></i>
+            </div>
           </div>
         </nav>
       ) : (
-        <div className="flex items-center max-container">
+        <div className="flex items-center gap-2 w-full">
           <h1
-            className="font-bold font-palanquin cursor-pointer text-3xl lg:pr-8 text-black"
+            className="font-bold font-palanquin cursor-pointer text-3xl max-md:text-2xl lg:pr-8 text-black"
             onClick={() => navigate("/")}
           >
             Furte
           </h1>
-          <div className="flex items-center gap-4 pt-2">
+          <div className="flex flex-1 items-center gap-4 pt-2">
             <input
               type="text"
               id="search"
               placeholder="Search"
               value={searchQuery}
               onChange={handleSearchInputChange}
-              className="border-b hover:border-b-slate-gray px-2 py-1 h-10 text-lg"
-              style={{ width: "80vw" }}
+              className="border-b hover:border-b-slate-gray px-2 py-1 h-10 text-lg w-full"
+              // style={{ width: "80vw" }}
             />
             <i
               className="bx bx-search bx-sm hover:text-coral-red cursor-pointer"

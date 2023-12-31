@@ -6,6 +6,8 @@ export const navLinks = [
   { href: "/services", label: "Services" },
   { href: "/about-us", label: "About Us" },
   { href: "/contact-us", label: "Contact Us" },
+  { href: "/dashboard", label: "Dashboard" },
+  { href: "/cart", label: "Cart" },
 ];
 
 export const shoes = [
