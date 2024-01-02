@@ -92,23 +92,23 @@ const Cart = () => {
         Your Cart
       </h1>
       <div className="flex items-start gap-16 max-lg:flex-col max-sm:items-center">
-        <div className="flex flex-1 justify-between flex-col max-sm:items-center gap-14">
+        <div className="flex lg:w-[70%] w-full flex-col max-sm:items-center gap-14 max-lg:max-h-80 max-lg:overflow-y-auto">
           {productsFromServer.map((productFromServer, index) => {
             const cartProduct = cart[index];
 
             return (
               <div
                 key={productFromServer?._id}
-                className="flex gap-8 max-sm:flex-col max-sm:items-center"
+                className="flex gap-4 max-sm:flex-col max-sm:items-center"
               >
                 <img
                   src={productFromServer?.imageUrl}
                   alt={productFromServer?.name}
-                  className="h-40 w-40 rounded-md object-cover my-1"
+                  className="h-40 w-40 max-sm:w-full rounded-md object-cover my-1"
                 />
-                <div className="flex-1 flex flex-col justify-between max-sm:gap-8">
+                <div className="flex-1 flex flex-col justify-between max-sm:gap-3">
                   <div className="flex justify-between">
-                    <h3 className="font-bold font-palanquin text-2xl">
+                    <h3 className="font-bold font-palanquin text-2xl max-sm:text-lg max-sm:font-bold">
                       {productFromServer?.name}
                     </h3>
                     <div className="flex gap-4 cursor-pointer">
@@ -124,45 +124,47 @@ const Cart = () => {
                       ></i>
                     </div>
                   </div>
-                  <div className="flex justify-between max-sm:flex-col max-sm:gap-8">
+                  <div className="flex justify-between max-lg:flex-col max-lg:gap-3">
                     <div className="flex flex-col gap-2">
                       <p className="font-thin font-palanquin text-lg text-gray-400">
                         Delivery Time
                       </p>
                       <p>{`${currentDate.toDateString()} - ${deliveryEndDate.toDateString()}`}</p>
                     </div>
-                    <div className="flex flex-col gap-2">
-                      <p className="font-thin font-palanquin text-lg text-gray-400">
-                        Quantity
-                      </p>
-                      <div className="flex justify-between text-lg font-bold">
-                        <button
-                          onClick={() =>
-                            handleRemoveFromCart(productFromServer._id)
-                          }
-                          className="hover:text-coral-red"
-                        >
-                          -
-                        </button>
-                        <p>{cartProduct?.quantity || 0}</p>
-                        <button
-                          onClick={() => handleAddToCart(productFromServer)}
-                          className="hover:text-coral-red"
-                        >
-                          +
-                        </button>
+                    <div className="flex max-lg:justify-between gap-8">
+                      <div className="flex flex-col gap-2">
+                        <p className="font-thin font-palanquin text-lg text-gray-400">
+                          Quantity
+                        </p>
+                        <div className="flex justify-between text-lg font-bold">
+                          <button
+                            onClick={() =>
+                              handleRemoveFromCart(productFromServer._id)
+                            }
+                            className="hover:text-coral-red"
+                          >
+                            -
+                          </button>
+                          <p>{cartProduct?.quantity || 0}</p>
+                          <button
+                            onClick={() => handleAddToCart(productFromServer)}
+                            className="hover:text-coral-red"
+                          >
+                            +
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex flex-col md:text-right gap-2">
-                      <p className="font-thin font-palanquin text-lg text-gray-400">
-                        Total
-                      </p>
-                      <p>
-                        $
-                        {(
-                          productFromServer.price * cartProduct?.quantity
-                        ).toFixed(2)}
-                      </p>
+                      <div className="flex flex-col md:text-right gap-2">
+                        <p className="font-thin font-palanquin text-lg text-gray-400">
+                          Total
+                        </p>
+                        <p>
+                          $
+                          {(
+                            productFromServer.price * cartProduct?.quantity
+                          ).toFixed(2)}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -170,8 +172,8 @@ const Cart = () => {
             );
           })}
         </div>
-        <aside className="flex flex-col sticky top-0 justify-between gap-4 max-lg:gap-8">
-          <div className="flex justify-between gap-44">
+        <aside className="flex flex-col w-[30%] lg:sticky lg:top-0 justify-between max-lg:w-full gap-4 max-lg:gap-8">
+          <div className="flex justify-between">
             <p className="font-palanquin font-thin text-lg text-gray-600">
               Subtotal
             </p>
@@ -179,7 +181,7 @@ const Cart = () => {
               ${calculateTotal()}
             </p>
           </div>
-          <div className="flex justify-between gap-44">
+          <div className="flex justify-between">
             <p className="font-palanquin font-thin text-lg text-gray-600">
               Shipping
             </p>
@@ -187,7 +189,7 @@ const Cart = () => {
               Free
             </p>
           </div>
-          <div className="flex justify-between gap-44">
+          <div className="flex justify-between">
             <p className="font-palanquin font-bold text-lg text-gray-600">
               Total
             </p>

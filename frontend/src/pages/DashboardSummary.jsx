@@ -61,7 +61,7 @@ const DashboardSummary = () => {
                   <p>{user.firstName}</p>
                   <p>{user.lastName}</p>
                 </div>
-                <div className="flex gap-1">
+                <div className="flex gap-1 max-md:flex-wrap">
                   <p>{user.address}, </p>
                   <p>{user.country}</p>
                 </div>

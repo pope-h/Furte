@@ -33,7 +33,7 @@ const SignIn = () => {
 
   return (
     <div
-      className="text-white-400 h-[100vh] flex justify-center items-center bg-cover"
+      className="text-white-400 h-[100vh] overflow-hidden flex justify-center items-center bg-cover"
       style={{ backgroundImage: `url(${background})` }}
     >
       <Formik

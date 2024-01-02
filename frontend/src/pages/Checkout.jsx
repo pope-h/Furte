@@ -151,7 +151,7 @@ const Checkout = () => {
                     id="phoneNumber"
                   />
                   <DashboardInput
-                    label="Notes about your order, e.g. special notes for delivery."
+                    label="Special Request (Optional)"
                     name="notes"
                     type="notes"
                     as="textarea"
@@ -167,7 +167,7 @@ const Checkout = () => {
                   <p className="border-b-4 mt-8 ml-4 border-gray-500"></p>
                   <div className="flex pt-4 pl-8 gap-2">
                     <i className="bx bx-notification bx-sm"></i>
-                    <p className="lg:pr-28 max-md:pr-4 leading-6 text-gray-500">
+                    <p className="lg:pr-28 max-md:pr-4 leading-6 text-gray-500 flex-wrap">
                       Sorry, it seems that there are no available payment
                       methods. Please contact us if you require assistance or
                       wish to make alternate arrangements.
