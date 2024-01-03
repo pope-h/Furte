@@ -172,3 +172,39 @@ export const checkoutSchema = yup.object().shape({
   notes: yup.string(),
   coupon: yup.string(),
 });
+
+export const contactUsSchema = yup.object().shape({
+  message: yup
+    .string()
+    .min(10, "Message must be at least 10 characters long")
+    .required("Required"),
+  productName: yup.string().required("Required"),
+  remark: yup.string(),
+  salutation: yup
+    .string()
+    .oneOf(
+      [
+        "Mr",
+        "Mrs",
+        "Ms",
+        "other",
+      ],
+      "Invalid Salutation"
+    )
+    .required("Required"),
+  firstName: yup.string().required("Required"),
+  lastName: yup.string().required("Required"),
+  address: yup.string().required("Required"),
+  city: yup.string().required("Required"),
+  postCode: yup.string().required("Required"),
+  phoneNumber: yup
+    .string()
+    .matches(
+      phoneRegExp,
+      "Phone number must start with + and shouldcontain only digits"
+    )
+    .min(10, "Phone number must be at least 7 digits")
+    .required("Required"),
+  email: yup.string().email("Please enter a valid email").required("Required"),
+  country: yup.string().required("Required"),
+});

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ProductsCarousel from "../sections/ProductsCarousel"
+import PagesCarousel from "../sections/PagesCarousel"
 import ProductsPage from "../sections/ProductsPage"
 import useStorePackage from "../store";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,14 @@ const Products = () => {
   const { accessToken } = useStorePackage();
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const carouselImage = [
+    {
+      src: "https://cdn.pixabay.com/photo/2015/06/27/16/34/wall-823611_640.jpg",
+      title: "Products",
+    },
+    // Add more images as needed
+  ];
 
   useEffect(() => {
     if (!accessToken) {
@@ -22,7 +30,7 @@ const Products = () => {
   return (
     <main className="max-sm:my-12 mt-2 mb-24 overflow-hidden">
       <section className="pb-12 padding-t max-md:pt-12">
-        <ProductsCarousel />
+        <PagesCarousel imageInfo={carouselImage} />
       </section>
       <section className="max-sm:mx-8 mx-16">
         <div className="flex gap-3 pb-4 border-b-2 border-b-gray-300">

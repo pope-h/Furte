@@ -1,15 +1,15 @@
 import { ErrorMessage, useField } from "formik";
 
-const DashboardInput = ({ label, as, ...props }) => {
+const DashboardInput = ({ label, as, margin, height, ...props }) => {
   const [field, meta] = useField(props);
 
   const isTextarea = as === "textarea";
 
   return (
-    <div className="my-6 relative">
+    <div className={`${margin || "my-6"} relative`}>
       {isTextarea ? (
         <textarea
-          className={`block w-full py-2 pt-6 pb-2 px-3 text-lg text-black border-[1px] h-16 hover:border-b-[1px] border-gray-300 hover:border-b-black peer ${
+          className={`block w-full py-2 pt-6 pb-2 px-3 ${height || ""} text-lg text-black border-[1px] h-16 hover:border-b-[1px] border-gray-300 hover:border-b-black peer ${
             meta.touched && meta.error ? "border-b-[#fc8181]" : ""
           }`}
           placeholder=""
