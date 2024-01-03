@@ -179,18 +179,23 @@ export const contactUsSchema = yup.object().shape({
     .min(10, "Message must be at least 10 characters long")
     .required("Required"),
   productName: yup.string().required("Required"),
-  remark: yup.string(),
-  salutation: yup
+  remark: yup
     .string()
     .oneOf(
       [
-        "Mr",
-        "Mrs",
-        "Ms",
-        "other",
+        "Satisfied with the product",
+        "Quality exceeded expectations",
+        "Delivery was prompt",
+        "Issue with product received",
+        "Product suggestions",
+        "Other feedback",
       ],
-      "Invalid Salutation"
+      "Invalid remark"
     )
+    .required("Required"),
+  salutation: yup
+    .string()
+    .oneOf(["Mr", "Mrs", "Ms", "Dr", "Prof", "Rev"], "Invalid Salutation")
     .required("Required"),
   firstName: yup.string().required("Required"),
   lastName: yup.string().required("Required"),

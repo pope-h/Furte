@@ -6,6 +6,27 @@ import { Form, Formik } from "formik";
 import { contactUsSchema } from "../schemas";
 
 const ContactUs = () => {
+  const salutationOptions = [
+    "Select as appropriate",
+    "Mr",
+    "Mrs",
+    "Ms",
+    "Dr",
+    "Prof",
+    "Rev",
+  ];
+
+  const remarkOptions = [
+    "Select as appropriate",
+    "Satisfied with the product",
+    "Quality exceeded expectations",
+    "Delivery was prompt",
+    "Issue with product received",
+    "Product suggestions",
+    "Other feedback",
+  ];
+
+
   const carouselImage = [
     {
       src: "https://cdn.pixabay.com/photo/2017/02/07/09/02/wood-2045380_1280.jpg",
@@ -90,13 +111,19 @@ const ContactUs = () => {
                         id="productName"
                         margin="my-3"
                       />
-                      <DashboardInput
+                      <Select
                         label="Remark"
                         name="remark"
                         type="remark"
                         id="remark"
                         margin="my-3"
-                      />
+                      >
+                        {remarkOptions.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </Select>
                       <Select
                         label="Salutation"
                         name="salutation"
@@ -104,11 +131,11 @@ const ContactUs = () => {
                         id="salutation"
                         margin="my-3"
                       >
-                        <option value="">Please select as appropriate</option>
-                        <option value="Mr">Mr</option>
-                        <option value="Mrs">Mrs</option>
-                        <option value="Ms">Ms</option>
-                        <option value="other">Other</option>
+                        {salutationOptions.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
                       </Select>
                       <DashboardInput
                         label="First Name"
@@ -174,7 +201,18 @@ const ContactUs = () => {
                   </div>
                   {displayUserDetails && (
                     <p className="leading-6 font-light text-gray-600 flex-wrap">
-                      The message from {user.salutation} {user.firstName}{" "}{user.lastName} reads {user.message}. <br/>{user.salutation} {user.firstName} can be reached on {user.phoneNumber} or {user.email}. <br/>{user.salutation} {user.firstName} lives in {user.address}, {user.city}, {user.country} with postal code {user.postCode}. <br/>{user.salutation} {user.firstName} is interested in {user.productName}. <br/>{user.salutation} {user.firstName} left a remark {user.remark} on {user.productName}.
+                      The message from {user.salutation} {user.firstName}{" "}
+                      {user.lastName} reads {user.message}. <br />
+                      {user.salutation} {user.firstName} can be reached on{" "}
+                      {user.phoneNumber} or {user.email}. <br />
+                      {user.salutation} {user.firstName} lives in {user.address}
+                      , {user.city}, {user.country} with postal code{" "}
+                      {user.postCode}. <br />
+                      {user.salutation} {user.firstName} is interested in{" "}
+                      {user.productName}. <br />
+                      {user.salutation} {user.firstName} remark on{" "}
+                      {user.productName} is:{" "}
+                      {user.remark}.
                     </p>
                   )}
                   <div className="flex justify-center mb-8">
