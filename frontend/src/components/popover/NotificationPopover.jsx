@@ -5,7 +5,7 @@ import useStorePackage from "../../store";
 import NavCartItemButtons from "../NavCartItemButtons";
 
 const NotificationPopover = ({ title, content, button }) => {
-  const cartCount = useStorePackage().cartCount;
+  const { cartCount, accessToken } = useStorePackage();
 
   return (
     <Transition
@@ -22,11 +22,15 @@ const NotificationPopover = ({ title, content, button }) => {
           <strong className="text-gray-700 text-lg border-b-2 pb-4 border-b-gray-300 font-medium pt-3">
             {title}
           </strong>
-          <div className="py-1 px-2 pb-4 flex flex-col gap-2 border-b-2 border-b-gray-300">
-            <div className="text-sm">{content}</div>
-            {cartCount > 0 && <NavCartItems />}
-          </div>
-          {button &&
+
+          {accessToken && (
+            <div className="py-1 px-2 pb-4 flex flex-col gap-2 border-b-2 border-b-gray-300">
+              <div className="text-sm">{content}</div>
+              {cartCount > 0 && <NavCartItems />}
+            </div>
+          )}
+          {accessToken &&
+            button &&
             (cartCount > 0 ? (
               <NavCartItemButtons />
             ) : (
@@ -38,6 +42,6 @@ const NotificationPopover = ({ title, content, button }) => {
       </Popover.Panel>
     </Transition>
   );
-}
+};
 
-export default NotificationPopover
+export default NotificationPopover;

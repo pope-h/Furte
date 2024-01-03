@@ -88,31 +88,37 @@ const Nav = () => {
                 navigate={navigate}
                 logout={logout}
               />
-              <PopoverButton
-                iconClass="bx bx-cart bx-sm hover:text-coral-red cursor-pointer"
-                popoverContent={() => (
-                  <NotificationPopover
-                    title={`${
-                      !store.cart || store.cart.length === 0
-                        ? "Shopping Cart"
-                        : `${totalQuantity} item${
-                            totalQuantity > 1 ? "s" : ""
-                          } in your shopping cart.`
-                    }`}
-                    content={`${
-                      !store.cart || store.cart.length === 0
-                        ? "You have no item in your cart."
-                        : ""
-                    }`}
-                    button={
-                      <button onClick={() => navigate("/products")}>
-                        PRODUCTS
-                      </button>
-                    }
-                  />
+              <div className="relative">
+                <PopoverButton
+                  iconClass="bx bx-cart bx-sm hover:text-coral-red cursor-pointer"
+                  popoverContent={() => (
+                    <NotificationPopover
+                      title={`${
+                        !store.cart || store.cart.length === 0
+                          ? "Shopping Cart"
+                          : `${totalQuantity} item${
+                              totalQuantity > 1 ? "s" : ""
+                            } in your shopping cart.`
+                      }`}
+                      content={`${
+                        !store.cart || store.cart.length === 0
+                          ? "You have no item in your cart."
+                          : ""
+                      }`}
+                      button={
+                        <button onClick={() => navigate("/products")}>
+                          PRODUCTS
+                        </button>
+                      }
+                    />
+                  )}
+                />
+                {totalQuantity > 0 && (
+                  <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs w-4 h-4 text-center font-medium">
+                    {totalQuantity}
+                  </span>
                 )}
-              />
-              <i className=""></i>
+              </div>
             </div>
           </div>
         </nav>

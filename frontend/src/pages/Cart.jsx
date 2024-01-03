@@ -15,6 +15,13 @@ const Cart = () => {
   const removeProduct = store.removeProduct;
 
   useEffect(() => {
+    // Check if the user is logged in
+    if (!token) {
+      // Redirect the user to the login page or handle it as per your app's logic
+      navigate("/signin");
+      return;
+    }
+
     // Check if the cart is empty and navigate to "/products" if true
     if (cart.length < 1) {
       navigate("/products");
