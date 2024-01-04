@@ -37,7 +37,7 @@ const Products = () => {
 
   return (
     <main className="max-sm:my-12 mt-2 mb-24 overflow-hidden">
-      <section className="pb-12 padding-t max-md:pt-12">
+      <section className="pb-12 pt-24 max-md:pt-12">
         <PagesCarousel imageInfo={carouselImage} />
       </section>
       <section className="max-sm:mx-8 mx-16">
