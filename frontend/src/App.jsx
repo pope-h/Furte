@@ -28,7 +28,7 @@ import DashboardAddress from "./pages/DashboardAddress";
 import Checkout from "./pages/Checkout";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
-import Services from "./pages/Services";
+import OurServices from "./pages/OurServices";
 
 const App = () => {
     return (
@@ -47,7 +47,7 @@ const App = () => {
             <Route path="products/details/:id" element={<ProductDetail />} />
             <Route path="about-us" element={<AboutUs />} />
             <Route path="contact-us" element={<ContactUs />} />
-            <Route path="services" element={<Services />} />
+            <Route path="services" element={<OurServices />} />
             <Route path="dashboard" element={<DashboardLayout />}>
               <Route index element={<DashboardSummary />} />
               <Route path="orders" element={<DashboardOrders />} />
