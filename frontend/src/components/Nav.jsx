@@ -77,7 +77,7 @@ const Nav = () => {
       : navLinks;
 
   return (
-    <header className="padding-x py-6 z-10 absolute top-0 w-full">
+    <header className="padding-x py-6 z-10 absolute top-0 w-full bg-white-400">
       {!searchOpen ? (
         <nav className="flex justify-between items-center max-container">
           <div
