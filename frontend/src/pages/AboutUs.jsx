@@ -38,11 +38,15 @@ const AboutUs = () => {
           of wavering motivation. I extend heartfelt gratitude to friends,
           especially <strong>Mary Apeh</strong>, whose unwavering support and
           encouragement kept me steadfast on this challenging yet rewarding
-          path. Another mention is <strong>David Edema</strong> who advised me
-          on the first 3 to 4 steps needed to achieve the project before he got
-          engulfed with work. A multitude of YouTube tutors played a pivotal
-          role in demystifying intricate features, accelerating my
-          comprehension. Special acknowledgment goes to educators such as{" "}
+          path. Having go-to guys like{" "}
+          <strong>Henry Oseh, Godwin Nwabuma, Osaze</strong> just to name a few, can be said to
+          be a secret sauce as these guys were always there to hear all my
+          jargons and frustrations. Another mention is{" "}
+          <strong>David Edema</strong> who advised me on the first 3 to 4 steps
+          needed to achieve the project before he got engulfed with work. A
+          multitude of YouTube tutors played a pivotal role in demystifying
+          intricate features, accelerating my comprehension. Special
+          acknowledgment goes to educators such as{" "}
           <em>
             Dave Gray, JavaScript Mastery, LetsCode, PedroTech, Frontend Dev
           </em>

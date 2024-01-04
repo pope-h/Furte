@@ -4,7 +4,7 @@ Furte represents a significant achievement in my Software Engineering journey, s
 
 ## Project Overview
 
-Embarking on this solo project brought forth a mix of challenges and triumphs. There were moments of discouragement and wavering motivation, and I express heartfelt gratitude to friends, especially Mary Apeh, whose unwavering support kept me steadfast on this challenging yet rewarding path.
+Embarking on this solo project brought forth a mix of challenges and triumphs. There were moments of discouragement and wavering motivation, and I express heartfelt gratitude to friends, especially Mary Apeh, whose unwavering support kept me steadfast on this challenging yet rewarding path. Having go-to guys like Henry Oseh, Godwin Nwabuma, Osaze etc can be said to be a secret sauce as these guys were always there to hear all my jargons and frustrations.
 
 A plethora of YouTube tutors played a pivotal role in demystifying intricate features and accelerating my comprehension. Special acknowledgment goes to educators such as Dave Gray, JavaScript Mastery, LetsCode, PedroTech, Code With Yousaf, Frontend Dev, and countless others. Angela Yu's approachable introduction to React significantly eased my journey into the world of React development.
 
