@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { navLinks } from "../constants";
 import { useNavigate } from "react-router-dom";
 import PopoverButton from "./popover/PopoverButton";
@@ -13,14 +13,10 @@ import UserSection from "./UserSection";
 const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
-  const {
-    accessToken,
-    userName,
-    logout,
-    searchQuery,
-    setSearchQuery,
-  } = useStorePackage();
+  const { accessToken, userName, logout, searchQuery, setSearchQuery } =
+    useStorePackage();
 
   const store = useStorePackage();
 
@@ -31,6 +27,18 @@ const Nav = () => {
 
   console.log("User token:", accessToken);
   console.log("User Name:", userName);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   /**
    * Handles the change event of the search input field.
@@ -58,7 +66,15 @@ const Nav = () => {
   };
 
   // Filter the navigation links based on the window width
-  const filteredNavLinks = window.innerWidth > 767 ? navLinks.filter((item) => item.label !== "Dashboard" && item.label !== "Cart" && item.label !== "Sign Out") : navLinks;
+  const filteredNavLinks =
+    screenWidth > 767
+      ? navLinks.filter(
+          (item) =>
+            item.label !== "Dashboard" &&
+            item.label !== "Cart" &&
+            item.label !== "Sign Out"
+        )
+      : navLinks;
 
   return (
     <header className="padding-x py-6 z-10 absolute top-0 w-full">

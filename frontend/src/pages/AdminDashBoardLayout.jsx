@@ -7,11 +7,25 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../sections/Sidebar";
 import AdminHeader from "../components/AdminHeader";
 import useStorePackage from "../store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const AdminDashBoardLayout = () => {
   const { userRole } = useStorePackage();
   const navigate = useNavigate();
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
 
   console.log("User role:", userRole);
 
@@ -23,6 +37,17 @@ const AdminDashBoardLayout = () => {
 
   if (userRole !== "Admin") {
     return null;
+  }
+
+  if (screenWidth < 1024) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-lg text-center mx-8 flex flex-wrap">
+          PLEASE ROTATE YOUR SCREEN OR USE A DEVICE WITH A LARGER SCREEN<br/>
+          (minimum res 1024px)
+        </p>
+      </div>
+    );
   }
 
   return (
