@@ -1,5 +1,6 @@
 {
     "version": 2,
+    "framework": "node",
     "builds": [
         {
             "src": "server.js",
@@ -13,6 +14,6 @@
         { "src": "/dashboard", "dest": "/dashboard" },
         { "src": "/logout", "dest": "/logout" },
         { "src": "/refresh", "dest": "/refresh" },
-        { "src": "/(.*)", "dest": "/server.js" }
+        { "src": "/(.*)", "dest": "/" }
     ]
 }
