@@ -103,6 +103,11 @@ const Nav = () => {
                   href={item.href}
                   className="text-slate-gray hover:text-red-600
                                   fonts-montserrat leading-normal text-lg max-lg:text-white-400 hover:no-underline"
+                  onClick={() => {
+                    if (item.href === "/products") {
+                      navigate("/products");
+                    }
+                  }}
                 >
                   {item.label}
                 </a>
