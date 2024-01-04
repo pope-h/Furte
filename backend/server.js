@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 
 app.use(authRoute);
 app.use(refreshRoute);
-app.use('/logout', require('./routes/logout')); // Another way of handling
+app.use('/logout', require('./routes/logout'));
 
 app.use(verifyJWT);
 app.use(dashboardRoute);
