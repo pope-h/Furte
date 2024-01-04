@@ -6,7 +6,7 @@ Furte represents a significant achievement in my Software Engineering journey, s
 
 Embarking on this solo project brought forth a mix of challenges and triumphs. There were moments of discouragement and wavering motivation, and I express heartfelt gratitude to friends, especially Mary Apeh, whose unwavering support kept me steadfast on this challenging yet rewarding path.
 
-A plethora of YouTube tutors played a pivotal role in demystifying intricate features and accelerating my comprehension. Special acknowledgment goes to educators such as Dave Gray, JavaScript Mastery, LetsCode, PedroTech, Frontend Dev, and countless others. Angela Yu's approachable introduction to React significantly eased my journey into the world of React development.
+A plethora of YouTube tutors played a pivotal role in demystifying intricate features and accelerating my comprehension. Special acknowledgment goes to educators such as Dave Gray, JavaScript Mastery, LetsCode, PedroTech, Code With Yousaf, Frontend Dev, and countless others. Angela Yu's approachable introduction to React significantly eased my journey into the world of React development.
 
 I extend deep appreciation to ALX for providing a robust foundation that fueled my transition into a Software Engineer. Despite my background in Mechanical Engineering, this journey was far from easy.
 
