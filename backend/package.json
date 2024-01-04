@@ -1,6 +1,6 @@
 {
   "name": "backend",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -11,9 +11,6 @@
   "keywords": [],
   "author": "Ekarika Nsemeke",
   "license": "ISC",
-  "engines": {
-    "node": "18.18.2"
-  },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
