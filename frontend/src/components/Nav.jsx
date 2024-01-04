@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { navLinks } from "../constants";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PopoverButton from "./popover/PopoverButton";
 import NotificationPopover from "./popover/NotificationPopover";
 import useStorePackage from "../store";
@@ -99,21 +99,23 @@ const Nav = () => {
           >
             {filteredNavLinks.map((item) => (
               <li key={item.label}>
-                <a
-                  {...(item.href === "/products"
-                    ? {
-                        onClick: () => {
-                          navigate("/products");
-                        },
-                      }
-                    : {
-                        href: item.href,
-                      })}
-                  className="text-slate-gray hover:text-red-600
-                                  fonts-montserrat leading-normal text-lg max-lg:text-white-400 hover:no-underline hover:cursor-pointer"
-                >
-                  {item.label}
-                </a>
+                {item.href === "/products" ? (
+                  <Link
+                    to={item.href}
+                    className="text-slate-gray hover:text-red-600
+            fonts-montserrat leading-normal text-lg max-lg:text-white-400 hover:no-underline"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    href={item.href}
+                    className="text-slate-gray hover:text-red-600
+            fonts-montserrat leading-normal text-lg max-lg:text-white-400 hover:no-underline"
+                  >
+                    {item.label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
