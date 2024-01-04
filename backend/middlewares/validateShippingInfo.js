@@ -1,4 +1,11 @@
 // Server-side validation middleware
+/**
+ * Validates the shipping information in the request body.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {Object} - Returns a JSON response with an error message if any required shipping information is missing.
+ */
 const validateShippingInfo = (req, res, next) => {
   const { firstName, lastName, address, country } = req.body;
 

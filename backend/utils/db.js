@@ -1,3 +1,9 @@
+/**
+ * Connects to the MongoDB database.
+ * @async
+ * @function connectDB
+ * @returns {Promise<void>} A Promise that resolves when the connection is successful or rejects with an error.
+ */
 const mongoose = require('mongoose');
 // const express = require('express');
 

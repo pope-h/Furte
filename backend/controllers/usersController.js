@@ -1,11 +1,23 @@
 const User = require('../models/user');
 
+/**
+ * Get all users
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @returns {Object} - The list of users or an error message
+ */
 const getAllUsers = async (req, res) => {
     const users = await User.find();
     if (!users) return res.status(204).json({ 'msg': 'No users found' });
     res.json(users);
 };
 
+/**
+ * Update user role
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @returns {Object} - A success message or an error message
+ */
 const updateUserRole = async (req, res) => {
     if (!req?.body?.id) return res.status(400).json({ 'msg': 'User ID is required' });
     try {
@@ -20,6 +32,12 @@ const updateUserRole = async (req, res) => {
     }
 };
 
+/**
+ * Update user information
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @returns {Object} - A success message or an error message
+ */
 const updateUserInfo = async (req, res) => {
     if (!req?.body?.id) return res.status(400).json({ 'msg': 'User ID is required' });
     try {
@@ -45,6 +63,12 @@ const updateUserInfo = async (req, res) => {
     }
 };
 
+/**
+ * Delete a user
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @returns {Object} - A success message or an error message
+ */
 const deleteUser = async (req, res) => {
     if (!req?.body?.id) return res.status(400).json({ 'msg': 'User ID required' });
     const user = await User.findOne({ _id: req.body.id }).exec();
@@ -55,6 +79,12 @@ const deleteUser = async (req, res) => {
     res.json(result);
 };
 
+/**
+ * Get a user by ID
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @returns {Object} - The user object or an error message
+ */
 const getUser = async (req, res) => {
     if (!req?.params?.id) return res.status(400).json({ 'msg': 'User ID required' });
     const user = await User.findOne({ _id: req.params.id }).exec();

@@ -1,3 +1,10 @@
+/**
+ * Middleware function to verify JSON Web Tokens (JWT).
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {void}
+ */
 const jwt = require('jsonwebtoken');
 
 const verifyJWT = (req, res, next) => {

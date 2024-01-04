@@ -1,3 +1,9 @@
+/**
+ * Handles the refresh token request and generates a new access token.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} - The response containing the role and access token.
+ */
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 

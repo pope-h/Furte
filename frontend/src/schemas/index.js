@@ -140,9 +140,9 @@ export const shippingAddressSchema = yup.object().shape({
     .string()
     .matches(
       phoneRegExp,
-      "Phone number must start with + and shouldcontain only digits"
+      "Phone number must start with + and should contain only digits"
     )
-    .min(10, "Phone number must be at least 7 digits")
+    .min(7, "Phone number must be at least 7 digits")
     .required("Phone number is required"),
 });
 

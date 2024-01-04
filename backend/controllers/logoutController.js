@@ -1,3 +1,10 @@
+/**
+ * Handles the logout functionality.
+ * 
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the logout process is complete.
+ */
 const User = require('../models/user');
 
 const handleLogout = async (req, res) => {

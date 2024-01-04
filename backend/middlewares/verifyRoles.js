@@ -1,3 +1,8 @@
+/**
+ * Middleware function to verify user roles.
+ * @param {...string} allowedRoles - The allowed roles for accessing the route.
+ * @returns {Function} - The middleware function.
+ */
 const verifyRoles = (...allowedRoles) => {
     return (req, res, next) => {
         // console.log('Allowed Role:', allowedRoles);

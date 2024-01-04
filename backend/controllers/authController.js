@@ -1,7 +1,18 @@
+/**
+ * @fileoverview This file contains the authentication controller.
+ * @module authController
+ */
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
+/**
+ * Sign in a user.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response object with the access token and user information.
+ */
 exports.signin = async (req, res) => {
     // Extract data from request body
     const { email, password } = req.body;
@@ -57,6 +68,12 @@ exports.signin = async (req, res) => {
     }
 };
 
+/**
+ * Sign up a new user.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response object with a success message.
+ */
 exports.signup = async (req, res) => {
     // Extract user data from request body
     const { userName, email, role, password } = req.body;
@@ -72,7 +89,6 @@ exports.signup = async (req, res) => {
             return res.status(400).json({ msg: 'User already exists' });
         }
 
-         
         // Set default role to "User"
         let selectedRole = role || "User";
 
@@ -84,7 +100,6 @@ exports.signup = async (req, res) => {
         } else {
             return res.status(400).json({ msg: "Invalid Selection" });
         }
-        
 
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);

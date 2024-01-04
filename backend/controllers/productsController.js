@@ -1,5 +1,11 @@
 const Product = require("../models/product");
 
+/**
+ * Get all products that match the search query.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} - The products that match the search query.
+ */
 const getAllProducts = async (req, res) => {
   try {
     const searchQuery = req.query.search || "";
@@ -15,6 +21,12 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+/**
+ * Create a new product.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} - The success message.
+ */
 const createNewProduct = async (req, res) => {
   if (
     !req?.body?.name ||
@@ -47,6 +59,12 @@ const createNewProduct = async (req, res) => {
   }
 };
 
+/**
+ * Update a product.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} - The success message.
+ */
 const updateProduct = async (req, res) => {
   if (!req?.body?.id) {
     return res.status(400).json({ msg: "ID parameter is required." });
@@ -74,6 +92,12 @@ const updateProduct = async (req, res) => {
   }
 };
 
+/**
+ * Delete a product.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} - The result of the deletion operation.
+ */
 const deleteProduct = async (req, res) => {
   if (!req?.body?.id)
     return res.status(400).json({ msg: "Product ID required." });
@@ -89,6 +113,12 @@ const deleteProduct = async (req, res) => {
   res.json(result);
 };
 
+/**
+ * Get a product by ID.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} - The product that matches the ID.
+ */
 const getProduct = async (req, res) => {
   if (!req?.params?.id)
     return res.status(400).json({ msg: "Product ID required." });
