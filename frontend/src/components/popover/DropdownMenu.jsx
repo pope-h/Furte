@@ -2,13 +2,31 @@ import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { MenuItem } from "./MenuItem";
 
+/**
+ * Renders a dropdown menu component.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.buttonContent - The content to display in the button.
+ * @param {Array|ReactNode} props.items - The items to display in the dropdown menu.
+ * @param {string} props.userName - The username to display in the dropdown menu.
+ * @returns {JSX.Element} The rendered dropdown menu component.
+ */
 export const DropdownMenu = ({ buttonContent, items, userName }) => {
   console.log("DropdownMenu:", userName);
+
+  /**
+   * Capitalizes the first letter of a string.
+   *
+   * @param {string} str - The input string.
+   * @returns {string} The input string with the first letter capitalized.
+   */
   const capitalizeFirstLetter = (str) => {
     return str ? str.charAt(0).toUpperCase() + str.slice(1) : "";
   };
+
   userName = capitalizeFirstLetter(userName);
   console.log("DropdownMenu2:", userName);
+
   return (
     <Menu as="div" className="">
       <div>{buttonContent}</div>

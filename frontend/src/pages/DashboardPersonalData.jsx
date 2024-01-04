@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import DashboardInput from "../components/DashboardInput";
+import CustomInput from "../components/CustomInput";
 import { personalDataSchema } from "../schemas";
 import { useEffect, useState } from "react";
 import useStorePackage from "../store";
@@ -60,19 +60,19 @@ const DashboardPersonalData = () => {
               {({ isSubmitting }) => (
                 <div>
                   <Form>
-                    <DashboardInput
+                    <CustomInput
                       label="User Name"
                       name="userName"
                       type="username"
                       id="userName"
                     />
-                    <DashboardInput
+                    <CustomInput
                       label="First Name"
                       name="firstName"
                       type="firstName"
                       id="firstName"
                     />
-                    <DashboardInput
+                    <CustomInput
                       label="Last Name"
                       name="lastName"
                       type="lastName"

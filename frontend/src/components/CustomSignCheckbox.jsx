@@ -1,6 +1,15 @@
 import { ErrorMessage, useField } from "formik";
 import { Link } from "react-router-dom";
 
+/**
+ * CustomSignCheckbox component.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.label - The label for the checkbox.
+ * @param {boolean} props.showLink - Determines whether to show the "Forgot Password?" link.
+ * @returns {JSX.Element} The rendered CustomSignCheckbox component.
+ */
 const CustomSignCheckbox = ({ label, showLink, ...props }) => {
   const [field, meta] = useField(props);
 
@@ -26,7 +35,9 @@ const CustomSignCheckbox = ({ label, showLink, ...props }) => {
           </Link>
         )}
       </div>
-      <ErrorMessage name={field.name} />
+      <div className="text-[#fc8181] text-sm text-left mt-1">
+        <ErrorMessage name={field.name} />
+      </div>
     </div>
   );
 };

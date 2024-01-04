@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import DashboardInput from "../components/DashboardInput";
+import CustomInput from "../components/CustomInput";
 import { shippingAddressSchema } from "../schemas";
 import { useEffect, useState } from "react";
 import useStorePackage from "../store";
@@ -78,32 +78,32 @@ const DashboardAddress = () => {
               {({ isSubmitting }) => (
                 <div>
                   <Form>
-                    <DashboardInput
+                    <CustomInput
                       label="First Name"
                       name="firstName"
                       type="firstName"
                       id="firstName"
                     />
-                    <DashboardInput
+                    <CustomInput
                       label="Last Name"
                       name="lastName"
                       type="lastName"
                       id="lastName"
                     />
-                    <DashboardInput
+                    <CustomInput
                       label="Country"
                       name="country"
                       type="country"
                       id="country"
                     />
-                    <DashboardInput
+                    <CustomInput
                       label="Address"
                       name="address"
                       type="address"
                       as="textarea"
                       id="address"
                     />
-                    <DashboardInput
+                    <CustomInput
                       label="Phone Number"
                       name="phoneNumber"
                       type="phoneNumber"

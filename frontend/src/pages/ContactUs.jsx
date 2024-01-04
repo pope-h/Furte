@@ -1,6 +1,17 @@
+/**
+ * ContactUs component for the contact us page.
+ * Renders a form for users to submit their contact information and message.
+ * Uses Formik for form handling and validation.
+ *
+ * @component
+ * @example
+ * return (
+ *   <ContactUs />
+ * )
+ */
 import { useState } from "react";
-import DashboardInput from "../components/DashboardInput";
-import Select from "../components/Select";
+import CustomInput from "../components/CustomInput";
+import CustomSelect from "../components/CustomSelect";
 import PagesCarousel from "../sections/PagesCarousel";
 import { Form, Formik } from "formik";
 import { contactUsSchema } from "../schemas";
@@ -73,7 +84,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div>
+    <div className="max-sm:my-12 mt-2 mb-24 overflow-hidden">
       <section className="pb-12 padding-t max-md:pt-12">
         <PagesCarousel imageInfo={carouselImage} />
       </section>
@@ -94,7 +105,7 @@ const ContactUs = () => {
                 <Form>
                   <div className="flex max-lg:flex-col gap-8 max-lg:gap-1 items-center justify-between">
                     <div className="lg:w-1/4 w-full">
-                      <DashboardInput
+                      <CustomInput
                         label="Your Message"
                         name="message"
                         type="message"
@@ -104,14 +115,14 @@ const ContactUs = () => {
                       />
                     </div>
                     <div className="lg:w-2/4 w-full grid grid-cols-2 max-lg:grid-cols-1 gap-x-2">
-                      <DashboardInput
+                      <CustomInput
                         label="Product Name"
                         name="productName"
                         type="productName"
                         id="productName"
                         margin="my-3"
                       />
-                      <Select
+                      <CustomSelect
                         label="Remark"
                         name="remark"
                         type="remark"
@@ -123,8 +134,8 @@ const ContactUs = () => {
                             {option}
                           </option>
                         ))}
-                      </Select>
-                      <Select
+                      </CustomSelect>
+                      <CustomSelect
                         label="Salutation"
                         name="salutation"
                         type="salutation"
@@ -136,15 +147,15 @@ const ContactUs = () => {
                             {option}
                           </option>
                         ))}
-                      </Select>
-                      <DashboardInput
+                      </CustomSelect>
+                      <CustomInput
                         label="First Name"
                         name="firstName"
                         type="firstName"
                         id="firstName"
                         margin="my-3"
                       />
-                      <DashboardInput
+                      <CustomInput
                         label="Last Name"
                         name="lastName"
                         type="lastName"
@@ -152,7 +163,7 @@ const ContactUs = () => {
                         margin="my-3"
                       />
 
-                      <DashboardInput
+                      <CustomInput
                         label="Address"
                         name="address"
                         type="address"
@@ -160,14 +171,14 @@ const ContactUs = () => {
                         id="address"
                         margin="my-3"
                       />
-                      <DashboardInput
+                      <CustomInput
                         label="City"
                         name="city"
                         type="city"
                         id="city"
                         margin="my-3"
                       />
-                      <DashboardInput
+                      <CustomInput
                         label="Post Code"
                         name="postCode"
                         type="postCode"
@@ -176,21 +187,21 @@ const ContactUs = () => {
                       />
                     </div>
                     <div className="flex flex-col lg:w-1/4 w-full">
-                      <DashboardInput
+                      <CustomInput
                         label="Phone Number"
                         name="phoneNumber"
                         type="phoneNumber"
                         id="phoneNumber"
                         margin="my-3"
                       />
-                      <DashboardInput
+                      <CustomInput
                         label="Email"
                         name="email"
                         type="email"
                         id="email"
                         margin="my-3"
                       />
-                      <DashboardInput
+                      <CustomInput
                         label="Country"
                         name="country"
                         type="country"
@@ -211,8 +222,7 @@ const ContactUs = () => {
                       {user.salutation} {user.firstName} is interested in{" "}
                       {user.productName}. <br />
                       {user.salutation} {user.firstName} remark on{" "}
-                      {user.productName} is:{" "}
-                      {user.remark}.
+                      {user.productName} is: {user.remark}.
                     </p>
                   )}
                   <div className="flex justify-center mb-8">

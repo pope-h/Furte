@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import DashboardInput from "../components/DashboardInput";
+import CustomInput from "../components/CustomInput";
 import { checkoutSchema } from "../schemas";
 import { useEffect, useState } from "react";
 import useStorePackage from "../store";
@@ -112,52 +112,52 @@ const Checkout = () => {
             {({ isSubmitting }) => (
               <div>
                 <Form>
-                  <DashboardInput
+                  <CustomInput
                     label="First Name"
                     name="firstName"
                     type="firstName"
                     id="firstName"
                   />
-                  <DashboardInput
+                  <CustomInput
                     label="Last Name"
                     name="lastName"
                     type="lastName"
                     id="lastName"
                   />
-                  <DashboardInput
+                  <CustomInput
                     label="Email"
                     name="email"
                     type="email"
                     id="email"
                     disabled
                   />
-                  <DashboardInput
+                  <CustomInput
                     label="Country"
                     name="country"
                     type="country"
                     id="country"
                   />
-                  <DashboardInput
+                  <CustomInput
                     label="Address"
                     name="address"
                     type="address"
                     as="textarea"
                     id="address"
                   />
-                  <DashboardInput
+                  <CustomInput
                     label="Phone Number"
                     name="phoneNumber"
                     type="phoneNumber"
                     id="phoneNumber"
                   />
-                  <DashboardInput
+                  <CustomInput
                     label="Special Request (Optional)"
                     name="notes"
                     type="notes"
                     as="textarea"
                     id="notes"
                   />
-                  <DashboardInput
+                  <CustomInput
                     label="Have a coupon?"
                     name="coupon"
                     type="coupon"

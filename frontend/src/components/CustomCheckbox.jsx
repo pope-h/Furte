@@ -1,28 +1,32 @@
-import { useField } from "formik"
-import FormStyles from "./FormStyles"
+import { ErrorMessage, useField } from "formik";
 
+/**
+ * Custom Checkbox component.
+ *
+ * @component
+ * @param {Object} props - The props object.
+ * @returns {JSX.Element} The JSX element representing the Custom Checkbox.
+ */
 const CustomCheckbox = ({ ...props }) => {
     const [field, meta] = useField(props)
     
   return (
     <>
-      <div style={FormStyles.checkbox}>
+      <div className="flex justify-start items-center mt-4">
         <input
           {...field}
           {...props}
-          style={{
-            ...FormStyles.checkboxInput,
-            ...(meta.touched && meta.error ? FormStyles.inputError : {}),
-          }}
+          className={`w-fit mr-2 transform scale-125 ${
+            meta.touched && meta.error ? "border-b-[#fc8181]" : ""
+          }`}
         />
-        <span className="text-white">
-          I have the user permission to make this changes and understand this
-          activity will be logged.
+        <span className="text-black">
+          I understand this activity will be logged and I am responsible for any actions taken.
         </span>
       </div>
-      {meta.touched && meta.error && (
-        <div style={FormStyles.error}>{meta.error}</div>
-      )}
+      <div className="text-[#fc8181] text-sm text-left mt-1">
+        <ErrorMessage name={field.name} />
+      </div>
     </>
   );
 }

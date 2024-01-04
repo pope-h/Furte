@@ -34,7 +34,7 @@ const PagesCarousel = ({ imageInfo }) => {
             />
             {image.title && (
               <h1
-                className="text-8xl font-extrabold text-white-400 absolute inset-0 flex items-center justify-center"
+                className="text-8xl max-sm:text-4xl font-extrabold text-white-400 absolute inset-0 flex items-center justify-center"
                 data-swiper-parallax="-100"
               >
                 {image.title}

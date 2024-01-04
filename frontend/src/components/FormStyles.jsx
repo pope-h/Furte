@@ -1,3 +1,23 @@
+/**
+ * Styles for the form component.
+ * @typedef {Object} FormStyles
+ * @property {Object} app - Styles for the app container.
+ * @property {Object} error - Styles for the error message.
+ * @property {Object} checkbox - Styles for the checkbox container.
+ * @property {Object} form - Styles for the form container.
+ * @property {Object} formLabel - Styles for the form label.
+ * @property {Object} input - Styles for the input field.
+ * @property {Object} select - Styles for the select field.
+ * @property {Object} inputFocus - Styles for the input field when focused.
+ * @property {Object} selectFocus - Styles for the select field when focused.
+ * @property {Object} inputPlaceholder - Styles for the input field placeholder.
+ * @property {Object} selectPlaceholder - Styles for the select field placeholder.
+ * @property {Object} checkboxInput - Styles for the checkbox input.
+ * @property {Object} button - Styles for the button.
+ * @property {Object} inputError - Styles for the input field when there is an error.
+ * @property {Object} selectInputError - Styles for the select field when there is an error.
+ * @property {Object} buttonDisabled - Styles for the disabled button.
+ */
 const FormStyles = {
   app: {
     textAlign: 'center',

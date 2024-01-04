@@ -1,13 +1,20 @@
+/**
+ * EditUser component for editing user information.
+ * @component
+ * @example
+ * return (
+ *   <EditUser />
+ * )
+ */
 import { Form, Formik } from "formik";
-import CustomInput from "./CustomInput";
-import FormStyles from "./FormStyles";
 import { updateUserSchema } from "../schemas";
-import CustomSelect from "./CustomSelect";
 import CustomCheckbox from "./CustomCheckbox";
 import { useEffect, useState } from "react";
 import { getUser, updateUserInfo } from "../API";
 import { useNavigate, useParams } from "react-router-dom";
 import useStorePackage from "../store";
+import CustomSelect from "./CustomSelect";
+import CustomInput from "./CustomInput";
 
 const EditUser = () => {
   const { id: userId } = useParams();
@@ -45,7 +52,7 @@ const EditUser = () => {
   };
 
   return (
-    <section className="bg-neutral-800" style={FormStyles.app}>
+    <section className="mx-16">
       {user && (
         <Formik
           initialValues={{
@@ -64,10 +71,10 @@ const EditUser = () => {
         >
           {({ isSubmitting }) => (
             <>
-              <h1 className="text-white font-bold text-4xl mb-8">
+              <h1 className="font-bold text-4xl mb-8 text-center">
                 Edit User Info
               </h1>
-              <Form style={FormStyles.form}>
+              <Form>
                 <CustomSelect id="role" label="Role" name="role">
                   <option value="">{user.role}</option>
                   <option value="User">User</option>
@@ -123,15 +130,16 @@ const EditUser = () => {
                   autoComplete="on"
                 />
                 <CustomCheckbox type="checkbox" name="acceptedTos" />
-                <button
-                  type="submit"
-                  style={{
-                    ...FormStyles.button,
-                    ...(isSubmitting ? FormStyles.buttonDisabled : {}),
-                  }}
-                >
-                  Submit
-                </button>
+                <div className="flex justify-center mb-8">
+                  <button
+                    className={`lg:w-[45%] w-1/3 mt-8 max-md:w-full bg-neutral-800 hover:bg-neutral-600 text-white h-12 ${
+                      isSubmitting && "opacity-50 cursor-not-allowed"
+                    }`}
+                    type="submit"
+                  >
+                    SUBMIT
+                  </button>
+                </div>
               </Form>
             </>
           )}

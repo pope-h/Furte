@@ -8,6 +8,15 @@ const Button = (props) => {
     fullWidth,
   } = props;
 
+  /**
+   * Generates the CSS classes for the Button component.
+   *
+   * @param {string} backgroundColor - The background color of the button.
+   * @param {string} textColor - The text color of the button.
+   * @param {string} borderColor - The border color of the button.
+   * @param {boolean} fullWidth - Determines if the button should take up the full width.
+   * @returns {string} - The generated CSS classes for the button.
+   */
   const buttonClasses = `flex justify-center items-center gap-2 px-7 py-4
     border font-montserrat text-lg leading-none 
     ${

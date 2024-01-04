@@ -1,13 +1,21 @@
+/**
+ * EditProduct component for editing a product.
+ *
+ * @component
+ * @example
+ * // Usage
+ * import EditProduct from './EditProduct';
+ * <EditProduct />
+ */
 import { Form, Formik } from 'formik'
-import CustomInput from './CustomInput'
-import FormStyles from './FormStyles'
 import { createProductSchema } from '../schemas'
-import CustomSelect from './CustomSelect'
 import CustomCheckbox from './CustomCheckbox'
 import { useEffect, useState } from 'react'
 import { getProduct, updateProduct } from '../API'
 import { useNavigate, useParams } from 'react-router-dom';
 import useStorePackage from '../store'
+import CustomInput from './CustomInput'
+import CustomSelect from './CustomSelect'
 
 const EditProduct = () => {
     const { id: productId } = useParams();
@@ -43,7 +51,7 @@ const EditProduct = () => {
   };
 
   return (
-    <section className="bg-neutral-800" style={FormStyles.app}>
+    <section className="mx-16">
       {product && (
         <Formik
           initialValues={{
@@ -60,10 +68,10 @@ const EditProduct = () => {
         >
           {({ isSubmitting }) => (
             <>
-              <h1 className="text-white font-bold text-4xl mb-8">
+              <h1 className="font-bold text-4xl mb-8 text-center">
                 Edit Product
               </h1>
-              <Form style={FormStyles.form}>
+              <Form>
                 <CustomInput
                   id="name"
                   label="Name"
@@ -77,6 +85,8 @@ const EditProduct = () => {
                   name="description"
                   as="textarea"
                   autoComplete="off"
+                  type="text"
+                  height="h-36"
                 />
                 <CustomSelect id="category" label="Category" name="category">
                   <option value="">Select product category</option>
@@ -110,15 +120,16 @@ const EditProduct = () => {
                   autoComplete="off"
                 />
                 <CustomCheckbox type="checkbox" name="acceptedTos" />
-                <button
-                  type="submit"
-                  style={{
-                    ...FormStyles.button,
-                    ...(isSubmitting ? FormStyles.buttonDisabled : {}),
-                  }}
-                >
-                  Submit
-                </button>
+                <div className="flex justify-center mb-8">
+                  <button
+                    className={`lg:w-[45%] w-1/3 mt-8 max-md:w-full bg-neutral-800 hover:bg-neutral-600 text-white h-12 ${
+                      isSubmitting && "opacity-50 cursor-not-allowed"
+                    }`}
+                    type="submit"
+                  >
+                    SUBMIT
+                  </button>
+                </div>
               </Form>
             </>
           )}

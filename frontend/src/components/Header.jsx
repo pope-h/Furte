@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import '../styles/header.css';
 
+/**
+ * Renders the header component.
+ * @returns {JSX.Element} The rendered header component.
+ */
 const Header = () => {
     return (
         <header className="header">

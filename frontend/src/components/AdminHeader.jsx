@@ -1,3 +1,7 @@
+/**
+ * Renders the admin header component.
+ * @returns {JSX.Element} The admin header component.
+ */
 import { Menu } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom'
 import NotificationPopover from './popover/NotificationPopover'

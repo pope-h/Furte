@@ -6,6 +6,10 @@ import NotificationPopover from "./popover/NotificationPopover";
 import useStorePackage from "../store";
 import UserSection from "./UserSection";
 
+/**
+ * Navigation component for the application.
+ * Renders the navigation bar with menu, search, and user-related functionality.
+ */
 const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -28,20 +32,33 @@ const Nav = () => {
   console.log("User token:", accessToken);
   console.log("User Name:", userName);
 
+  /**
+   * Handles the change event of the search input field.
+   * Updates the search query state.
+   * @param {Object} e - The event object.
+   */
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
   };
 
+  /**
+   * Handles the search action.
+   * Redirects to the products page with the search query.
+   */
   const handleSearch = () => {
-    // Redirect to the products page with the search query
     navigate(`/products?search=${encodeURIComponent(searchQuery)}`);
   };
 
+  /**
+   * Toggles the search state.
+   * Opens or closes the search input field.
+   */
   const toggleSearch = () => {
     setSearchOpen(!searchOpen);
   };
 
-  const filteredNavLinks = window.innerWidth > 768 ? navLinks.filter((item) => item.label !== "Dashboard" && item.label !== "Cart") : navLinks;
+  // Filter the navigation links based on the window width
+  const filteredNavLinks = window.innerWidth > 767 ? navLinks.filter((item) => item.label !== "Dashboard" && item.label !== "Cart" && item.label !== "Sign Out") : navLinks;
 
   return (
     <header className="padding-x py-6 z-10 absolute top-0 w-full">

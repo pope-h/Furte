@@ -1,3 +1,14 @@
+/**
+ * Renders a carousel card with an image.
+ *
+ * @component
+ * @param {Object} props - The properties for the CarouselCard component.
+ * @param {string} props.src - The source URL of the image.
+ * @param {string} props.srcset - The source set of the image.
+ * @param {string} props.alt - The alternative text for the image.
+ * @param {string} props.title - The title of the image.
+ * @returns {JSX.Element} The rendered CarouselCard component.
+ */
 const CarouselCard = (props) => {
   return (
     <img

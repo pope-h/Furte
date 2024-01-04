@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { getProduct } from "../API";
 import useStorePackage from "../store";
 
+/**
+ * Renders the cart items in the navigation bar.
+ * @returns {JSX.Element} The component JSX element.
+ */
 const NavCartItems = () => {
   const store = useStorePackage();
   const cart = store.cart;
@@ -9,6 +13,10 @@ const NavCartItems = () => {
   const token = store.accessToken;
 
   useEffect(() => {
+    /**
+     * Fetches the product details from the server for each item in the cart.
+     * @returns {Promise<void>} A promise that resolves when all products are fetched.
+     */
     const fetchProducts = async () => {
       try {
         const products = await Promise.all(

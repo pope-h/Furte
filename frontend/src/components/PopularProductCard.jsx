@@ -1,3 +1,12 @@
+/**
+ * Renders a card component for a popular product.
+ *
+ * @component
+ * @param {string} imgURL - The URL of the product image.
+ * @param {string} name - The name of the product.
+ * @param {string} price - The price of the product.
+ * @returns {JSX.Element} The rendered card component.
+ */
 import { star } from "../assets/icons";
 
 const PopularProductCard = ({ imgURL, name, price }) => {

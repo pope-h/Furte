@@ -1,6 +1,17 @@
 import { Menu } from "@headlessui/react";
 import classNames from "classnames";
 
+/**
+ * Represents a menu item in a popover.
+ *
+ * @component
+ * @param {Object} props - The properties of the menu item.
+ * @param {Function} props.onClick - The function to be called when the menu item is clicked.
+ * @param {string} props.label - The label of the menu item.
+ * @param {boolean} props.active - Indicates whether the menu item is active.
+ * @param {boolean} props.isUsername - Indicates whether the menu item represents a username.
+ * @returns {JSX.Element} The rendered menu item.
+ */
 export const MenuItem = ({ onClick, label, active, isUsername }) => (
   <Menu.Item>
     {({ active: itemActive }) => (

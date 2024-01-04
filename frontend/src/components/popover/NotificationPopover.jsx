@@ -4,6 +4,16 @@ import NavCartItems from "../NavCartItems";
 import useStorePackage from "../../store";
 import NavCartItemButtons from "../NavCartItemButtons";
 
+/**
+ * Notification Popover component.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.title - The title of the popover.
+ * @param {string} props.content - The content of the popover.
+ * @param {string} props.button - The button text of the popover.
+ * @returns {JSX.Element} The rendered NotificationPopover component.
+ */
 const NotificationPopover = ({ title, content, button }) => {
   const { cartCount, accessToken } = useStorePackage();
 

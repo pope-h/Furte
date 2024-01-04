@@ -1,3 +1,13 @@
+/**
+ * Renders a review card component.
+ *
+ * @component
+ * @param {string} imgURL - The URL of the customer's image.
+ * @param {string} customerName - The name of the customer.
+ * @param {number} rating - The rating given by the customer.
+ * @param {string} feedback - The feedback given by the customer.
+ * @returns {JSX.Element} The rendered review card component.
+ */
 import { star } from "../assets/icons"
 
 const ReviewCard = ({ imgURL, customerName, rating, feedback }) => {

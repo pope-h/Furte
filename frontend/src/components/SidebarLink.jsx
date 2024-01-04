@@ -1,3 +1,10 @@
+/**
+ * Renders a link in the sidebar.
+ *
+ * @component
+ * @param {Object} link - The link object containing the path, icon, and label.
+ * @returns {JSX.Element} The rendered sidebar link.
+ */
 import { Link, useLocation } from "react-router-dom"
 import classNames from 'classnames'
 

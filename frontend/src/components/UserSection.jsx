@@ -1,3 +1,11 @@
+/**
+ * Renders the user section component.
+ * @param {string} accessToken - The access token of the user.
+ * @param {string} userName - The name of the user.
+ * @param {function} navigate - Function to navigate to a specific route.
+ * @param {function} logout - Function to log out the user.
+ * @returns {JSX.Element} The user section component.
+ */
 import { Link } from "react-router-dom";
 import { Menu } from "@headlessui/react";
 import { DropdownMenu } from "./popover/DropdownMenu";

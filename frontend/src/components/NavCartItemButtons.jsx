@@ -1,3 +1,7 @@
+/**
+ * Renders the navigation buttons for the cart items.
+ * @returns {JSX.Element} The JSX element representing the navigation buttons.
+ */
 import { Link } from "react-router-dom";
 
 const NavCartItemButtons = () => {

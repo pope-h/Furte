@@ -1,16 +1,25 @@
 import { Form, Formik } from 'formik'
-import CustomInput from './CustomInput'
-import FormStyles from './FormStyles'
 import { createProductSchema } from '../schemas'
-import CustomSelect from './CustomSelect'
 import CustomCheckbox from './CustomCheckbox'
 import { postProduct } from '../API'
 import useStorePackage from '../store'
+import CustomInput from './CustomInput'
+import CustomSelect from './CustomSelect'
 
+/**
+ * Component for creating a new product.
+ * @returns {JSX.Element} The CreateProduct component.
+ */
 const CreateProduct = () => {
   const store = useStorePackage();
   const token = store.accessToken;
 
+  /**
+   * Handles form submission.
+   * @param {Object} values - The form values.
+   * @param {Object} actions - The form actions.
+   * @returns {Promise<void>} A promise that resolves when the product is successfully added.
+   */
   const onSubmit = async (values, actions) => {
     try {
       await postProduct(token, values);
@@ -24,7 +33,7 @@ const CreateProduct = () => {
   };
 
   return (
-    <section className="bg-neutral-800" style={FormStyles.app}>
+    <section>
       <Formik
         initialValues={{
           name: "",
@@ -39,17 +48,16 @@ const CreateProduct = () => {
         onSubmit={onSubmit}
       >
         {({ isSubmitting }) => (
-          <>
-            <h1 className="text-white font-bold text-4xl mb-8">
+          <div className="mx-16">
+            <h1 className="font-bold text-4xl mb-8 text-center">
               Add New Product
             </h1>
-            <Form style={FormStyles.form}>
+            <Form>
               <CustomInput
                 id="name"
                 label="Name"
                 name="name"
                 type="text"
-                placeholder="Enter product name"
                 autoComplete="on"
               />
               <CustomInput
@@ -58,14 +66,10 @@ const CreateProduct = () => {
                 label="Description"
                 name="description"
                 as="textarea"
-                placeholder="Enter product description"
+                type="text"
+                height="h-36"
               />
-              <CustomSelect
-                id="category"
-                label="Category"
-                name="category"
-                placeholder="Select product category"
-              >
+              <CustomSelect id="category" label="Category" name="category">
                 <option value="">Select product category</option>
                 <option value="livingroom">Living Room</option>
                 <option value="bedroom">Bedroom</option>
@@ -81,7 +85,6 @@ const CreateProduct = () => {
                 label="Price"
                 name="price"
                 type="number"
-                placeholder="Enter product price"
               />
               <CustomInput
                 id="quantity"
@@ -89,7 +92,6 @@ const CreateProduct = () => {
                 label="Quantity"
                 name="quantity"
                 type="number"
-                placeholder="Enter product quantity"
               />
               <CustomInput
                 id="imageUrl"
@@ -97,27 +99,20 @@ const CreateProduct = () => {
                 label="Image URL"
                 name="imageUrl"
                 type="text"
-                placeholder="Enter product image URL"
               />
               <CustomCheckbox type="checkbox" name="acceptedTos" />
-              {/* <input
-                            type="text"
-                            onChange={props.handleChange}
-                            onBlur={props.handleBlur}
-                            value={props.values.name}
-                            name="name"
-                        /> */}
-              <button
-                type="submit"
-                style={{
-                  ...FormStyles.button,
-                  ...(isSubmitting ? FormStyles.buttonDisabled : {}),
-                }}
-              >
-                Submit
-              </button>
+              <div className="flex justify-center mb-8">
+                <button
+                  className={`lg:w-[45%] w-1/3 mt-8 max-md:w-full bg-neutral-800 hover:bg-neutral-600 text-white h-12 ${
+                    isSubmitting && "opacity-50 cursor-not-allowed"
+                  }`}
+                  type="submit"
+                >
+                  SUBMIT
+                </button>
+              </div>
             </Form>
-          </>
+          </div>
         )}
       </Formik>
     </section>

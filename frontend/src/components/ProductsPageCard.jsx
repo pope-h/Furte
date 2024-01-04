@@ -1,3 +1,15 @@
+/**
+ * Renders a card component for displaying product information.
+ *
+ * @component
+ * @param {Object} props - The props object containing the product data.
+ * @param {string} props.imageUrl - The URL of the product image.
+ * @param {string} props.description - The description of the product.
+ * @param {string} props.name - The name of the product.
+ * @param {string} props.category - The category of the product.
+ * @param {number} props.price - The price of the product.
+ * @returns {JSX.Element} The rendered card component.
+ */
 const ProductsPageCard = (props) => {
   const srcSet = props.imageUrl
     ? `

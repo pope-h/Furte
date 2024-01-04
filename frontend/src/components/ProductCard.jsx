@@ -1,3 +1,13 @@
+/**
+ * Renders a product card component.
+ *
+ * @component
+ * @param {Object} props - The properties passed to the component.
+ * @param {string} props.src - The source URL of the product image.
+ * @param {string} props.alt - The alternative text for the product image.
+ * @param {string} props.title - The title of the product.
+ * @returns {JSX.Element} The rendered product card component.
+ */
 const ProductCard = (props) => {
     return (
         <section className="w-full h-full group">
