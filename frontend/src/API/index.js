@@ -20,8 +20,8 @@ const getAuthorizationHeader = (token) => ({
  */
 export const fetchProducts = async (token, searchQuery) => {
   const apiUrl = searchQuery
-    ? `http://localhost:3001/products?search=${encodeURIComponent(searchQuery)}`
-    : 'http://localhost:3001/products';
+    ? `https://furte-server.vercel.app/products?search=${encodeURIComponent(searchQuery)}`
+    : 'https://furte-server.vercel.app/products';
 
   try {
     const res = await fetch(apiUrl, {
@@ -44,7 +44,7 @@ export const fetchProducts = async (token, searchQuery) => {
  */
 export const getProduct = async (token, id) => {
   try {
-    const res = await fetch(`http://localhost:3001/products/${id}`, {
+    const res = await fetch(`https://furte-server.vercel.app/products/${id}`, {
       method: "GET",
       headers: getAuthorizationHeader(token),
     });
@@ -64,7 +64,7 @@ export const getProduct = async (token, id) => {
  */
 export const postProduct = async (token, productData) => {
   try {
-    const res = await fetch("http://localhost:3001/products", {
+    const res = await fetch("https://furte-server.vercel.app/products", {
       method: "POST",
       headers: getAuthorizationHeader(token),
       body: JSON.stringify(productData),
@@ -86,7 +86,7 @@ export const postProduct = async (token, productData) => {
  */
 export const updateProduct = async (token, id, productData) => {
   try {
-    const res = await fetch("http://localhost:3001/products", {
+    const res = await fetch("https://furte-server.vercel.app/products", {
       method: "PUT",
       headers: getAuthorizationHeader(token),
       // here the id is passed in the body insteads of the params because the backend is expecting the id in the body
@@ -108,7 +108,7 @@ export const updateProduct = async (token, id, productData) => {
  */
 export const deleteProduct = async (token, id) => {
   try {
-    const res = await fetch("http://localhost:3001/products", {
+    const res = await fetch("https://furte-server.vercel.app/products", {
       method: "DELETE",
       headers: getAuthorizationHeader(token),
       body: JSON.stringify({ id }),
@@ -128,7 +128,7 @@ export const deleteProduct = async (token, id) => {
  */
 export const fetchUsers = async (token) => {
   try {
-    const res = await fetch("http://localhost:3001/users", {
+    const res = await fetch("https://furte-server.vercel.app/users", {
       method: "GET",
       headers: getAuthorizationHeader(token),
     });
@@ -148,7 +148,7 @@ export const fetchUsers = async (token) => {
  */
 export const getUser = async (token, id) => {
   try {
-    const res = await fetch(`http://localhost:3001/users/${id}`, {
+    const res = await fetch(`https://furte-server.vercel.app/users/${id}`, {
       method: "GET",
       headers: getAuthorizationHeader(token),
     });
@@ -169,7 +169,7 @@ export const getUser = async (token, id) => {
  */
 export const updateUserRole = async (token, id, role) => {
   try {
-    const res = await fetch("http://localhost:3001/users", {
+    const res = await fetch("https://furte-server.vercel.app/users", {
       method: "PUT",
       headers: getAuthorizationHeader(token),
       body: JSON.stringify({ id, role }),
@@ -191,7 +191,7 @@ export const updateUserRole = async (token, id, role) => {
  */
 export const updateUserInfo = async (token, id, userInfo) => {
   try {
-    const res = await fetch("http://localhost:3001/users", {
+    const res = await fetch("https://furte-server.vercel.app/users", {
       method: "PUT",
       headers: getAuthorizationHeader(token),
       body: JSON.stringify({ id, ...userInfo }),
@@ -212,7 +212,7 @@ export const updateUserInfo = async (token, id, userInfo) => {
  */
 export const deleteUser = async (token, id) => {
   try {
-    const res = await fetch("http://localhost:3001/users", {
+    const res = await fetch("https://furte-server.vercel.app/users", {
       method: "DELETE",
       headers: getAuthorizationHeader(token),
       body: JSON.stringify({ id }),
@@ -233,7 +233,7 @@ export const deleteUser = async (token, id) => {
  */
 export const signInUser = async (token, userData) => {
   try {
-    const res = await fetch("http://localhost:3001/signin", {
+    const res = await fetch("https://furte-server.vercel.app/signin", {
       method: "POST",
       headers: getAuthorizationHeader(token),
       body: JSON.stringify(userData),
@@ -254,7 +254,7 @@ export const signInUser = async (token, userData) => {
  */
 export const signUpUser = async (token, userData) => {
   try {
-    const res = await fetch("http://localhost:3001/signup", {
+    const res = await fetch("https://furte-server.vercel.app/signup", {
       method: "POST",
       headers: getAuthorizationHeader(token),
       body: JSON.stringify(userData),

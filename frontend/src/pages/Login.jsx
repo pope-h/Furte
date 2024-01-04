@@ -42,7 +42,7 @@ function SignIn1() {
 
         try {
             // Send a POST request to the backend
-            const response = await fetch('http://localhost:3001/signin', {
+            const response = await fetch('https://furte-server.vercel.app/signin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

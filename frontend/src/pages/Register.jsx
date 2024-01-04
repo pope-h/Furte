@@ -33,7 +33,7 @@ function Register() {
         setIsLoading(true);
 
         try {
-            const response = await fetch('http://localhost:3001/signup', {
+            const response = await fetch('https://furte-server.vercel.app/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
