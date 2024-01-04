@@ -6,7 +6,12 @@
             "use": "@vercel/node"
         }
     ],
-    "rewrites":  [
+    "rewrites": [
+    {"source": "/api/products/(.*)", "destination": "https://furte-server.vercel.app/api/products/$1"},
+    {"source": "/api/users/(.*)", "destination": "https://furte-server.vercel.app/api/users/$1"},
+    {"source": "/auth/(.*)", "destination": "https://furte-server.vercel.app/auth/$1"},
+    {"source": "/logout/(.*)", "destination": "https://furte-server.vercel.app/logout/$1"},
+    {"source": "/refresh/(.*)", "destination": "https://furte-server.vercel.app/refresh/$1"},
     {"source": "/(.*)", "destination": "/"}
   ]
 }
