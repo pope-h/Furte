@@ -164,9 +164,9 @@ const useStorePackage = create((set) => ({
     set({ accessToken, userRole: role, userName, userId });
     Cookies.set("accessToken", accessToken, {
       expires: expirationTime,
-      sameSite: "Lax", // set to None if using https
+      sameSite: "None", // set to None if using https
     });
-    Cookies.set("userId", userId, { sameSite: "Lax" });
+    Cookies.set("userId", userId, { sameSite: "None" });
     localStorage.setItem("userRole", role);
     localStorage.setItem("userName", userName);
   },
@@ -176,8 +176,8 @@ const useStorePackage = create((set) => ({
    */
   logout: () => {
     set({ accessToken: "", userRole: "", userName: "", userId: "" });
-    Cookies.remove("accessToken", { sameSite: "Lax" });
-    Cookies.remove("userId", { sameSite: "Lax" });
+    Cookies.remove("accessToken", { sameSite: "None" });
+    Cookies.remove("userId", { sameSite: "None" });
     localStorage.removeItem("userRole");
     localStorage.removeItem("userName");
   },

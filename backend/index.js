@@ -19,7 +19,7 @@ const app = express();
 
 connectDB();
 
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = ["https://furte.vercel.app/"];
 app.use(cors({ origin: allowedOrigins, allowedHeaders: ['*'] }));
 app.use(express.json());
 app.use(cookieParser());
