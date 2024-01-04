@@ -24,7 +24,7 @@ const AboutUs = () => {
       <section className="pb-12 mt-24 max-md:pt-12">
         <PagesCarousel imageInfo={carouselImage} />
       </section>
-      <section className="mx-48 max-lg:mx-20 py-16 font-thin text-xl flex flex-col gap-6 flex-wrap text-gray-500 leading-relaxed">
+      <section className="mx-48 max-lg:mx-20 py-16 max-lg:py-12 font-thin text-xl flex flex-col gap-6 flex-wrap text-gray-500 leading-relaxed">
         <p>
           <strong>Furte</strong> marks a significant milestone in my journey as
           a Software Engineer, serving as my inaugural personal project
@@ -39,7 +39,7 @@ const AboutUs = () => {
           especially <strong>Mary Apeh</strong>, whose unwavering support and
           encouragement kept me steadfast on this challenging yet rewarding
           path. Having go-to guys like{" "}
-          <strong>Henry Oseh, Godwin Nwabuma, Osaze</strong> just to name a few, can be said to
+          <strong>Henry Oseh, Godwin Nwabuma, Osaze, Joy Nfua</strong> just to name a few, can be said to
           be a secret sauce as these guys were always there to hear all my
           jargons and frustrations. Another mention is{" "}
           <strong>David Edema</strong> who advised me on the first 3 to 4 steps
