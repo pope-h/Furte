@@ -21,10 +21,10 @@ const AboutUs = () => {
 
   return (
     <div className="max-sm:my-12 mt-2 mb-24 overflow-hidden">
-      <section className="pb-12 pt-24 max-md:pt-12">
+      <section className="pb-12 mt-24 max-md:pt-12">
         <PagesCarousel imageInfo={carouselImage} />
       </section>
-      <section className="mx-48 max-lg:mx-24 font-thin text-xl flex flex-col gap-6 flex-wrap text-gray-500 leading-relaxed">
+      <section className="mx-48 max-lg:mx-20 py-16 font-thin text-xl flex flex-col gap-6 flex-wrap text-gray-500 leading-relaxed">
         <p>
           <strong>Furte</strong> marks a significant milestone in my journey as
           a Software Engineer, serving as my inaugural personal project
