@@ -15,6 +15,7 @@ const Cart = () => {
   const addToCart = store.addToCart;
   const removeOneItemFromCart = store.removeOneItemFromCart;
   const removeProduct = store.removeProduct;
+  const [isInWishlist, setIsInWishlist] = useState(false);
 
   useEffect(() => {
     // Check if the user is logged in
@@ -108,11 +109,20 @@ const Cart = () => {
   };
 
   /**
-   * Adds a product to the wishlist.
+   * Adds or Removes a product to the wishlist.
    */
   const addToWishlist = () => {
-    // Add product to wishlist
-    alert("Product will be added to wishlist");
+    if (!isInWishlist) {
+      // Add product to wishlist
+      alert("Product will be added to wishlist");
+      // Toggle the heart icon to bxs-heart
+      setIsInWishlist(true);
+    } else {
+      // Remove product from wishlist
+      alert("Product will be removed from wishlist");
+      // Toggle the heart icon back to bx-heart
+      setIsInWishlist(false);
+    }
   };
 
   return (
@@ -140,9 +150,11 @@ const Cart = () => {
                     <h3 className="font-bold font-palanquin text-2xl max-sm:text-lg max-sm:font-bold">
                       {productFromServer?.name}
                     </h3>
-                    <div className="flex gap-4 cursor-pointer">
+                    <div className="flex gap-4 max-lg:gap-8 cursor-pointer">
                       <i
-                        className="bx bx-heart bx-sm hover:text-coral-red"
+                        className={`bx ${
+                          isInWishlist ? "bxs-heart" : "bx-heart"
+                        } bx-sm hover:text-coral-red`}
                         onClick={addToWishlist}
                       ></i>
                       <i
