@@ -15,7 +15,7 @@ const Cart = () => {
   const addToCart = store.addToCart;
   const removeOneItemFromCart = store.removeOneItemFromCart;
   const removeProduct = store.removeProduct;
-  const [isInWishlist, setIsInWishlist] = useState(false);
+  const [wishlistStates, setWishlistStates] = useState([]);
 
   useEffect(() => {
     // Check if the user is logged in
@@ -111,19 +111,30 @@ const Cart = () => {
   /**
    * Adds or Removes a product to the wishlist.
    */
-  const addToWishlist = () => {
-    if (!isInWishlist) {
+  useEffect(() => {
+    // Initialize wishlist states when the cart changes
+    setWishlistStates(new Array(cart.length).fill(false));
+  }, [cart]);
+
+  const addToWishlist = (index) => {
+    // Create a copy of the current wishlist states array
+    const updatedWishlistStates = [...wishlistStates];
+
+    if (!wishlistStates[index]) {
       // Add product to wishlist
       alert("Product will be added to wishlist");
-      // Toggle the heart icon to bxs-heart
-      setIsInWishlist(true);
     } else {
       // Remove product from wishlist
       alert("Product will be removed from wishlist");
-      // Toggle the heart icon back to bx-heart
-      setIsInWishlist(false);
     }
+
+    // Toggle the heart icon for the specific item
+    updatedWishlistStates[index] = !wishlistStates[index];
+
+    // Update the wishlist states
+    setWishlistStates(updatedWishlistStates);
   };
+
 
   return (
     <div className="padding flex flex-col my-12 gap-[100px] max-sm:gap-[50px]">
@@ -153,9 +164,9 @@ const Cart = () => {
                     <div className="flex gap-4 max-lg:gap-8 cursor-pointer">
                       <i
                         className={`bx ${
-                          isInWishlist ? "bxs-heart" : "bx-heart"
+                          wishlistStates[index] ? "bxs-heart" : "bx-heart"
                         } bx-sm hover:text-coral-red`}
-                        onClick={addToWishlist}
+                        onClick={() => addToWishlist(index)}
                       ></i>
                       <i
                         className="bx bx-trash bx-sm hover:text-coral-red"
