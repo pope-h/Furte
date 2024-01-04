@@ -6,6 +6,7 @@ import { signUpSchema } from "../schemas";
 import CustomSignCheckbox from "../components/CustomSignCheckbox";
 import { signUpUser } from "../API";
 import useStorePackage from "../store";
+import { useState } from "react";
 
 /**
  * Component for the Sign Up page.
@@ -14,6 +15,9 @@ import useStorePackage from "../store";
 const SignIn = () => {
   const navigate = useNavigate();
   const token = useStorePackage().accessToken;
+
+  // State to track password visibility
+  const [showPassword, setShowPassword] = useState(false);
 
   /**
    * Handles form submission when the user clicks the "Sign Up" button.
@@ -36,6 +40,11 @@ const SignIn = () => {
       alert("Error signing in!");
       actions.setSubmitting(false);
     }
+  };
+
+  // Function to toggle password visibility
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
   return (
@@ -66,7 +75,7 @@ const SignIn = () => {
                   type="username"
                   id="userName"
                 />
-                <i className="bx bxs-user absolute top-4 right-4"></i>
+                <i className="bx bxs-user absolute top-3 right-4"></i>
               </div>
               <div className="relative">
                 <CustomSignInput
@@ -75,16 +84,21 @@ const SignIn = () => {
                   type="email"
                   id="email"
                 />
-                <i className="bx bxs-envelope absolute top-4 right-4"></i>
+                <i className="bx bxs-envelope absolute top-3 right-4"></i>
               </div>
               <div className="relative">
                 <CustomSignInput
                   label="Password"
                   name="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   id="password"
                 />
-                <i className="bx bxs-lock-alt absolute top-4 right-4"></i>
+                <i
+                  className={`bx ${
+                    showPassword ? "bxs-show" : "bxs-hide"
+                  } absolute top-3 right-4 cursor-pointer`}
+                  onClick={togglePasswordVisibility}
+                ></i>
               </div>
 
               <CustomSignCheckbox

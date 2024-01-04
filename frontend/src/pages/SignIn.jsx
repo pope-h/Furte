@@ -11,6 +11,7 @@ import { signInSchema } from "../schemas";
 import CustomSignCheckbox from "../components/CustomSignCheckbox";
 import { signInUser } from "../API";
 import useStorePackage from "../store";
+import { useState } from "react";
 
 /**
  * Sign In page component.
@@ -23,6 +24,9 @@ const SignIn = () => {
   const { login } = useStorePackage();
   const navigate = useNavigate();
   const token = useStorePackage().accessToken;
+
+  // State to track password visibility
+  const [showPassword, setShowPassword] = useState(false);
 
   /**
    * Handles form submission.
@@ -52,6 +56,11 @@ const SignIn = () => {
     }
   };
 
+  // Function to toggle password visibility
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
   return (
     <div
       className="text-white-400 h-[100vh] overflow-hidden flex justify-center items-center bg-cover"
@@ -75,16 +84,21 @@ const SignIn = () => {
                   type="email"
                   id="email"
                 />
-                <i className="bx bxs-envelope absolute top-4 right-4"></i>
+                <i className="bx bxs-envelope absolute top-3 right-4"></i>
               </div>
               <div className="relative">
                 <CustomSignInput
                   label="Password"
                   name="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   id="password"
                 />
-                <i className="bx bxs-lock-alt absolute top-4 right-4"></i>
+                <i
+                  className={`bx ${
+                    showPassword ? "bxs-show" : "bxs-hide"
+                  } absolute top-3 right-4 cursor-pointer`}
+                  onClick={togglePasswordVisibility}
+                ></i>
               </div>
 
               <CustomSignCheckbox

@@ -12,7 +12,7 @@ const CustomSignInput = ({ label, ...props }) => {
   return (
     <div className="my-6">
       <input
-        className={`block w-80 py-2 px-0 text-sm text-white-400 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-emerald-700 focus:outline-none focus:ring-0 focus:text-white-400 focus:border-coral-red peer ${
+        className={`block w-80 max-sm:w-72 py-2 px-0 text-sm text-white-400 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-emerald-700 focus:outline-none focus:ring-0 focus:text-white-400 focus:border-coral-red peer ${
           meta.touched && meta.error ? "border-b-[#fc8181]" : ""
         }`}
         placeholder=""
