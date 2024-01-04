@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { navLinks } from "../constants";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PopoverButton from "./popover/PopoverButton";
 import NotificationPopover from "./popover/NotificationPopover";
 import useStorePackage from "../store";
@@ -76,6 +76,15 @@ const Nav = () => {
         )
       : navLinks;
 
+  /**
+   * Handles the navigation to the specified path.
+   * @param {string} path - The path to navigate to.
+   */
+  const handleNavigation = (path) => {
+    navigate(path);
+    setMenuOpen(false); // Close the menu after navigation
+  };
+
   return (
     <header className="padding-x py-6 z-10 absolute top-0 w-full bg-white-400">
       {!searchOpen ? (
@@ -99,23 +108,13 @@ const Nav = () => {
           >
             {filteredNavLinks.map((item) => (
               <li key={item.label}>
-                {item.href === "/products" ? (
-                  <Link
-                    to={item.href}
-                    className="text-slate-gray hover:text-red-600
-            fonts-montserrat leading-normal text-lg max-lg:text-white-400 hover:no-underline"
-                  >
-                    {item.label}
-                  </Link>
-                ) : (
-                  <a
-                    href={item.href}
-                    className="text-slate-gray hover:text-red-600
-            fonts-montserrat leading-normal text-lg max-lg:text-white-400 hover:no-underline"
-                  >
-                    {item.label}
-                  </a>
-                )}
+                <a
+                  onClick={() => handleNavigation(item.href)}
+                  className="text-slate-gray hover:text-red-600
+                                  fonts-montserrat leading-normal text-lg max-lg:text-white-400 hover:no-underline"
+                >
+                  {item.label}
+                </a>
               </li>
             ))}
           </ul>
