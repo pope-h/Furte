@@ -110,7 +110,7 @@ const Nav = () => {
                         href: item.href,
                       })}
                   className="text-slate-gray hover:text-red-600
-                                  fonts-montserrat leading-normal text-lg max-lg:text-white-400 hover:no-underline"
+                                  fonts-montserrat leading-normal text-lg max-lg:text-white-400 hover:no-underline hover:cursor-pointer"
                 >
                   {item.label}
                 </a>

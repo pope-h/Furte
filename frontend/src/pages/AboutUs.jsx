@@ -24,7 +24,7 @@ const AboutUs = () => {
       <section className="pb-12 padding-t max-md:pt-12">
         <PagesCarousel imageInfo={carouselImage} />
       </section>
-      <section className="mx-48 font-thin text-xl flex flex-col gap-6 flex-wrap text-gray-500 leading-relaxed">
+      <section className="mx-48 max-sm:mx-24 font-thin text-xl flex flex-col gap-6 flex-wrap text-gray-500 leading-relaxed">
         <p>
           <strong>Furte</strong> marks a significant milestone in my journey as
           a Software Engineer, serving as my inaugural personal project
