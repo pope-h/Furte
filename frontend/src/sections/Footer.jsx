@@ -1,3 +1,9 @@
+/**
+ * Footer component.
+ * Renders the footer section of the website.
+ *
+ * @returns {JSX.Element} The rendered footer component.
+ */
 import { copyrightSign } from "../assets/icons"
 import { footerLinks, socialMedia } from "../constants"
 

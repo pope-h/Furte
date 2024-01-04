@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import useStorePackage from "../store";
 import { getUser } from "../API";
 
+/**
+ * Component for displaying the dashboard summary.
+ * @returns {JSX.Element} The rendered component.
+ */
 const DashboardSummary = () => {
   const store = useStorePackage();
   const userId = store.userId;
@@ -9,6 +13,10 @@ const DashboardSummary = () => {
   const token = store.accessToken;
 
   useEffect(() => {
+    /**
+     * Fetches the user details from the API.
+     * @returns {Promise<void>} A promise that resolves when the user details are fetched.
+     */
     const fetchUserDetails = async () => {
       try {
         const userData = await getUser(token, userId);

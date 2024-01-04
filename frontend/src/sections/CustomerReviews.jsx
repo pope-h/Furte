@@ -1,3 +1,7 @@
+/**
+ * Renders the section displaying customer reviews.
+ * @returns {JSX.Element} The JSX element representing the customer reviews section.
+ */
 import { reviews } from "../constants";
 import ReviewCard from "../components/ReviewCard";
 

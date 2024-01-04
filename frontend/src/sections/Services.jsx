@@ -1,3 +1,8 @@
+/**
+ * Renders the Services section.
+ *
+ * @returns {JSX.Element} The rendered Services section.
+ */
 import { services } from "../constants";
 import ServiceCard from "../components/ServiceCard";
 

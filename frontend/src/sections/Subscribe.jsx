@@ -1,3 +1,7 @@
+/**
+ * Renders a section for subscribing to updates and newsletters.
+ * @returns {JSX.Element} The Subscribe component.
+ */
 import Button from "../components/Button"
 
 const Subscribe = () => {

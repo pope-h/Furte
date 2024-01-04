@@ -1,3 +1,7 @@
+/**
+ * Renders a grid of product categories with corresponding product cards.
+ * @returns {JSX.Element} The rendered product category component.
+ */
 import { categories } from "../constants"
 import ProductCard from "../components/ProductCard"
 

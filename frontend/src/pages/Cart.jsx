@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { getProduct } from "../API";
 import useStorePackage from "../store";
 
+/**
+ * Cart component displays the user's cart items and handles cart-related functionality.
+ */
 const Cart = () => {
   const store = useStorePackage();
   const cart = store.cart;
   const [productsFromServer, setProductsFromServer] = useState([]);
   const navigate = useNavigate();
   const token = store.accessToken;
-  //   const cartCount = store.cartCount;
   const addToCart = store.addToCart;
   const removeOneItemFromCart = store.removeOneItemFromCart;
   const removeProduct = store.removeProduct;
@@ -28,6 +30,9 @@ const Cart = () => {
       return;
     }
 
+    /**
+     * Fetches product details for each item in the cart.
+     */
     const fetchProducts = async () => {
       try {
         const products = await Promise.all(
@@ -50,7 +55,10 @@ const Cart = () => {
     fetchProducts();
   }, [cart, token, navigate]);
 
-
+  /**
+   * Calculates the total price of all products in the cart.
+   * @returns {number} The total price.
+   */
   const calculateTotal = () => {
     if (!productsFromServer || productsFromServer.length === 0) {
       return 0;
@@ -71,23 +79,37 @@ const Cart = () => {
 
   // Calculate delivery dates
   const currentDate = new Date();
-  // const deliveryStartDate = new Date(currentDate);
   const deliveryEndDate = new Date(currentDate);
   deliveryEndDate.setDate(deliveryEndDate.getDate() + 6);
 
+  /**
+   * Removes an item from the cart.
+   * @param {string} productId - The ID of the product to remove.
+   */
   const handleRemoveFromCart = (productId) => {
     removeOneItemFromCart(productId);
   };
 
+  /**
+   * Adds a product to the cart.
+   * @param {Object} product - The product to add.
+   */
   const handleAddToCart = (product) => {
     addToCart(product);
   };
 
+  /**
+   * Removes a product from the cart.
+   * @param {string} productId - The ID of the product to remove.
+   */
   const handleRemoveProduct = (productId) => {
     alert("Product will be removed from cart");
     removeProduct(productId);
   };
 
+  /**
+   * Adds a product to the wishlist.
+   */
   const addToWishlist = () => {
     // Add product to wishlist
     alert("Product will be added to wishlist");

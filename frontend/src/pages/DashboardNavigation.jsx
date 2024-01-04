@@ -1,3 +1,7 @@
+/**
+ * Renders the navigation component for the dashboard.
+ * @returns {JSX.Element} The rendered navigation component.
+ */
 import { Link } from "react-router-dom";
 
 const DashboardNavigation = () => {

@@ -1,3 +1,16 @@
+/**
+ * Button component that displays a customizable button with optional label and icon.
+ *
+ * @component
+ * @param {Object} props - The properties for the Button component.
+ * @param {string} props.label - The label text for the button.
+ * @param {string} props.iconURL - The URL of the icon to display next to the label.
+ * @param {string} props.backgroundColor - The background color of the button.
+ * @param {string} props.textColor - The text color of the button.
+ * @param {string} props.borderColor - The border color of the button.
+ * @param {boolean} props.fullWidth - Determines if the button should take up the full width.
+ * @returns {JSX.Element} - The rendered Button component.
+ */
 const Button = (props) => {
   const {
     label,
@@ -8,15 +21,6 @@ const Button = (props) => {
     fullWidth,
   } = props;
 
-  /**
-   * Generates the CSS classes for the Button component.
-   *
-   * @param {string} backgroundColor - The background color of the button.
-   * @param {string} textColor - The text color of the button.
-   * @param {string} borderColor - The border color of the button.
-   * @param {boolean} fullWidth - Determines if the button should take up the full width.
-   * @returns {string} - The generated CSS classes for the button.
-   */
   const buttonClasses = `flex justify-center items-center gap-2 px-7 py-4
     border font-montserrat text-lg leading-none 
     ${

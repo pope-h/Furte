@@ -1,3 +1,8 @@
+/**
+ * Renders a section displaying popular products.
+ *
+ * @returns {JSX.Element} The rendered popular products section.
+ */
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 import { thumbnails } from '../constants'

@@ -4,6 +4,10 @@ import ProductsPage from "../sections/ProductsPage"
 import useStorePackage from "../store";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Renders the Products page.
+ * @returns {JSX.Element} The Products page component.
+ */
 const Products = () => {
   const { accessToken } = useStorePackage();
   const navigate = useNavigate();
@@ -23,6 +27,10 @@ const Products = () => {
     }
   });
 
+  /**
+   * Handles the change of the selected category.
+   * @param {string} category - The selected category.
+   */
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
   };

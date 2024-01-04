@@ -1,3 +1,7 @@
+/**
+ * Checkout component for processing customer information and payment.
+ * @returns {JSX.Element} The rendered Checkout component.
+ */
 import { Form, Formik } from "formik";
 import CustomInput from "../components/CustomInput";
 import { checkoutSchema } from "../schemas";

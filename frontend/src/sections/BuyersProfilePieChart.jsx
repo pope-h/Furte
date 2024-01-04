@@ -1,27 +1,55 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts'
 
-const data = [
-	{ name: 'Angels', value: 540 },
-	{ name: 'Humans', value: 620 },
-	{ name: 'Aliens', value: 210 }
-]
-
-const RADIAN = Math.PI / 180
-const COLORS = ['#00C49F', '#FFBB28', '#FF8042']
-
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
-	const radius = innerRadius + (outerRadius - innerRadius) * 0.5
-	const x = cx + radius * Math.cos(-midAngle * RADIAN)
-	const y = cy + radius * Math.sin(-midAngle * RADIAN)
-
-	return (
-		<text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-			{`${(percent * 100).toFixed(0)}%`}
-		</text>
-	)
-}
-
+/**
+ * Renders a pie chart displaying the buyers' profile.
+ * @component
+ */
 export default function BuyersProfilePieChart() {
+	/**
+	 * Data for the pie chart.
+	 * @type {Array<Object>}
+	 */
+	const data = [
+		{ name: 'Angels', value: 540 },
+		{ name: 'Humans', value: 620 },
+		{ name: 'Aliens', value: 210 }
+	]
+
+	/**
+	 * Constant for converting degrees to radians.
+	 * @type {number}
+	 */
+	const RADIAN = Math.PI / 180
+
+	/**
+	 * Colors for the pie chart.
+	 * @type {Array<string>}
+	 */
+	const COLORS = ['#00C49F', '#FFBB28', '#FF8042']
+
+	/**
+	 * Renders a customized label for each pie slice.
+	 * @param {Object} props - The properties of the label.
+	 * @param {number} props.cx - The x-coordinate of the center of the pie chart.
+	 * @param {number} props.cy - The y-coordinate of the center of the pie chart.
+	 * @param {number} props.midAngle - The middle angle of the pie slice.
+	 * @param {number} props.innerRadius - The inner radius of the pie slice.
+	 * @param {number} props.outerRadius - The outer radius of the pie slice.
+	 * @param {number} props.percent - The percentage value of the pie slice.
+	 * @returns {JSX.Element} The customized label element.
+	 */
+	const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+		const radius = innerRadius + (outerRadius - innerRadius) * 0.5
+		const x = cx + radius * Math.cos(-midAngle * RADIAN)
+		const y = cy + radius * Math.sin(-midAngle * RADIAN)
+
+		return (
+			<text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+				{`${(percent * 100).toFixed(0)}%`}
+			</text>
+		)
+	}
+
 	return (
 		<div className="w-[20rem] h-[22rem] bg-white p-4 rounded-sm border border-gray-200 flex flex-col">
 			<strong className="text-gray-700 font-medium">Buyers Profile</strong>

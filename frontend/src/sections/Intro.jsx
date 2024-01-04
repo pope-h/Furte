@@ -1,3 +1,7 @@
+/**
+ * Renders the introductory section of the website.
+ * @returns {JSX.Element} The JSX element representing the introductory section.
+ */
 import { arrowRight } from "../assets/icons"
 import Button from "../components/Button"
 

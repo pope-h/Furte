@@ -47,4 +47,14 @@ const Sidebar = () => {
   );
 }
 
+/**
+ * Sidebar component.
+ * This component represents the sidebar section of the application.
+ * It provides navigation and additional functionality.
+ *
+ * @component
+ * @example
+ * // Usage:
+ * <Sidebar />
+ */
 export default Sidebar

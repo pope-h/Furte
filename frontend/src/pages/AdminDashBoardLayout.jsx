@@ -1,3 +1,8 @@
+/**
+ * Renders the layout for the admin dashboard.
+ * 
+ * @returns {JSX.Element} The rendered admin dashboard layout.
+ */
 import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../sections/Sidebar";
 import AdminHeader from "../components/AdminHeader";

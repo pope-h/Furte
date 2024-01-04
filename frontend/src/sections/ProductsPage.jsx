@@ -4,12 +4,21 @@ import ProductsPageCard from "../components/ProductsPageCard";
 import { Link } from "react-router-dom";
 import useStorePackage from "../store";
 
+/**
+ * Renders the ProductsPage component.
+ * 
+ * @param {string} selectedCategory - The selected category for filtering products.
+ * @returns {JSX.Element} The rendered ProductsPage component.
+ */
 const ProductsPage = ({ selectedCategory }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { accessToken: token, searchQuery } = useStorePackage();
 
   useEffect(() => {
+    /**
+     * Fetches products from the server and updates the state.
+     */
     const getProducts = async () => {
       try {
         const productsFromServer = await fetchProducts(token, searchQuery);
@@ -54,4 +63,4 @@ const ProductsPage = ({ selectedCategory }) => {
   );
 };
 
-export default ProductsPage
+export default ProductsPage;

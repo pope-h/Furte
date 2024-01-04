@@ -1,3 +1,8 @@
+/**
+ * Renders the admin products page.
+ * 
+ * @returns {JSX.Element} The JSX element representing the admin products page.
+ */
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';

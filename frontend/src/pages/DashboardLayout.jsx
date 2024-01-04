@@ -1,3 +1,7 @@
+/**
+ * Renders the layout for the dashboard page.
+ * @returns {JSX.Element} The rendered dashboard layout.
+ */
 import { Outlet } from "react-router-dom";
 import DashboardNavigation from "./DashboardNavigation";
 

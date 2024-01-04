@@ -1,3 +1,8 @@
+/**
+ * Renders the NotFoundPage component.
+ * This component is displayed when a user navigates to a non-existent page.
+ * @returns {JSX.Element} The rendered NotFoundPage component.
+ */
 import { Link } from "react-router-dom";
 
 const NotFoundPage = () => {

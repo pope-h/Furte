@@ -7,10 +7,19 @@ import CustomSignCheckbox from "../components/CustomSignCheckbox";
 import { signUpUser } from "../API";
 import useStorePackage from "../store";
 
+/**
+ * Component for the Sign Up page.
+ * Allows users to sign up by providing their username, email, password, and agreeing to terms and conditions.
+ */
 const SignIn = () => {
   const navigate = useNavigate();
   const token = useStorePackage().accessToken;
 
+  /**
+   * Handles form submission when the user clicks the "Sign Up" button.
+   * @param {Object} values - The form values containing the username, email, password, and agreeCheckbox.
+   * @param {Object} actions - The formik actions object.
+   */
   const onSubmit = async (values, actions) => {
     try {
       const res = await signUpUser(token, values);

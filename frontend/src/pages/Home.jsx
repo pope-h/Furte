@@ -1,3 +1,8 @@
+/**
+ * Renders the Home page component.
+ * 
+ * @returns {JSX.Element} The rendered Home page component.
+ */
 import { CustomerReviews, Services, Subscribe } from "../sections"
 import CarouselHero from "../sections/CarouselHero"
 import Intro from "../sections/Intro"

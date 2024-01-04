@@ -1,3 +1,8 @@
+/**
+ * Renders a carousel hero section with Swiper React components.
+ *
+ * @returns {JSX.Element} The rendered carousel hero section.
+ */
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { hero } from '../constants';

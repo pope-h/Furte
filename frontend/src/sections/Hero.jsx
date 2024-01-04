@@ -1,3 +1,8 @@
+/**
+ * Renders the Hero section of the website.
+ * 
+ * @returns {JSX.Element} The Hero component.
+ */
 import { useState } from "react";
 
 import { arrowRight } from "../assets/icons"

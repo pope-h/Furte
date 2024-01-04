@@ -1,3 +1,8 @@
+/**
+ * Sign In page component.
+ * Renders a sign in form for users to enter their email and password.
+ * Handles form submission and authentication.
+ */
 import { Link, useNavigate } from "react-router-dom";
 import { background } from "../assets/images";
 import { Form, Formik } from "formik";
@@ -7,29 +12,45 @@ import CustomSignCheckbox from "../components/CustomSignCheckbox";
 import { signInUser } from "../API";
 import useStorePackage from "../store";
 
+/**
+ * Sign In page component.
+ * Renders a sign in form for users to enter their email and password.
+ * Handles form submission and authentication.
+ *
+ * @returns {JSX.Element} The Sign In page component.
+ */
 const SignIn = () => {
-    const { login } = useStorePackage();
-    const navigate = useNavigate();
-    const token = useStorePackage().accessToken;
+  const { login } = useStorePackage();
+  const navigate = useNavigate();
+  const token = useStorePackage().accessToken;
 
-    const onSubmit = async (values, actions) => {
-      try {
-        const data = await signInUser(token, values);
-        
-        login(data.accessToken, data.role, data.userName, data.userId);
-        console.log("SignIn", data);
-        if (data.role === "Admin") {
-          navigate("/admin");
-        } else {
-          navigate("/");
-        }
+  /**
+   * Handles form submission.
+   * Authenticates the user by calling the signInUser API function.
+   * If authentication is successful, redirects the user to the appropriate page based on their role.
+   * If authentication fails, displays an error message.
+   *
+   * @param {Object} values - The form values containing email and password.
+   * @param {Object} actions - The formik actions object.
+   * @returns {Promise<void>} A promise that resolves when the form submission is complete.
+   */
+  const onSubmit = async (values, actions) => {
+    try {
+      const data = await signInUser(token, values);
 
-      } catch (error) {
-        console.error("Error signing in:", error);
-        alert("Error signing in!");
-        actions.setSubmitting(false);
+      login(data.accessToken, data.role, data.userName, data.userId);
+      console.log("SignIn", data);
+      if (data.role === "Admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
       }
-    };
+    } catch (error) {
+      console.error("Error signing in:", error);
+      alert("Error signing in!");
+      actions.setSubmitting(false);
+    }
+  };
 
   return (
     <div

@@ -1,3 +1,8 @@
+/**
+ * Renders the layout of the application.
+ * 
+ * @returns {JSX.Element} The rendered layout component.
+ */
 import { Outlet } from 'react-router-dom';
 import Nav from '../components/Nav';
 import Footer from '../sections/Footer'

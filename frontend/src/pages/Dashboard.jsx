@@ -1,3 +1,8 @@
+/**
+ * Renders the Dashboard page.
+ * 
+ * @returns {JSX.Element} The rendered Dashboard page.
+ */
 import BuyersProfilePieChart from "../sections/BuyersProfilePieChart";
 import DashboardStatsGrid from "../sections/DashboardStatsGrid";
 import PopularProducts from "../sections/PopularProducts";

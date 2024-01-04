@@ -1,3 +1,8 @@
+/**
+ * Renders a grid of dashboard statistics.
+ *
+ * @returns {JSX.Element} The rendered component.
+ */
 export default function DashboardStatsGrid() {
 	return (
 		<div className="flex gap-4">

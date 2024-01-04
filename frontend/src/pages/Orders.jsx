@@ -1,3 +1,9 @@
+/**
+ * Renders the Orders component.
+ * Displays a table of recent orders with order details.
+ *
+ * @returns {JSX.Element} The Orders component.
+ */
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
 import { getOrderStatus } from '../constants'

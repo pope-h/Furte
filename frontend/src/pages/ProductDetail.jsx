@@ -1,3 +1,8 @@
+/**
+ * Renders the product detail page.
+ * 
+ * @returns {JSX.Element} The product detail page component.
+ */
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getProduct } from "../API";

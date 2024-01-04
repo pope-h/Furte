@@ -1,3 +1,7 @@
+/**
+ * Renders a special offer section with an image, title, and buttons.
+ * @returns {JSX.Element} The rendered special offer section.
+ */
 import { arrowRight } from "../assets/icons";
 import { offer } from "../assets/images";
 import Button from "../components/Button";

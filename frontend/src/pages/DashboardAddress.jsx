@@ -1,3 +1,11 @@
+/**
+ * Represents the Dashboard Address page component.
+ * @component
+ * @example
+ * return (
+ *   <DashboardAddress />
+ * )
+ */
 import { Form, Formik } from "formik";
 import CustomInput from "../components/CustomInput";
 import { shippingAddressSchema } from "../schemas";

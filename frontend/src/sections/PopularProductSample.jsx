@@ -1,3 +1,7 @@
+/**
+ * Renders a section displaying popular products.
+ * @returns {JSX.Element} The rendered JSX element.
+ */
 import { products } from "../constants";
 import PopularProductCard from "../components/PopularProductCard";
 

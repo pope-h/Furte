@@ -5,6 +5,10 @@ import { useEffect, useState } from "react";
 import useStorePackage from "../store";
 import { getUser, updateUserInfo } from "../API";
 
+/**
+ * DashboardPersonalData component displays and allows users to update their personal data.
+ * It fetches user details from the API and renders a form for updating the user's information.
+ */
 const DashboardPersonalData = () => {
   const store = useStorePackage();
   const userId = store.userId;
@@ -13,6 +17,10 @@ const DashboardPersonalData = () => {
   const token = store.accessToken;
 
   useEffect(() => {
+    /**
+     * Fetches the user details from the API and sets the user state.
+     * If there's an error, it displays an alert message.
+     */
     const fetchUserDetails = async () => {
       try {
         const userData = await getUser(token, userId);
@@ -28,6 +36,12 @@ const DashboardPersonalData = () => {
     fetchUserDetails();
   }, [userId, token]);
 
+  /**
+   * Handles the form submission and updates the user's information.
+   * If there's an error, it displays an alert message.
+   * @param {Object} values - The form values containing the updated user information.
+   * @param {Object} actions - The formik actions object.
+   */
   const onSubmit = async (values, actions) => {
     try {
       await updateUserInfo(token, userId, values);

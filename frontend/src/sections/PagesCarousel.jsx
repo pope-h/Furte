@@ -1,3 +1,12 @@
+/**
+ * Renders a carousel component using Swiper library.
+ *
+ * @component
+ * @param {Object[]} imageInfo - An array of objects containing image information.
+ * @param {string} imageInfo[].src - The source URL of the image.
+ * @param {string} [imageInfo[].title] - The title of the image (optional).
+ * @returns {JSX.Element} The rendered carousel component.
+ */
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 

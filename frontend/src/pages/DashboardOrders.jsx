@@ -1,3 +1,8 @@
+/**
+ * Renders the Dashboard Orders component.
+ * 
+ * @returns {JSX.Element} The rendered Dashboard Orders component.
+ */
 const DashboardOrders = () => {
   return (
     <>

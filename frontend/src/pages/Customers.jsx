@@ -1,3 +1,10 @@
+/**
+ * Renders a page component for managing customers.
+ * Displays a table of customer information fetched from the server.
+ * Allows deleting customers and navigating to edit customer pages.
+ *
+ * @returns {JSX.Element} The rendered Customer component.
+ */
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
