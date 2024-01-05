@@ -29,6 +29,7 @@ const SignIn = () => {
       const res = await signUpUser(token, values);
       console.log(res);
       if (res && res.msg === "User registered successfully") {
+        alert("Sign up successful!");
         console.log("Sign up successful:", res);
         navigate("/signin");
       } else {
@@ -36,8 +37,8 @@ const SignIn = () => {
         actions.setSubmitting(false);
       }
     } catch (error) {
-      console.error("Error signing in:", error);
-      alert("Error signing in!");
+      console.error("Error signing up:", error);
+      alert("Error signing up!", error);
       actions.setSubmitting(false);
     }
   };

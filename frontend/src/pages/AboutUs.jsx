@@ -39,9 +39,9 @@ const AboutUs = () => {
           especially <strong>Mary Apeh</strong>, whose unwavering support and
           encouragement kept me steadfast on this challenging yet rewarding
           path. Having go-to guys like{" "}
-          <strong>Henry Oseh, Godwin Nwabuma, Osaze, Joy Nfua</strong> just to name a few, can be said to
-          be a secret sauce as these guys were always there to hear all my
-          jargons and frustrations. Another mention is{" "}
+          <strong>Henry Oseh, Godwin Nwabuma, Osaze, Joy Nfua</strong> just to
+          name a few, can be said to be a secret sauce as these guys were always
+          there to hear all my jargons and frustrations. Another mention is{" "}
           <strong>David Edema</strong> who advised me on the first 3 to 4 steps
           needed to achieve the project before he got engulfed with work. A
           multitude of YouTube tutors played a pivotal role in demystifying
@@ -52,7 +52,8 @@ const AboutUs = () => {
           </em>
           , and countless others. <em>Angela Yu</em> approachable introduction
           to React significantly eased my journey into the world of React
-          development.{" "}
+          development. I would also like to thank <strong>Pixabay</strong> for
+          providing free excellent images{" "}
         </p>
         <p>
           I express deep appreciation to <strong>ALX</strong> for providing the

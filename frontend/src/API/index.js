@@ -238,7 +238,7 @@ export const signInUser = async (token, userData) => {
       headers: getAuthorizationHeader(token),
       body: JSON.stringify(userData),
     });
-    return handleApiError(res);
+    return handleApiError(res, userData);
   } catch (err) {
     console.error('Error signing user in:', err);
     throw new Error('Error signing user in');

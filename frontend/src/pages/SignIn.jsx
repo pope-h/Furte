@@ -51,7 +51,7 @@ const SignIn = () => {
       }
     } catch (error) {
       console.error("Error signing in:", error);
-      alert("Error signing in!");
+      alert("Error signing in!", error);
       actions.setSubmitting(false);
     }
   };
