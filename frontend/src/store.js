@@ -158,6 +158,7 @@ const useStorePackage = create((set) => ({
    * Refreshes the access token.
    */
   refreshToken: async () => {
+    console.log("Refreshing token...");
     try {
       const refreshToken = Cookies.get("refreshToken");
 
