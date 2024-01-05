@@ -1,4 +1,3 @@
-import { signInUser } from ".";
 import useStorePackage from "../store";
 
 /**
@@ -9,7 +8,7 @@ import useStorePackage from "../store";
  * @returns {Promise<any>} - A promise that resolves to the parsed JSON data from the response.
  * @throws {Error} - If the response status is not ok, an error is thrown with the error message.
  */
-const handleApiError = async (response, userData) => {
+const handleApiError = async (response) => {
   if (response.ok) {
     const data = await response.json();
     return data;
@@ -18,10 +17,23 @@ const handleApiError = async (response, userData) => {
     // Token expired, refresh and retry
     try {
       await useStorePackage.getState().refreshToken();
-      return signInUser(useStorePackage.getState().accessToken, userData);
+      // Since the token is refreshed, we can retry the original request
+      const retryResponse = await fetch(response.url, {
+        method: response.method,
+        headers: response.headers,
+        body: response.body,
+        // Add any additional configurations needed for the original request
+      });
+
+      // If the retry is successful, return the parsed data
+      if (retryResponse.ok) {
+        return await retryResponse.json();
+      } else {
+        throw new Error(`Failed to retry request: ${retryResponse.statusText}`);
+      }
     } catch (refreshError) {
       console.error("Error refreshing token:", refreshError);
-      throw new Error(`Failed to sign in: ${response.statusText}`);
+      throw new Error(`Failed to refresh token: ${response.statusText}`);
     }
   } else {
     throw new Error(`Failed to sign in: ${response.statusText}`);
