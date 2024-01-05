@@ -29,6 +29,7 @@ export const fetchProducts = async (token, searchQuery) => {
       method: "GET",
       headers: getAuthorizationHeader(token),
     });
+    console.log('fetched products token', token);
     console.log('fetched products');
     return handleApiError(res);
   } catch (err) {
