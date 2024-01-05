@@ -24,10 +24,12 @@ export const fetchProducts = async (token, searchQuery) => {
     : 'https://furte-server.vercel.app/products';
 
   try {
+    console.log('fetching products');
     const res = await fetch(apiUrl, {
       method: "GET",
       headers: getAuthorizationHeader(token),
     });
+    console.log('fetched products');
     return handleApiError(res);
   } catch (err) {
     console.error('Error fetching products:', err);
