@@ -10,10 +10,7 @@ import useStorePackage from "../store";
  * @throws {Error} - If the response status is not ok, an error is thrown with the error message.
  */
 const handleApiError = async (response, userData) => {
-  if (response.ok) {
-    const data = await response.json();
-    return data;
-  } else if (response.status === 401) {
+   if (response.status === 401 || response.status === 403) {
     // Token expired, refresh and retry
     try {
       await useStorePackage.getState().refreshToken();
@@ -22,6 +19,9 @@ const handleApiError = async (response, userData) => {
       console.error("Error refreshing token:", refreshError);
       throw new Error(`Failed to sign in: ${response.statusText}`);
     }
+  } else if (response.ok) {
+    const data = await response.json();
+    return data;
   } else {
     throw new Error(`Failed to sign in: ${response.statusText}`);
   }

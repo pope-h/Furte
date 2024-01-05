@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const DashboardNavigation = () => {
   return (
-    <nav className="pt-24 max-md:pt-12 px-10 max-md:px-6">
+    <nav className="pt-24 max-md:pt-16 px-10 max-md:px-6">
       <h2 className="text-4xl max-md:text-2xl font-medium font-palanquin text-gray-800 my-12 max-md:my-10 text-center">
         Your Account
       </h2>
