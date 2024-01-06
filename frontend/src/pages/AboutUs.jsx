@@ -21,7 +21,7 @@ const AboutUs = () => {
 
   return (
     <div className="max-sm:my-12 mt-2 mb-24 overflow-hidden">
-      <section className="pb-12 mt-24 max-md:pt-12">
+      <section className="pb-12 padding-t max-md:pt-24">
         <PagesCarousel imageInfo={carouselImage} />
       </section>
       <section className="mx-48 max-lg:mx-20 py-16 max-lg:py-12 font-thin text-xl flex flex-col gap-6 flex-wrap text-gray-500 leading-relaxed">

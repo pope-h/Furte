@@ -85,7 +85,7 @@ const ContactUs = () => {
 
   return (
     <div className="max-sm:my-12 mt-2 mb-24 overflow-hidden">
-      <section className="pb-12 mt-24 max-md:pt-12">
+      <section className="pb-12 padding-t max-md:pt-24">
         <PagesCarousel imageInfo={carouselImage} />
       </section>
       <div className="flex flex-col gap-8 max-md:gap-10 py-16 px-4">
