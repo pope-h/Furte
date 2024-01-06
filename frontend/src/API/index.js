@@ -25,6 +25,7 @@ export const fetchProducts = async (token, searchQuery) => {
 
   try {
     console.log('fetching products');
+    console.log('fetching products token', token);
     const res = await fetch(apiUrl, {
       method: "GET",
       headers: getAuthorizationHeader(token),
