@@ -160,7 +160,7 @@ const useStorePackage = create((set) => ({
   refreshToken: async () => {
     console.log("Refreshing token...");
     try {
-      const refreshToken = Cookies.get("refreshToken");
+      const refreshToken = Cookies.get("jwt");
       console.log("refreshToken", refreshToken);
 
       if (!refreshToken) {
