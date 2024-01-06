@@ -160,18 +160,11 @@ const useStorePackage = create((set) => ({
   refreshToken: async () => {
     console.log("Refreshing token...");
     try {
-      const accessToken = Cookies.get("accessToken");
-      console.log("refreshToken", accessToken);
-
-      if (!accessToken) {
-        throw new Error("Refresh token not available");
-      }
-
+      console.log("starting refresh");
       const response = await fetch(refreshTokenEndpoint, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          // Authorization: `Bearer ${accessToken}`,
         },
         // You may include additional body parameters if required by your server
         // body: JSON.stringify({}),
@@ -179,6 +172,7 @@ const useStorePackage = create((set) => ({
       });
       console.log("response", response);
 
+      console.log("response.ok", response.ok);
       if (!response.ok) {
         throw new Error("Failed to refresh token");
       }
