@@ -161,6 +161,7 @@ const useStorePackage = create((set) => ({
     console.log("Refreshing token...");
     try {
       const refreshToken = Cookies.get("refreshToken");
+      console.log("refreshToken", refreshToken);
 
       if (!refreshToken) {
         throw new Error("Refresh token not available");
@@ -176,12 +177,14 @@ const useStorePackage = create((set) => ({
         // body: JSON.stringify({}),
         credentials: "include",
       });
+      console.log("response", response);
 
       if (!response.ok) {
         throw new Error("Failed to refresh token");
       }
 
       const data = await response.json();
+      console.log("data", data);
 
       // Update the state with the new access token
       set({
