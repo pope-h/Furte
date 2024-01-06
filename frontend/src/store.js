@@ -160,12 +160,12 @@ const useStorePackage = create((set) => ({
   refreshToken: async () => {
     console.log("Refreshing token...");
     try {
-      // const accessToken = Cookies.get("accessToken");
-      // console.log("refreshToken", accessToken);
+      const accessToken = Cookies.get("accessToken");
+      console.log("refreshToken", accessToken);
 
-      // if (!accessToken) {
-      //   throw new Error("Refresh token not available");
-      // }
+      if (!accessToken) {
+        throw new Error("Refresh token not available");
+      }
 
       const response = await fetch(refreshTokenEndpoint, {
         method: "GET",
