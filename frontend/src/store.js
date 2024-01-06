@@ -160,10 +160,10 @@ const useStorePackage = create((set) => ({
   refreshToken: async () => {
     console.log("Refreshing token...");
     try {
-      const refreshToken = Cookies.get("jwt");
-      console.log("refreshToken", refreshToken);
+      const accessToken = Cookies.get("accessToken");
+      console.log("refreshToken", accessToken);
 
-      if (!refreshToken) {
+      if (!accessToken) {
         throw new Error("Refresh token not available");
       }
 
@@ -171,7 +171,7 @@ const useStorePackage = create((set) => ({
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${refreshToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
         // You may include additional body parameters if required by your server
         // body: JSON.stringify({}),
