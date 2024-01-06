@@ -160,39 +160,28 @@ const useStorePackage = create((set) => ({
   refreshToken: async () => {
     console.log("Refreshing token...");
     try {
-      // const accessToken = Cookies.get("accessToken");
-      // console.log("refreshToken", accessToken);
-
-      // if (!accessToken) {
-      //   throw new Error("Refresh token not available");
-      // }
-
       const response = await fetch(refreshTokenEndpoint, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          // Authorization: `Bearer ${accessToken}`,
         },
-        // You may include additional body parameters if required by your server
-        // body: JSON.stringify({}),
         credentials: "include",
       });
-      console.log("response", response);
 
       if (!response.ok) {
-        throw new Error("Failed to refresh token");
+        throw new Error(`Failed to refresh token: ${response.statusText}`);
       }
 
       const data = await response.json();
-      console.log("data", data);
 
       // Update the state with the new access token
-      set({
+      set(() => ({
         accessToken: data.accessToken,
         userRole: data.role,
         userName: data.userName,
         userId: data.userId,
-      });
+      }));
+
       console.log("Access token refreshed successfully");
     } catch (error) {
       // Handle the error differently for refresh token expiration or invalidity
@@ -202,16 +191,12 @@ const useStorePackage = create((set) => ({
       ) {
         // Trigger a logout or redirect to the login page
         // Clear cookies, local storage, and reset the state
-
-        // Clear cookies
         Cookies.remove("accessToken", { sameSite: "None" });
         Cookies.remove("userId", { sameSite: "None" });
 
-        // Clear local storage
         localStorage.removeItem("userRole");
         localStorage.removeItem("userName");
 
-        // Reset the state
         set({
           accessToken: "",
           userRole: "",
@@ -219,8 +204,6 @@ const useStorePackage = create((set) => ({
           userId: "",
         });
 
-        // Redirect to the login page (adjust the route based on your routing setup)
-        // You can use the appropriate navigation method based on your setup (e.g., React Router)
         window.location.href = "/signin"; // Replace with your login page route
       } else {
         console.error("Error refreshing token:", error);
