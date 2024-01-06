@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
  */
 const Products = () => {
   const { accessToken } = useStorePackage();
+  console.log('Products accessToken', accessToken);
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState(null);
 

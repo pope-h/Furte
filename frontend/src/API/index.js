@@ -1,5 +1,4 @@
 // import useStorePackage from "../store";
-import useStorePackage from "../store";
 import handleApiError from "./handleApiError";
 
 /**
@@ -19,8 +18,7 @@ const getAuthorizationHeader = (token) => ({
  * @returns {Promise} - A promise that resolves to the fetched products.
  * @throws {Error} - If there is an error fetching the products.
  */
-export const fetchProducts = async (searchQuery) => {
-  const token = useStorePackage.getState().accessToken;
+export const fetchProducts = async (token, searchQuery) => {
   const apiUrl = searchQuery
     ? `https://furte-server.vercel.app/products?search=${encodeURIComponent(searchQuery)}`
     : 'https://furte-server.vercel.app/products';

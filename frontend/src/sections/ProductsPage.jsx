@@ -21,6 +21,7 @@ const ProductsPage = ({ selectedCategory }) => {
      */
     const getProducts = async () => {
       try {
+        console.log("fetching products", token);
         const productsFromServer = await fetchProducts(token, searchQuery);
         setProducts(productsFromServer);
         setLoading(false);
