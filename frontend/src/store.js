@@ -190,10 +190,6 @@ const useStorePackage = create((set) => ({
         userName: data.userName,
         userId: data.userId,
       });
-      Cookies.set("accessToken", data.accessToken, {
-        expires: expirationTime,
-        sameSite: "None", // set to None if using https
-      });
       console.log("Access token refreshed successfully");
     } catch (error) {
       // Handle the error differently for refresh token expiration or invalidity
