@@ -168,7 +168,7 @@ const useStorePackage = create((set) => ({
       }
 
       const response = await fetch(refreshTokenEndpoint, {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${refreshToken}`,
