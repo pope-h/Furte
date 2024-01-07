@@ -33,7 +33,7 @@ const initialCart = JSON.parse(localStorage.getItem("cart")) || [];
  * @returns {StorePackage} The store package.
  */
 const useStorePackage = create((set) => ({
-  accessToken: Cookies.get("accessToken") || "",
+  accessToken: () => Cookies.get("accessToken") || "",
   userRole: localStorage.getItem("userRole") || "",
   userName: localStorage.getItem("userName") || "",
   userId: Cookies.get("userId") || "",
@@ -161,7 +161,13 @@ const useStorePackage = create((set) => ({
    */
   login: (accessToken, role, userName, userId) => {
     console.log("User logged in", accessToken, role, userName, userId);
-    set({ accessToken, userRole: role, userName, userId });
+    set((state) => ({
+      ...state,
+      accessToken: () => accessToken, // Ensure the function returns the latest token
+      userRole: role,
+      userName,
+      userId,
+    }));
     Cookies.set("accessToken", accessToken, {
       expires: expirationTime,
       sameSite: "None", // set to None if using https
@@ -175,7 +181,13 @@ const useStorePackage = create((set) => ({
    * Logs out the user.
    */
   logout: () => {
-    set({ accessToken: "", userRole: "", userName: "", userId: "" });
+    set((state) => ({
+      ...state,
+      accessToken: () => "", // Reset the function when logging out
+      userRole: "",
+      userName: "",
+      userId: "",
+    }));
     Cookies.remove("accessToken", { sameSite: "None" });
     Cookies.remove("userId", { sameSite: "None" });
     localStorage.removeItem("userRole");

@@ -13,7 +13,8 @@ import useStorePackage from "../store";
 const ProductsPage = ({ selectedCategory }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { accessToken: token, searchQuery } = useStorePackage();
+  const { accessToken, searchQuery } = useStorePackage();
+  const token = accessToken();
 
   useEffect(() => {
     /**
