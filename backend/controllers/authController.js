@@ -44,7 +44,7 @@ exports.signin = async (req, res) => {
           const refreshToken = jwt.sign(
             { email: user.email },
             process.env.REFRESH_KEY,
-            { expiresIn: "3d" }
+            { expiresIn: "15m" } //3d
           );
           // Saving refreshToken with current user
           user.refreshToken = refreshToken;
@@ -56,8 +56,8 @@ exports.signin = async (req, res) => {
           // Remember to add `, secure: true` after testing
           res.cookie("jwt", refreshToken, {
             httpOnly: true,
-            secure: true,
             sameSite: "None",
+            secure: true,
             maxAge: 15 * 60 * 1000,
           }); //3 * 24 * 60 * 60 * 1000 = 3 days
 
