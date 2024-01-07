@@ -16,6 +16,7 @@ import NavCartItemButtons from "../NavCartItemButtons";
  */
 const NotificationPopover = ({ title, content, button }) => {
   const { cartCount, accessToken } = useStorePackage();
+  const token = accessToken();
 
   return (
     <Transition
@@ -33,13 +34,13 @@ const NotificationPopover = ({ title, content, button }) => {
             {title}
           </strong>
 
-          {accessToken && (
+          {token && (
             <div className="py-1 px-2 pb-4 flex flex-col gap-2 border-b-2 border-b-gray-300">
               <div className="text-sm">{content}</div>
               {cartCount > 0 && <NavCartItems />}
             </div>
           )}
-          {accessToken &&
+          {token &&
             button &&
             (cartCount > 0 ? (
               <NavCartItemButtons />

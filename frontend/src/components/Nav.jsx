@@ -18,6 +18,8 @@ const Nav = () => {
   const { accessToken, userName, logout, searchQuery, setSearchQuery } =
     useStorePackage();
 
+  const token = accessToken();
+
   const store = useStorePackage();
 
   const totalQuantity = store.cart.reduce(
@@ -25,7 +27,7 @@ const Nav = () => {
     0
   );
 
-  console.log("User token:", accessToken);
+  console.log("User token:", token);
   console.log("User Name:", userName);
 
   useEffect(() => {
@@ -125,7 +127,7 @@ const Nav = () => {
             ></i>
             <div className="max-md:hidden flex gap-6 items-center">
               <UserSection
-                accessToken={accessToken}
+                accessToken={token}
                 userName={userName}
                 navigate={navigate}
                 logout={logout}

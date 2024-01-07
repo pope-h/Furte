@@ -14,7 +14,7 @@ const DashboardPersonalData = () => {
   const userId = store.userId;
   console.log("DashboardPersonalData", userId);
   const [user, setUser] = useState(null);
-  const token = store.accessToken;
+  const token = store.accessToken();
 
   useEffect(() => {
     /**

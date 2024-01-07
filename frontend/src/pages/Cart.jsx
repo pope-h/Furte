@@ -11,7 +11,7 @@ const Cart = () => {
   const cart = store.cart;
   const [productsFromServer, setProductsFromServer] = useState([]);
   const navigate = useNavigate();
-  const token = store.accessToken;
+  const token = store.accessToken();
   const addToCart = store.addToCart;
   const removeOneItemFromCart = store.removeOneItemFromCart;
   const removeProduct = store.removeProduct;

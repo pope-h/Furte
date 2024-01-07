@@ -23,7 +23,7 @@ import { useState } from "react";
 const SignIn = () => {
   const { login } = useStorePackage();
   const navigate = useNavigate();
-  const token = useStorePackage().accessToken;
+  const token = useStorePackage().accessToken();
 
   // State to track password visibility
   const [showPassword, setShowPassword] = useState(false);
