@@ -299,7 +299,7 @@ export const refreshToken = async () => {
       credentials: "include",
     });
 
-    console.log("res");
+    console.log("res", res);
 
     if (!res.ok) {
       throw new Error("Failed to refresh token");
