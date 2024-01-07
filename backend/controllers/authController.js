@@ -29,36 +29,53 @@ exports.signin = async (req, res) => {
         // Verify the password
         const match = await bcrypt.compare(password, user.password);
         if (match) {
-            // create JWTs
-            const accessToken = jwt.sign(
-                {
-                    "UserInfo": {
-                        "userName": user.userName,
-                        "email": user.email,
-                        "role": user.role
-                    }
-                },
-                process.env.ACCESS_KEY,
-                { expiresIn: '10m' }
-            );
-            const refreshToken = jwt.sign(
-                { "email": user.email },
-                process.env.REFRESH_KEY,
-                { expiresIn: '3d' }
-            );
-            // Saving refreshToken with current user
-            user.refreshToken = refreshToken;
-            const result = await user.save();
-            console.log(result);
-            console.log(user.role);
-    
-            // Creates Secure Cookie with refresh token
-            // Remember to add `, secure: true` after testing
-            res.cookie('jwt', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 3 * 24 * 60 * 60 * 1000 });
-    
-            // Send authorization roles and access token to user
-            res.json({ role: user.role, accessToken, userName: user.userName, userId: user._id });
-    
+          // create JWTs
+          const accessToken = jwt.sign(
+            {
+              UserInfo: {
+                userName: user.userName,
+                email: user.email,
+                role: user.role,
+              },
+            },
+            process.env.ACCESS_KEY,
+            { expiresIn: "10m" }
+          );
+          const refreshToken = jwt.sign(
+            { email: user.email },
+            process.env.REFRESH_KEY,
+            { expiresIn: "3d" }
+          );
+
+          // Set expirationTime cookie
+          const expirationTime = new Date();
+          expirationTime.setTime(expirationTime.getTime() + 10 * 60 * 1000); // 10 minutes
+          res.cookie("expirationTime", expirationTime.getTime().toString(), {
+            maxAge: 10 * 60 * 1000,
+          });
+
+          // Saving refreshToken with current user
+          user.refreshToken = refreshToken;
+          const result = await user.save();
+          console.log(result);
+          console.log(user.role);
+
+          // Creates Secure Cookie with refresh token
+          // Remember to add `, secure: true` after testing
+          res.cookie("jwt", refreshToken, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "None",
+            maxAge: 3 * 24 * 60 * 60 * 1000,
+          });
+
+          // Send authorization roles and access token to user
+          res.json({
+            role: user.role,
+            accessToken,
+            userName: user.userName,
+            userId: user._id,
+          });
         } else {
             return res.status(401).send("Incorrect login credentials"); //Unauthorized
         }
