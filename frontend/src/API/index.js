@@ -22,33 +22,33 @@ const getAuthorizationHeader = (token) => ({
 export const fetchProducts = async (token, searchQuery) => {
   console.log("entry point", token);
   const apiUrl = searchQuery
-    ? `https://furte-server.vercel.app/products?search=${encodeURIComponent(searchQuery)}`
-    : 'https://furte-server.vercel.app/products';
+    ? `https://furte-server.vercel.app/products?search=${encodeURIComponent(
+        searchQuery
+      )}`
+    : "https://furte-server.vercel.app/products";
 
   try {
-    // Check if the access token is expired
-    // const expirationTime = new Date(parseInt(Cookies.get("expirationtime")));
-    // const currentTime = new Date();
-    // console.log("expirationTime", expirationTime);
-    // console.log("currentTime", currentTime);
-
-    // if (expirationTime < currentTime) {
-    //   // Access token is expired, refresh it
-    //   await refreshToken();
-    //   // Update the token variable with the new access token
-    //   token = Cookies.get("accessToken");
-    // }
-    console.log("fetching products");
-    console.log("fetching products token", token);
     const res = await fetch(apiUrl, {
       method: "GET",
       headers: getAuthorizationHeader(token),
     });
-    console.log("fetched products");
-    return handleApiError(res);
+
+    if (res.status === 401 || res.status === 403) {
+      // Token expired or unauthorized, attempt to refresh the token
+      await refreshToken();
+      // Retry the request with the new token
+      const newToken = Cookies.get("accessToken");
+      const retryRes = await fetch(apiUrl, {
+        method: "GET",
+        headers: getAuthorizationHeader(newToken),
+      });
+      return handleApiError(retryRes);
+    } else {
+      return handleApiError(res);
+    }
   } catch (err) {
-    console.error('Error fetching products:', err);
-    throw new Error('Error fetching products');
+    console.error("Error fetching products:", err);
+    throw new Error("Error fetching products");
   }
 };
 
