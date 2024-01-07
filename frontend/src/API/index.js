@@ -26,17 +26,17 @@ export const fetchProducts = async (token, searchQuery) => {
 
   try {
     // Check if the access token is expired
-    const expirationTime = new Date(parseInt(Cookies.get("expirationtime")));
-    const currentTime = new Date();
-    console.log("expirationTime", expirationTime);
-    console.log("currentTime", currentTime);
+    // const expirationTime = new Date(parseInt(Cookies.get("expirationtime")));
+    // const currentTime = new Date();
+    // console.log("expirationTime", expirationTime);
+    // console.log("currentTime", currentTime);
 
-    if (expirationTime < currentTime) {
-      // Access token is expired, refresh it
-      await refreshToken();
-      // Update the token variable with the new access token
-      token = Cookies.get("accessToken");
-    }
+    // if (expirationTime < currentTime) {
+    //   // Access token is expired, refresh it
+    //   await refreshToken();
+    //   // Update the token variable with the new access token
+    //   token = Cookies.get("accessToken");
+    // }
     console.log("fetching products");
     console.log("fetching products token", token);
     const res = await fetch(apiUrl, {
