@@ -13,7 +13,7 @@ const ProductDetail = () => {
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [showNotification, setShowNotification] = useState(false);
-    const token = useStorePackage().accessToken();
+    const token = useStorePackage().accessToken;
     const addToCart = useStorePackage().addToCart;
 
     useEffect(() => {

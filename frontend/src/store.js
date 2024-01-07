@@ -33,7 +33,7 @@ const initialCart = JSON.parse(localStorage.getItem("cart")) || [];
  * @returns {StorePackage} The store package.
  */
 const useStorePackage = create((set) => ({
-  accessToken: () => Cookies.get("accessToken") || "",
+  accessToken: Cookies.get("accessToken") || "",
   userRole: localStorage.getItem("userRole") || "",
   userName: localStorage.getItem("userName") || "",
   userId: Cookies.get("userId") || "",
@@ -163,7 +163,7 @@ const useStorePackage = create((set) => ({
     console.log("User logged in", accessToken, role, userName, userId);
     set((state) => ({
       ...state,
-      accessToken: () => accessToken, // Ensure the function returns the latest token
+      accessToken,
       userRole: role,
       userName,
       userId,
@@ -183,7 +183,7 @@ const useStorePackage = create((set) => ({
   logout: () => {
     set((state) => ({
       ...state,
-      accessToken: () => "", // Reset the function when logging out
+      accessToken: "", // Reset the function when logging out
       userRole: "",
       userName: "",
       userId: "",

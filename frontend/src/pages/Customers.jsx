@@ -14,7 +14,7 @@ import useStorePackage from "../store";
 const Customer = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const token = useStorePackage().accessToken();
+  const token = useStorePackage().accessToken;
 
   useEffect(() => {
     const getUsers = async () => {

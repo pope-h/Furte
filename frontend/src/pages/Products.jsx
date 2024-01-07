@@ -10,8 +10,7 @@ import { useNavigate } from "react-router-dom";
  */
 const Products = () => {
   const { accessToken } = useStorePackage();
-  const token = accessToken();
-  console.log('Products accessToken', token);
+  console.log("Products accessToken", accessToken);
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState(null);
 
@@ -24,7 +23,7 @@ const Products = () => {
   ];
 
   useEffect(() => {
-    if (!token) {
+    if (!accessToken) {
       navigate("/signin");
     }
   });

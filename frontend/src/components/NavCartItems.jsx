@@ -10,7 +10,7 @@ const NavCartItems = () => {
   const store = useStorePackage();
   const cart = store.cart;
   const [productsFromServer, setProductsFromServer] = useState([]);
-  const token = store.accessToken();
+  const token = store.accessToken;
 
   useEffect(() => {
     /**

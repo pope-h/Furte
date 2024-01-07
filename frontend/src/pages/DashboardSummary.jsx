@@ -10,7 +10,7 @@ const DashboardSummary = () => {
   const store = useStorePackage();
   const userId = store.userId;
   const [user, setUser] = useState(null);
-  const token = store.accessToken();
+  const token = store.accessToken;
 
   useEffect(() => {
     /**

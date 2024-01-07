@@ -17,7 +17,7 @@ const Checkout = () => {
   const userId = store.userId;
   console.log("CheckoutId", userId);
   const [user, setUser] = useState(null);
-  const token = store.accessToken();
+  const token = store.accessToken;
   const [invalidPaymentMethod, setInvalidPaymentMethod] = useState(false);
 
   useEffect(() => {

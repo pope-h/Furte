@@ -12,7 +12,7 @@ import useStorePackage from '../store';
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const token = useStorePackage().accessToken();
+  const token = useStorePackage().accessToken;
 
   useEffect(() => {
     const getProducts = async () => {
