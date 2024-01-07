@@ -290,6 +290,7 @@ export const signUpUser = async (token, userData) => {
 
 export const refreshToken = async () => {
   try {
+    console.log("refresh token function");
     const res = await fetch("https://furte-server.vercel.app/refresh", {
       method: "GET",
       headers: {
@@ -298,11 +299,14 @@ export const refreshToken = async () => {
       credentials: "include",
     });
 
+    console.log("res");
+
     if (!res.ok) {
       throw new Error("Failed to refresh token");
     }
 
     const data = await res.json();
+    console.log("data");
 
     // Update the access token and its expiration time in cookies
     Cookies.set("accessToken", data.accessToken, {
