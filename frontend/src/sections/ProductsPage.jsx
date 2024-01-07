@@ -14,7 +14,7 @@ const ProductsPage = ({ selectedCategory }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { accessToken: token, searchQuery } = useStorePackage();
-  console.log("token", token);
+  console.log("ProductPage token", token);
 
   useEffect(() => {
     /**
