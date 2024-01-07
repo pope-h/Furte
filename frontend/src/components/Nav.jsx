@@ -76,14 +76,34 @@ const Nav = () => {
         )
       : navLinks;
 
+  // Dynamically set the Sign In/Sign Out label based on user authentication
+  const signInOrOutLabel = store.accessToken ? "Sign Out" : "Sign In";
+
+  /**
+   * Handles the navigation to the specified path.
+   * If the user is signed in, it triggers the sign-out action.
+   * If the user is not signed in, it redirects to the sign-in page.
+   * @param {string} path - The path to navigate to.
+   */
+  const handleSignInSignOut = (path) => {
+    if (store.accessToken) {
+      // User is signed in, trigger sign-out action
+      store.logout();
+    } else {
+      // User is not signed in, redirect to the sign-in page
+      navigate(path);
+    }
+    setMenuOpen(false); // Close the menu after navigation
+  };
+
   /**
    * Handles the navigation to the specified path.
    * @param {string} path - The path to navigate to.
    */
-  const handleNavigation = (path) => {
-    navigate(path);
-    setMenuOpen(false); // Close the menu after navigation
-  };
+  // const handleNavigation = (path) => {
+  //   navigate(path);
+  //   setMenuOpen(false); // Close the menu after navigation
+  // };
 
   return (
     <header className="padding-x py-6 z-10 absolute top-0 w-full bg-white-400">
@@ -109,11 +129,11 @@ const Nav = () => {
             {filteredNavLinks.map((item) => (
               <li key={item.label}>
                 <a
-                  onClick={() => handleNavigation(item.href)}
+                  onClick={() => handleSignInSignOut(item.href)}
                   className="text-slate-gray hover:text-red-600
                                   fonts-montserrat leading-normal text-lg max-lg:text-white-400 hover:no-underline hover:cursor-pointer"
                 >
-                  {item.label}
+                  {item.label === "Sign Out" ? signInOrOutLabel : item.label}
                 </a>
               </li>
             ))}
