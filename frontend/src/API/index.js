@@ -28,6 +28,8 @@ export const fetchProducts = async (token, searchQuery) => {
     // Check if the access token is expired
     const expirationTime = new Date(parseInt(Cookies.get("expirationTime")));
     const currentTime = new Date();
+    console.log("expirationTime", expirationTime);
+    console.log("currentTime", currentTime);
 
     if (expirationTime < currentTime) {
       // Access token is expired, refresh it
