@@ -84,7 +84,7 @@ const Nav = () => {
    * @param {string} path - The path to navigate to.
    */
   const handleSignInSignOut = (path) => {
-    if (path === "/sign-in") {
+    if (path === "/signin") {
       if (accessToken) {
         // User is signed in, trigger sign-out action
         logout();
