@@ -15,10 +15,8 @@ const Nav = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
-  const { accessToken, userName, logout, searchQuery, setSearchQuery } =
-    useStorePackage();
-
   const store = useStorePackage();
+  const { accessToken, userName, logout, searchQuery, setSearchQuery } = store;
 
   const totalQuantity = store.cart.reduce(
     (total, product) => total + product.quantity,
@@ -72,12 +70,12 @@ const Nav = () => {
           (item) =>
             item.label !== "Dashboard" &&
             item.label !== "Cart" &&
-            item.label !== "Sign Out"
+            item.label !== "Sign In"
         )
       : navLinks;
 
   // Dynamically set the Sign In/Sign Out label based on user authentication
-  const signInOrOutLabel = store.accessToken ? "Sign Out" : "Sign In";
+  // const signInOrOutLabel = accessToken ? "Sign Out" : "Sign In";
 
   /**
    * Handles the navigation to the specified path.
@@ -86,11 +84,16 @@ const Nav = () => {
    * @param {string} path - The path to navigate to.
    */
   const handleSignInSignOut = (path) => {
-    if (store.accessToken) {
-      // User is signed in, trigger sign-out action
-      store.logout();
+    if (path === "/sign-in") {
+      if (accessToken) {
+        // User is signed in, trigger sign-out action
+        logout();
+      } else {
+        // User is not signed in, redirect to the sign-in page
+        navigate(path);
+      }
     } else {
-      // User is not signed in, redirect to the sign-in page
+      // Regular navigation for other links
       navigate(path);
     }
     setMenuOpen(false); // Close the menu after navigation
@@ -133,7 +136,9 @@ const Nav = () => {
                   className="text-slate-gray hover:text-red-600
                                   fonts-montserrat leading-normal text-lg max-lg:text-white-400 hover:no-underline hover:cursor-pointer"
                 >
-                  {item.label === "Sign Out" ? signInOrOutLabel : item.label}
+                  {item.label === "Sign In" && accessToken
+                    ? "Sign Out"
+                    : item.label}
                 </a>
               </li>
             ))}

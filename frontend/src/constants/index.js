@@ -8,7 +8,7 @@ export const navLinks = [
   { href: "/contact-us", label: "Contact Us" },
   { href: "/dashboard", label: "Dashboard" },
   { href: "/cart", label: "Cart" },
-  { href: "/sign-out", label: "Sign Out" },
+  { href: "/sign-in", label: "Sign In" },
 ];
 
 export const shoes = [
