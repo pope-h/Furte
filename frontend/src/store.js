@@ -161,13 +161,12 @@ const useStorePackage = create((set) => ({
    */
   login: (accessToken, role, userName, userId) => {
     console.log("User logged in", accessToken, role, userName, userId);
-    set((state) => ({
-      ...state,
+    set({
       accessToken,
       userRole: role,
       userName,
       userId,
-    }));
+    });
     Cookies.set("accessToken", accessToken, {
       expires: expirationTime,
       sameSite: "None", // set to None if using https
@@ -181,13 +180,12 @@ const useStorePackage = create((set) => ({
    * Logs out the user.
    */
   logout: () => {
-    set((state) => ({
-      ...state,
+    set({
       accessToken: "", // Reset the function when logging out
       userRole: "",
       userName: "",
       userId: "",
-    }));
+    });
     Cookies.remove("accessToken", { sameSite: "None" });
     Cookies.remove("userId", { sameSite: "None" });
     localStorage.removeItem("userRole");
