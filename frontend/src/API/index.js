@@ -28,12 +28,14 @@ export const fetchProducts = async (token, searchQuery) => {
     : "https://furte-server.vercel.app/products";
 
   try {
+    console.log("first")
     const res = await fetch(apiUrl, {
       method: "GET",
       headers: getAuthorizationHeader(token),
     });
 
     if (res.status === 401 || res.status === 403) {
+      console.log("second")
       // Token expired or unauthorized, attempt to refresh the token
       await refreshToken();
       // Retry the request with the new token
@@ -44,9 +46,11 @@ export const fetchProducts = async (token, searchQuery) => {
       });
       return handleApiError(retryRes);
     } else {
+      console.log("third")
       return handleApiError(res);
     }
   } catch (err) {
+    console.log("fourth")
     console.error("Error fetching products:", err);
     throw new Error("Error fetching products");
   }
