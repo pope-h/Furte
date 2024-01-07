@@ -27,8 +27,6 @@ expirationTime.setTime(expirationTime.getTime() + 10 * 60 * 1000); // 10 minutes
 // Retrieve cart data from localStorage, if available
 const initialCart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const refreshTokenEndpoint = "https://furte-server.vercel.app/refresh";
-
 /**
  * Creates a store package using Zustand.
  * @param {Function} set - The set function provided by Zustand.
@@ -153,75 +151,6 @@ const useStorePackage = create((set) => ({
         cartProductIds: [],
       };
     }),
-
-  /**
-   * Refreshes the access token.
-   */
-  refreshToken: async () => {
-    console.log("Refreshing token...");
-    try {
-      console.log("starting refresh");
-      const response = await fetch(refreshTokenEndpoint, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        // You may include additional body parameters if required by your server
-        // body: JSON.stringify({}),
-        credentials: "include",
-      });
-      console.log("response", response);
-
-      console.log("response.ok", response.ok);
-      if (!response.ok) {
-        throw new Error("Failed to refresh token");
-      }
-
-      const data = await response.json();
-      console.log("data", data);
-
-      // Update the state with the new access token
-      set({
-        accessToken: data.accessToken,
-        userRole: data.role,
-        userName: data.userName,
-        userId: data.userId,
-      });
-      console.log("Access token refreshed successfully");
-    } catch (error) {
-      // Handle the error differently for refresh token expiration or invalidity
-      if (
-        error.message.includes("Refresh token expired") ||
-        error.message.includes("Invalid refresh token")
-      ) {
-        // Trigger a logout or redirect to the login page
-        // Clear cookies, local storage, and reset the state
-
-        // Clear cookies
-        Cookies.remove("accessToken", { sameSite: "None" });
-        Cookies.remove("userId", { sameSite: "None" });
-
-        // Clear local storage
-        localStorage.removeItem("userRole");
-        localStorage.removeItem("userName");
-
-        // Reset the state
-        set({
-          accessToken: "",
-          userRole: "",
-          userName: "",
-          userId: "",
-        });
-
-        // Redirect to the login page (adjust the route based on your routing setup)
-        // You can use the appropriate navigation method based on your setup (e.g., React Router)
-        window.location.href = "/signin"; // Replace with your login page route
-      } else {
-        console.error("Error refreshing token:", error);
-        throw error;
-      }
-    }
-  },
 
   /**
    * Logs in the user.

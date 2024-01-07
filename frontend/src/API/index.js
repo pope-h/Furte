@@ -1,4 +1,5 @@
 // import useStorePackage from "../store";
+import Cookies from "js-cookie";
 import handleApiError from "./handleApiError";
 
 /**
@@ -24,13 +25,23 @@ export const fetchProducts = async (token, searchQuery) => {
     : 'https://furte-server.vercel.app/products';
 
   try {
-    console.log('fetching products');
-    console.log('fetching products token', token);
+    // Check if the access token is expired
+    const expirationTime = new Date(parseInt(Cookies.get("expirationTime")));
+    const currentTime = new Date();
+
+    if (expirationTime < currentTime) {
+      // Access token is expired, refresh it
+      await refreshToken();
+      // Update the token variable with the new access token
+      token = Cookies.get("accessToken");
+    }
+    console.log("fetching products");
+    console.log("fetching products token", token);
     const res = await fetch(apiUrl, {
       method: "GET",
       headers: getAuthorizationHeader(token),
     });
-    console.log('fetched products');
+    console.log("fetched products");
     return handleApiError(res);
   } catch (err) {
     console.error('Error fetching products:', err);
@@ -268,3 +279,37 @@ export const signUpUser = async (token, userData) => {
     throw new Error('Error signing user up');
   }
 }
+
+export const refreshToken = async () => {
+  try {
+    const res = await fetch("https://furte-server.vercel.app/refresh", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to refresh token");
+    }
+
+    const data = await res.json();
+
+    // Update the access token and its expiration time in cookies
+    Cookies.set("accessToken", data.accessToken, {
+      expires: new Date(data.expiresIn),
+      sameSite: "None", // set to None if using https
+    });
+    console.log("New access token", data.accessToken);
+
+    Cookies.set("expirationTime", new Date(data.expiresIn).getTime(), {
+      sameSite: "None",
+    });
+
+    console.log("Token successfully refreshed", data);
+  } catch (err) {
+    console.error("Error refreshing token:", err);
+    throw new Error(`Failed to refresh token: ${err}`);
+  }
+};
