@@ -36,6 +36,7 @@ export const fetchProducts = async (token, searchQuery) => {
 
     if (res.status === 401 || res.status === 403) {
       console.log("second")
+      console.log(res.status)
       // Token expired or unauthorized, attempt to refresh the token
       await refreshToken();
       // Retry the request with the new token
