@@ -10,7 +10,7 @@ const logger = require('../utils/logger');
 
 const handleRefreshToken = async (req, res) => {
     const cookies = req.cookies;
-    logger.info("cookies", cookies);
+    logger.info("cookies fetched", cookies);
     if (!cookies?.jwt) return res.sendStatus(401);
     const refreshToken = cookies.jwt;
     logger.info("jwt", refreshToken);
