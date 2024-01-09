@@ -6,12 +6,41 @@
       "use": "@vercel/node"
     }
   ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://furte.vercel.app"
+        }
+      ],
+      "dest": "/"
+    }
+  ],
   "rewrites": [
-    {"source": "/api/products/(.*)", "destination": "https://furte-server.vercel.app/api/products/$1"},
-    {"source": "/api/users/(.*)", "destination": "https://furte-server.vercel.app/api/users/$1"},
-    {"source": "/auth/(.*)", "destination": "https://furte-server.vercel.app/auth/$1"},
-    {"source": "/logout/(.*)", "destination": "https://furte-server.vercel.app/logout/$1"},
-    {"source": "/refresh/(.*)", "destination": "https://furte-server.vercel.app/refresh/$1", "headers": {"Access-Control-Allow-Origin": "https://furte.vercel.app"}, "methods": ["GET", "OPTIONS"], "credentials": true},
-    {"source": "/(.*)", "destination": "/"}
+    {
+      "source": "/api/products/(.*)",
+      "destination": "https://furte-server.vercel.app/api/products/$1"
+    },
+    {
+      "source": "/api/users/(.*)",
+      "destination": "https://furte-server.vercel.app/api/users/$1"
+    },
+    {
+      "source": "/auth/(.*)",
+      "destination": "https://furte-server.vercel.app/auth/$1"
+    },
+    {
+      "source": "/logout/(.*)",
+      "destination": "https://furte-server.vercel.app/logout/$1"
+    },
+    {
+      "source": "/refresh/(.*)",
+      "destination": "https://furte-server.vercel.app/refresh/$1",
+      "methods": ["GET", "OPTIONS"],
+      "credentials": true
+    },
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
