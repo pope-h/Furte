@@ -32,6 +32,7 @@ export const fetchProducts = async (token, searchQuery) => {
     const res = await fetch(apiUrl, {
       method: "GET",
       headers: getAuthorizationHeader(token),
+      credentials: "include",
     });
 
     if (res.status === 401 || res.status === 403) {
