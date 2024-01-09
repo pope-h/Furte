@@ -6,14 +6,14 @@
  */
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+const logger = require('../utils/logger');
 
 const handleRefreshToken = async (req, res) => {
     const cookies = req.cookies;
-    console.log("cookies");
-    console.log(cookies);
+    logger.info("cookies", cookies);
     if (!cookies?.jwt) return res.sendStatus(401);
     const refreshToken = cookies.jwt;
-    console.log(refreshToken);
+    logger.info(refreshToken);
 
     const foundUser = await User.findOne({ refreshToken }).exec();
     if (!foundUser) return res.sendStatus(403); //Forbidden 
