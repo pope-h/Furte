@@ -28,30 +28,30 @@ export const fetchProducts = async (token, searchQuery) => {
     : "https://furte-server.vercel.app/products";
 
   try {
-    console.log("first")
+    console.log("first");
     const res = await fetch(apiUrl, {
       method: "GET",
       headers: getAuthorizationHeader(token),
     });
 
     if (res.status === 401 || res.status === 403) {
-      console.log("second")
-      console.log(res.status)
+      console.log("second is about to jump due to", res.status);
+
       // Token expired or unauthorized, attempt to refresh the token
-      await refreshToken();
+      const newToken = await handleRefresh();
+
       // Retry the request with the new token
-      const newToken = Cookies.get("accessToken");
       const retryRes = await fetch(apiUrl, {
         method: "GET",
         headers: getAuthorizationHeader(newToken),
       });
       return handleApiError(retryRes);
     } else {
-      console.log("third")
+      console.log("third is success");
       return handleApiError(res);
     }
   } catch (err) {
-    console.log("fourth")
+    console.log("fourth is main error");
     console.error("Error fetching products:", err);
     throw new Error("Error fetching products");
   }
@@ -290,7 +290,7 @@ export const signUpUser = async (token, userData) => {
 
 export const refreshToken = async () => {
   try {
-    console.log("refresh token function");
+    console.log("jump made to refresh token function");
     const res = await fetch("https://furte-server.vercel.app/refresh", {
       method: "GET",
       headers: {
@@ -320,8 +320,27 @@ export const refreshToken = async () => {
     });
 
     console.log("Token successfully refreshed", data);
+
+    // Return the new access token
+    return data.accessToken;
   } catch (err) {
     console.error("Error refreshing token:", err);
     throw new Error(`Failed to refresh token: ${err}`);
+  }
+};
+
+// Define the handleRefresh function
+export const handleRefresh = async () => {
+  try {
+    // Call your refreshToken function to get the new access token
+    const newAccessToken = await refreshToken();
+
+    // You can perform additional logic if needed
+
+    // Return the new access token
+    return newAccessToken;
+  } catch (err) {
+    console.error("Error handling refresh:", err);
+    throw new Error(`Failed to handle refresh: ${err}`);
   }
 };
