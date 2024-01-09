@@ -6,18 +6,6 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "https://furte.vercel.app"
-        }
-      ],
-      "dest": "/"
-    }
-  ],
   "rewrites": [
     {
       "source": "/api/products/(.*)",
@@ -37,9 +25,7 @@
     },
     {
       "source": "/refresh/(.*)",
-      "destination": "https://furte-server.vercel.app/refresh/$1",
-      "methods": ["GET", "OPTIONS"],
-      "credentials": true
+      "destination": "https://furte-server.vercel.app/refresh/$1"
     },
     { "source": "/(.*)", "destination": "/" }
   ]
