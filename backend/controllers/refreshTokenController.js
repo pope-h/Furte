@@ -13,7 +13,7 @@ const handleRefreshToken = async (req, res) => {
     logger.info("cookies", cookies);
     if (!cookies?.jwt) return res.sendStatus(401);
     const refreshToken = cookies.jwt;
-    logger.info(refreshToken);
+    logger.info("jwt", refreshToken);
 
     const foundUser = await User.findOne({ refreshToken }).exec();
     if (!foundUser) return res.sendStatus(403); //Forbidden 
