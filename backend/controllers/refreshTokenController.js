@@ -9,10 +9,13 @@ const jwt = require('jsonwebtoken');
 const logger = require('../utils/logger');
 
 const handleRefreshToken = async (req, res) => {
+    console.log("refresh token request received");
     const cookies = req.cookies;
+    console.log("cookies", cookies);
     logger.info("cookies fetched", cookies);
     if (!cookies?.jwt) return res.sendStatus(401);
     const refreshToken = cookies.jwt;
+    console.log("jwt", refreshToken);
     logger.info("jwt", refreshToken);
 
     const foundUser = await User.findOne({ refreshToken }).exec();
