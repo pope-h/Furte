@@ -291,10 +291,10 @@ export const signUpUser = async (token, userData) => {
 
 export const refreshToken = async () => {
   const jwtCookie = Cookies.get("jwt");
-  console.log("jwtCookie", jwtCookie);
 
   try {
     console.log("jump made to refresh token function");
+    console.log("jwtCookie", jwtCookie);
     const res = await fetch("https://furte-server.vercel.app/refresh", {
       method: "GET",
       headers: {
