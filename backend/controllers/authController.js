@@ -51,6 +51,7 @@ exports.signin = async (req, res) => {
             const result = await user.save();
             console.log(result);
             console.log(user.role);
+            console.log(refreshToken);
     
             // Creates Secure Cookie with refresh token
             // Remember to add `, secure: true` after testing

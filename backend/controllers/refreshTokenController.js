@@ -12,6 +12,8 @@ const handleRefreshToken = async (req, res) => {
     console.log("refresh token request received");
     console.log("cookies request", req);
     const cookies = req.cookies;
+    const cookie = req.cookie;
+    console.log("cookie", cookie);
     console.log("cookies", cookies);
     logger.info("cookies fetched", cookies);
     if (!cookies?.jwt) return res.sendStatus(401);
