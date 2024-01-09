@@ -36,9 +36,8 @@ app.use(cookieParser());
 app.get('/', (req, res) => {
     res.send('Welcome to Forte Application Programming Interface');
 });
-
-app.use(authRoute);
 app.use(refreshRoute);
+app.use(authRoute);
 app.use('/logout', require('./routes/logout'));
 
 app.use(verifyJWT);
