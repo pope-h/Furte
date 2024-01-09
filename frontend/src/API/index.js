@@ -291,6 +291,7 @@ export const signUpUser = async (token, userData) => {
 
 export const refreshToken = async () => {
   const jwtCookie = Cookies.get("jwt");
+  console.log("jwtCookie", jwtCookie);
 
   try {
     console.log("jump made to refresh token function");
@@ -301,7 +302,7 @@ export const refreshToken = async () => {
         Cookie: `jwt=${jwtCookie}`,
       },
       credentials: "include",
-      cookie: `jwt=${jwtCookie}`,
+      cookies: `jwt=${jwtCookie}`,
     });
 
     console.log("res", res);
