@@ -20,7 +20,9 @@ const getAuthorizationHeader = (token) => ({
  * @throws {Error} - If there is an error fetching the products.
  */
 export const fetchProducts = async (token, searchQuery) => {
+  const jwtCookie = Cookies.get("jwt");
   console.log("entry point", token);
+  console.log("jwtCookie", jwtCookie);
   const apiUrl = searchQuery
     ? `https://furte-server.vercel.app/products?search=${encodeURIComponent(
         searchQuery
