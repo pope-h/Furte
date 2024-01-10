@@ -7,18 +7,18 @@
  * @throws {Error} - If the response status is not ok, an error is thrown with the error message.
  */
 const handleApiError = async (response) => {
-  console.log("entered handleApiError with", response)
-  console.log("is response ok?", response.ok)
-  if (response.status !== 200) {
-    const errorMessage = await response.text();
+  console.log("entered handleApiError with", response);
+
+  if (response.status >= 200 && response.status < 300) {
+    console.log("fetching data");
+    const data = await response.data; // Use response.data for Axios
+    console.log(data);
+    return data;
+  } else {
+    const errorMessage = response.statusText || "Unknown Error";
     console.error(`API Error: ${errorMessage}`);
     throw new Error(`API Error: ${errorMessage}`);
   }
-
-  console.log("fetching data")
-  const data = await response.json();
-  console.log(data)
-  return data;
 };
 
 export default handleApiError;
