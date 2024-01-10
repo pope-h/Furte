@@ -7,8 +7,8 @@ import CustomInput from "../components/CustomInput";
 import { checkoutSchema } from "../schemas";
 import { useEffect, useState } from "react";
 import useStorePackage from "../store";
-import { getUser } from "../API";
-import { getProduct } from "../API";
+import axios from "../API/axios";
+import handleApiError from "../API/handleApiError";
 
 const Checkout = () => {
   const store = useStorePackage();
@@ -23,7 +23,14 @@ const Checkout = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const userData = await getUser(token, userId);
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await axios.get(`/users/${userId}`, config);
+        const userData = await handleApiError(response);
         setUser(userData);
         console.log("CheckoutData", userData);
       } catch (err) {
@@ -64,9 +71,16 @@ const Checkout = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const products = await Promise.all(
-          cart.map((product) => getProduct(token, product._id))
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await Promise.all(
+          cart.map((product) => axios.get(`/products/${product.id}`, config))
         );
+        const products = await handleApiError(response);
         setProductsFromServer(products);
       } catch (err) {
         console.error(err);

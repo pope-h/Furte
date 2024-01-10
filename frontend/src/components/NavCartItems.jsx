@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { getProduct } from "../API";
 import useStorePackage from "../store";
+import axios from "../API/axios";
+import handleApiError from "../API/handleApiError";
 
 /**
  * Renders the cart items in the navigation bar.
@@ -19,10 +20,18 @@ const NavCartItems = () => {
      */
     const fetchProducts = async () => {
       try {
-        const products = await Promise.all(
-          cart.map((product) => getProduct(token, product._id))
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
+        const response = await Promise.all(
+          cart.map((product) => axios.get(`/products/${product.id}`, config))
         );
-        setProductsFromServer(products);
+        const data = await handleApiError(response);
+        setProductsFromServer(data);
       } catch (err) {
         console.error(err);
       }

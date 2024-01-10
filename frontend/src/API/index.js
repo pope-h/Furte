@@ -99,15 +99,15 @@ const getAuthorizationHeader = (token) => ({
  * @returns {Promise} - A promise that resolves to the fetched product.
  * @throws {Error} - If there is an error fetching the product.
  */
-export const getProduct = async (token, id) => {
-  try {
-    const res = await axiosJWT.get(`/products/${id}`);
-    return handleApiError(res);
-  } catch (err) {
-    console.error("Error fetching product:", err);
-    throw new Error("Error fetching product");
-  }
-};
+// export const getProduct = async (token, id) => {
+//   try {
+//     const res = await axiosJWT.get(`/products/${id}`);
+//     return handleApiError(res);
+//   } catch (err) {
+//     console.error("Error fetching product:", err);
+//     throw new Error("Error fetching product");
+//   }
+// };
 
 /**
  * Post a new product to the API.
@@ -116,15 +116,15 @@ export const getProduct = async (token, id) => {
  * @returns {Promise} - A promise that resolves to the posted product.
  * @throws {Error} - If there is an error posting the product.
  */
-export const postProduct = async (token, productData) => {
-  try {
-    const res = await axiosJWT.post("/products", productData);
-    return handleApiError(res);
-  } catch (err) {
-    console.error("Error posting product:", err);
-    throw new Error("Error fetching product");
-  }
-};
+// export const postProduct = async (token, productData) => {
+//   try {
+//     const res = await axiosJWT.post("/products", productData);
+//     return handleApiError(res);
+//   } catch (err) {
+//     console.error("Error posting product:", err);
+//     throw new Error("Error fetching product");
+//   }
+// };
 
 /**
  * Update a product in the API.
@@ -134,15 +134,15 @@ export const postProduct = async (token, productData) => {
  * @returns {Promise} - A promise that resolves to the updated product.
  * @throws {Error} - If there is an error updating the product.
  */
-export const updateProduct = async (token, id, productData) => {
-  try {
-    const res = await axiosJWT.put("/products", { id, ...productData });
-    return handleApiError(res);
-  } catch (err) {
-    console.error("Error updating product:", err);
-    throw new Error("Error fetching product");
-  }
-};
+// export const updateProduct = async (token, id, productData) => {
+//   try {
+//     const res = await axiosJWT.put("/products", { id, ...productData });
+//     return handleApiError(res);
+//   } catch (err) {
+//     console.error("Error updating product:", err);
+//     throw new Error("Error fetching product");
+//   }
+// };
 
 /**
  * Delete a product from the API.
@@ -151,15 +151,15 @@ export const updateProduct = async (token, id, productData) => {
  * @returns {Promise} - A promise that resolves when the product is deleted.
  * @throws {Error} - If there is an error deleting the product.
  */
-export const deleteProduct = async (token, id) => {
-  try {
-    const res = await axiosJWT.delete("/products", { data: { id } });
-    return handleApiError(res);
-  } catch (err) {
-    console.error("Error deleting product:", err);
-    throw new Error("Error fetching product");
-  }
-};
+// export const deleteProduct = async (token, id) => {
+//   try {
+//     const res = await axiosJWT.delete("/products", { data: { id } });
+//     return handleApiError(res);
+//   } catch (err) {
+//     console.error("Error deleting product:", err);
+//     throw new Error("Error fetching product");
+//   }
+// };
 
 /**
  * Fetch users from the API.

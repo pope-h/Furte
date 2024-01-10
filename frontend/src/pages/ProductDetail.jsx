@@ -5,8 +5,9 @@
  */
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getProduct } from "../API";
 import useStorePackage from "../store";
+import axios from "../API/axios";
+import handleApiError from "../API/handleApiError";
 
 const ProductDetail = () => {
     const { id: productId } = useParams();
@@ -19,7 +20,14 @@ const ProductDetail = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const productFromServer = await getProduct(token, productId);
+              const config = {
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+              };
+                const response = await axios.get(`/products/${productId}`, config);
+                const productFromServer = await handleApiError(response);
                 setProduct(productFromServer);
                 setLoading(false);
             } catch (err) {

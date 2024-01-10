@@ -6,7 +6,6 @@
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { deleteProduct } from '../API';
 import useStorePackage from '../store';
 import axios from '../API/axios';
 import handleApiError from '../API/handleApiError';
@@ -45,7 +44,14 @@ const AdminProducts = () => {
 
     if (confirmDelete) {
       try {
-        await deleteProduct(token, id);
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await axios.delete(`/products/${id}`, config);
+        await handleApiError(response);
         setProducts(products.filter((product) => product._id !== id));
       } catch (err) {
         console.error('Error deleting product:', err);

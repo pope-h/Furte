@@ -11,11 +11,12 @@ import { Form, Formik } from 'formik'
 import { createProductSchema } from '../schemas'
 import CustomCheckbox from './CustomCheckbox'
 import { useEffect, useState } from 'react'
-import { getProduct, updateProduct } from '../API'
 import { useNavigate, useParams } from 'react-router-dom';
 import useStorePackage from '../store'
 import CustomInput from './CustomInput'
 import CustomSelect from './CustomSelect'
+import axios from '../API/axios'
+import handleApiError from '../API/handleApiError'
 
 const EditProduct = () => {
     const { id: productId } = useParams();
@@ -26,8 +27,16 @@ const EditProduct = () => {
     useEffect(() => {
         const fetchProductDetails = async () => {
            try {
-            const productData = await getProduct(token, productId);
-            setProduct(productData);
+            const config = {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            };
+
+            const response = await axios.get(`/products/${productId}`, config);
+            const data = await handleApiError(response);
+            setProduct(data);
            } catch (err) {
                console.error('Error fetching product details:', err);
                alert('Could not fetch product details. Please try again.');
@@ -40,7 +49,14 @@ const EditProduct = () => {
 
     const onSubmit = async (values, actions) => {
     try {
-      await updateProduct(token, productId, values);
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const response = await axios.put(`/products/${productId}`, values, config);
+      await handleApiError(response);
       actions.resetForm();
         alert('Product updated successfully!');
         navigate('/admin/products');

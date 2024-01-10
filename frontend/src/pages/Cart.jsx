@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getProduct } from "../API";
 import useStorePackage from "../store";
+import axios from "../API/axios";
+import handleApiError from "../API/handleApiError";
 
 /**
  * Cart component displays the user's cart items and handles cart-related functionality.
@@ -36,13 +37,20 @@ const Cart = () => {
      */
     const fetchProducts = async () => {
       try {
-        const products = await Promise.all(
-          cart.map((product) => getProduct(token, product._id))
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await Promise.all(
+          cart.map((product) => axios.get(`/products/${product.id}`, config))
         );
-        setProductsFromServer(products);
+        const data = await handleApiError(response);
+        setProductsFromServer(data);
 
         // Calculate total here, when product data is available
-        const total = products.reduce(
+        const total = data.reduce(
           (acc, product, index) =>
             acc + product.price * cart[index]?.quantity || 0,
           0

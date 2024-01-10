@@ -1,10 +1,11 @@
 import { Form, Formik } from 'formik'
 import { createProductSchema } from '../schemas'
 import CustomCheckbox from './CustomCheckbox'
-import { postProduct } from '../API'
 import useStorePackage from '../store'
 import CustomInput from './CustomInput'
 import CustomSelect from './CustomSelect'
+import axios from '../API/axios'
+import handleApiError from '../API/handleApiError'
 
 /**
  * Component for creating a new product.
@@ -22,7 +23,14 @@ const CreateProduct = () => {
    */
   const onSubmit = async (values, actions) => {
     try {
-      await postProduct(token, values);
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const response = await axios.post("/products", values, config);
+      await handleApiError(response);
       actions.resetForm();
       alert("Product added successfully!");
     } catch (err) {
