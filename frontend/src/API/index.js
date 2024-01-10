@@ -279,11 +279,7 @@ export const deleteUser = async (token, id) => {
  */
 export const signInUser = async (token, userData) => {
   try {
-    const res = await fetch("https://furte-server.vercel.app/signin", {
-      method: "POST",
-      headers: getAuthorizationHeader(token),
-      body: JSON.stringify(userData),
-    });
+    const res = await axiosJWT.post("/signin", userData, { withCredentials: true });
     return handleApiError(res, userData);
   } catch (err) {
     console.error("Error signing user in:", err);

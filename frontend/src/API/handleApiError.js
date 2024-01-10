@@ -11,7 +11,7 @@ const handleApiError = async (response) => {
 
   if (response.status >= 200 && response.status < 300) {
     console.log("fetching data");
-    const data = await response.data; // Use response.data for Axios
+    const data = await response.data;
     console.log(data);
     return data;
   } else {
