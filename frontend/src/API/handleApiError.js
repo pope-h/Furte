@@ -8,12 +8,14 @@
  */
 const handleApiError = async (response) => {
   console.log("entered handleApiError with", response)
+  console.log("is response ok?", response.ok)
   if (!response.ok) {
     const errorMessage = await response.text();
     console.error(`API Error: ${errorMessage}`);
     throw new Error(`API Error: ${errorMessage}`);
   }
 
+  console.log("fetching data")
   const data = await response.json();
   console.log(data)
   return data;
