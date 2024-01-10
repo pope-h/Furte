@@ -298,21 +298,9 @@ export const signUpUser = async (token, userData) => {
 };
 
 export const refreshToken = async () => {
-  const jwtCookie = Cookies.get("jwt");
-
   try {
     console.log("jump made to refresh token function");
-    console.log("jwtCookie", jwtCookie);
-    const res = await fetch("https://furte-server.vercel.app/refresh", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Cookie: `jwt=${jwtCookie}`,
-      },
-      credentials: "include",
-      cookies: `jwt=${jwtCookie}`,
-    });
-
+    const res = await axiosJWT.post("/refresh", { withCredentials: true });
     console.log("res", res);
 
     if (!res.ok) {
@@ -320,7 +308,7 @@ export const refreshToken = async () => {
     }
 
     const data = await res.json();
-    console.log("data");
+    console.log("data", data);
 
     // Update the access token and its expiration time in cookies
     Cookies.set("accessToken", data.accessToken, {
@@ -348,10 +336,7 @@ export const handleRefresh = async () => {
   try {
     // Call your refreshToken function to get the new access token
     const newAccessToken = await refreshToken();
-
-    // You can perform additional logic if needed
-
-    // Return the new access token
+    console.log("newAccessToken", newAccessToken);
     return newAccessToken;
   } catch (err) {
     console.error("Error handling refresh:", err);
