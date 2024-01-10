@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import handleApiError from "./handleApiError";
 import useStorePackage from "../store";
-import jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 // Create an instance of axios with default configurations
 const axiosJWT = axios.create({
@@ -23,7 +23,7 @@ axiosJWT.interceptors.request.use(
     console.log("config.headers", config.headers);
     let currentTime = new Date().getTime();
     console.log("currentTime", currentTime);
-    const decodedToken = await jwt_decode(token);
+    const decodedToken = await jwtDecode(token);
     console.log("decodedToken", decodedToken);
     return config;
   },
