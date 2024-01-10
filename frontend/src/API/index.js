@@ -16,6 +16,13 @@ const axiosJWT = axios.create({
   },
 });
 
+const axiosInstance = axios.create({
+  baseURL: 'https://furte-server.vercel.app',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
 // let token;
 // useStorePackage.subscribe((state) => {
 //   token = state.accessToken;
@@ -282,7 +289,7 @@ export const deleteUser = async (token, id) => {
 export const signInUser = async (token, userData) => {
   try {
     console.log("entered signInUser function");
-    const res = await axiosJWT.post("/signin", userData);
+    const res = await axiosInstance.post("/signin", userData);
     console.log("Response from /signin:", res);
     return handleApiError(res);
   } catch (err) {
