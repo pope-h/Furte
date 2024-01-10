@@ -25,7 +25,7 @@ const axiosJWT = axios.create({
 axiosJWT.interceptors.request.use(
   async (config) => {
     console.log("axiosJWT interceptor");
-    const { accessToken: token } = useStorePackage(); // Get latest token
+    const { accessToken: token } = useStorePackage.getState(); // Get latest token
     const { accessToken } = useStorePackage();
     console.log("accessToken", accessToken);
     console.log("accessToken and entering getAuthorizationHeader", token)
@@ -281,6 +281,7 @@ export const deleteUser = async (token, id) => {
  */
 export const signInUser = async (token, userData) => {
   try {
+    console.log("entered signInUser function");
     const res = await axiosJWT.post("/signin", userData);
     console.log("Response from /signin:", res);
     return handleApiError(res);
