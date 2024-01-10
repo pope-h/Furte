@@ -32,9 +32,7 @@ const axiosInstance = axios.create({
 axiosJWT.interceptors.request.use(
   async (config) => {
     console.log("axiosJWT interceptor");
-    const { accessToken: token } = useStorePackage.getState(); // Get latest token
-    const { accessToken } = useStorePackage();
-    console.log("accessToken", accessToken);
+    const { accessToken: token } = useStorePackage.getState();
     console.log("accessToken and entering getAuthorizationHeader", token)
     config.headers = getAuthorizationHeader(token);
     console.log("back from getAuthorizationHeader", config.headers)
@@ -80,7 +78,7 @@ export const fetchProducts = async (token, searchQuery) => {
 
   try {
     console.log("about to make request");
-    const res = await axiosJWT.get(apiUrl, { withCredentials: true });
+    const res = await axiosJWT.get(apiUrl);
     console.log("response received", res)
     return handleApiError(res);
   } catch (err) {
