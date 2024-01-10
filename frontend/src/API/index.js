@@ -282,15 +282,15 @@ export const signUpUser = async (token, userData) => {
 export const refreshToken = async () => {
   try {
     console.log("entered refresh token function")
-    const res = await axiosInstance.get("/refresh", { withCredentials: true });
+    const res = await axiosJWT.get("/refresh", { withCredentials: true });
     console.log("back from the server")
 
-    if (!res.ok) {
-      console.log("e don cast")
+    if (res.status !== 200) {
+      console.log("e don cast");
       throw new Error("Failed to refresh token");
     }
 
-    const data = await res.json();
+    const data = await res.data;
     console.log("data", data)
     Cookies.set("accessToken", data.accessToken, {
       expires: new Date(data.expiresIn),
