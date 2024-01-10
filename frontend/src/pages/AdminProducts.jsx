@@ -50,10 +50,8 @@ const AdminProducts = () => {
             Authorization: `Bearer ${token}`,
           },
         };
-        console.log("id",id);
-        const response = await axios.delete(`/products/${id}`, config);
-        console.log(response);
-        await handleApiError(response);
+        console.log('Deleting product:', id, token);
+        await axios.delete(`/products/${id}`, config);
         setProducts(products.filter((product) => product._id !== id));
       } catch (err) {
         console.error('Error deleting product:', err);
