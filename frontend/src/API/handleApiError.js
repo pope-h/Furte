@@ -7,6 +7,7 @@
  * @throws {Error} - If the response status is not ok, an error is thrown with the error message.
  */
 const handleApiError = async (response) => {
+  console.log("entered handleApiError with", response)
   if (!response.ok) {
     const errorMessage = await response.text();
     console.error(`API Error: ${errorMessage}`);
@@ -14,6 +15,7 @@ const handleApiError = async (response) => {
   }
 
   const data = await response.json();
+  console.log(data)
   return data;
 };
 

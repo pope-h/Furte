@@ -70,8 +70,9 @@ export const fetchProducts = async (token, searchQuery) => {
     : "/products";
 
   try {
-    console.log("first");
+    console.log("about to make request");
     const res = await axiosJWT.get(apiUrl, { withCredentials: true });
+    console.log("response received", res)
     return handleApiError(res);
   } catch (err) {
     console.log("final fetch error");
