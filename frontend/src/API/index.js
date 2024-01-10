@@ -12,11 +12,16 @@ const axiosJWT = axios.create({
   },
 });
 
+// let token;
+// useStorePackage.subscribe((state) => {
+//   token = state.accessToken;
+// });
+
 // Set a request interceptor to include the authorization header for all requests
 axiosJWT.interceptors.request.use(
   async (config) => {
     console.log("axiosJWT.interceptors.request.use");
-    const { accessToken: token } = useStorePackage();
+    const { accessToken: token } = useStorePackage.getState();
     console.log("off to getAuthorizationHeader");
     config.headers = getAuthorizationHeader(token);
     console.log("back from getAuthorizationHeader")
