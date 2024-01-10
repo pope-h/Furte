@@ -279,7 +279,7 @@ export const deleteUser = async (token, id) => {
  */
 export const signInUser = async (token, userData) => {
   try {
-    const res = await axiosJWT.post("/signin", userData, { withCredentials: true });
+    const res = await axiosJWT.post("/signin", userData);
     console.log("Response from /signin:", res);
     return handleApiError(res);
   } catch (err) {
