@@ -22,6 +22,7 @@ axiosJWT.interceptors.request.use(
   async (config) => {
     console.log("axiosJWT.interceptors.request.use");
     const { accessToken: token } = useStorePackage.getState();
+    console.log("token", token);
     console.log("off to getAuthorizationHeader");
     config.headers = getAuthorizationHeader(token);
     console.log("back from getAuthorizationHeader")
