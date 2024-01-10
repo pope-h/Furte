@@ -97,10 +97,7 @@ export const fetchProducts = async (token, searchQuery) => {
  */
 export const getProduct = async (token, id) => {
   try {
-    const res = await fetch(`https://furte-server.vercel.app/products/${id}`, {
-      method: "GET",
-      headers: getAuthorizationHeader(token),
-    });
+    const res = await axiosJWT.get(`/products/${id}`);
     return handleApiError(res);
   } catch (err) {
     console.error("Error fetching product:", err);
@@ -117,11 +114,7 @@ export const getProduct = async (token, id) => {
  */
 export const postProduct = async (token, productData) => {
   try {
-    const res = await fetch("https://furte-server.vercel.app/products", {
-      method: "POST",
-      headers: getAuthorizationHeader(token),
-      body: JSON.stringify(productData),
-    });
+    const res = await axiosJWT.post("/products", productData);
     return handleApiError(res);
   } catch (err) {
     console.error("Error posting product:", err);
@@ -139,12 +132,7 @@ export const postProduct = async (token, productData) => {
  */
 export const updateProduct = async (token, id, productData) => {
   try {
-    const res = await fetch("https://furte-server.vercel.app/products", {
-      method: "PUT",
-      headers: getAuthorizationHeader(token),
-      // here the id is passed in the body insteads of the params because the backend is expecting the id in the body
-      body: JSON.stringify({ id, ...productData }),
-    });
+    const res = await axiosJWT.put("/products", { id, ...productData });
     return handleApiError(res);
   } catch (err) {
     console.error("Error updating product:", err);
@@ -161,11 +149,7 @@ export const updateProduct = async (token, id, productData) => {
  */
 export const deleteProduct = async (token, id) => {
   try {
-    const res = await fetch("https://furte-server.vercel.app/products", {
-      method: "DELETE",
-      headers: getAuthorizationHeader(token),
-      body: JSON.stringify({ id }),
-    });
+    const res = await axiosJWT.delete("/products", { data: { id } });
     return handleApiError(res);
   } catch (err) {
     console.error("Error deleting product:", err);
@@ -179,12 +163,9 @@ export const deleteProduct = async (token, id) => {
  * @returns {Promise} - A promise that resolves to the fetched users.
  * @throws {Error} - If there is an error fetching the users.
  */
-export const fetchUsers = async (token) => {
+export const fetchUsers = async () => {
   try {
-    const res = await fetch("https://furte-server.vercel.app/users", {
-      method: "GET",
-      headers: getAuthorizationHeader(token),
-    });
+    const res = await axiosJWT.get("/users");
     return handleApiError(res);
   } catch (err) {
     console.error("Error fetching users:", err);
@@ -201,10 +182,7 @@ export const fetchUsers = async (token) => {
  */
 export const getUser = async (token, id) => {
   try {
-    const res = await fetch(`https://furte-server.vercel.app/users/${id}`, {
-      method: "GET",
-      headers: getAuthorizationHeader(token),
-    });
+    const res = await axiosJWT.get(`/users/${id}`);
     return handleApiError(res);
   } catch (err) {
     console.error("Error fetching user:", err);
@@ -222,11 +200,7 @@ export const getUser = async (token, id) => {
  */
 export const updateUserRole = async (token, id, role) => {
   try {
-    const res = await fetch("https://furte-server.vercel.app/users", {
-      method: "PUT",
-      headers: getAuthorizationHeader(token),
-      body: JSON.stringify({ id, role }),
-    });
+    const res = await axiosJWT.put("/users", { id, role });
     return handleApiError(res);
   } catch (err) {
     console.error("Error updating user role:", err);
@@ -244,11 +218,7 @@ export const updateUserRole = async (token, id, role) => {
  */
 export const updateUserInfo = async (token, id, userInfo) => {
   try {
-    const res = await fetch("https://furte-server.vercel.app/users", {
-      method: "PUT",
-      headers: getAuthorizationHeader(token),
-      body: JSON.stringify({ id, ...userInfo }),
-    });
+    const res = await axiosJWT.put("/users", { id, ...userInfo });
     return handleApiError(res);
   } catch (err) {
     console.error("Error updating user info:", err);
@@ -265,11 +235,7 @@ export const updateUserInfo = async (token, id, userInfo) => {
  */
 export const deleteUser = async (token, id) => {
   try {
-    const res = await fetch("https://furte-server.vercel.app/users", {
-      method: "DELETE",
-      headers: getAuthorizationHeader(token),
-      body: JSON.stringify({ id }),
-    });
+    const res = await axiosJWT.delete("/users", { data: { id } });
     return handleApiError(res);
   } catch (err) {
     console.error("Error deleting user:", err);
@@ -305,11 +271,7 @@ export const signInUser = async (token, userData) => {
  */
 export const signUpUser = async (token, userData) => {
   try {
-    const res = await fetch("https://furte-server.vercel.app/signup", {
-      method: "POST",
-      headers: getAuthorizationHeader(token),
-      body: JSON.stringify(userData),
-    });
+    const res = await axiosInstance.post("/signup", userData);
     return handleApiError(res);
   } catch (err) {
     console.error("Error signing user up:", err);
