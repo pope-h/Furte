@@ -50,6 +50,7 @@ const AdminProducts = () => {
             Authorization: `Bearer ${token}`,
           },
         };
+        console.log("id",id);
         const response = await axios.delete(`/products/${id}`, config);
         console.log(response);
         await handleApiError(response);
