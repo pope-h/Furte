@@ -277,16 +277,33 @@ export const deleteUser = async (token, id) => {
  * @returns {Promise} - A promise that resolves to the signed-in user.
  * @throws {Error} - If there is an error signing in the user.
  */
-export const signInUser = async (token, userData) => {
+export const signInUser = async (userData) => {
   try {
     const res = await axios.post("/signin", userData);
-    console.log("Response from /signin:", res);
-    return handleApiError(res);
+    console.log("res", res)
+    const data = await handleApiError(res);
+    console.log("data", data)
+
+    // Update the accessToken in the store
+    useStorePackage.setState({ accessToken: data.accessToken });
+
+    // Update the interceptor with the new token
+    axiosJWT.interceptors.request.use(
+      (config) => {
+        const updatedConfig = { ...config };
+        updatedConfig.headers = getAuthorizationHeader(data.accessToken);
+        return updatedConfig;
+      },
+      (error) => Promise.reject(error)
+    );
+
+    return data;
   } catch (err) {
     console.error("Error signing user in:", err);
     throw new Error("Error signing user in");
   }
 };
+
 
 /**
  * Sign up a new user to the API.
