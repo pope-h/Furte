@@ -1,6 +1,36 @@
-// import useStorePackage from "../store";
+import axios from "axios";
 import Cookies from "js-cookie";
 import handleApiError from "./handleApiError";
+import useStorePackage from "../store";
+import jwt_decode from "jwt-decode";
+
+// Create an instance of axios with default configurations
+const axiosJWT = axios.create({
+  baseURL: "https://furte-server.vercel.app",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+// Set a request interceptor to include the authorization header for all requests
+axiosJWT.interceptors.request.use(
+  async (config) => {
+    console.log("axiosJWT.interceptors.request.use");
+    const { accessToken: token } = useStorePackage();
+    console.log("off to getAuthorizationHeader");
+    config.headers = getAuthorizationHeader(token);
+    console.log("back from getAuthorizationHeader")
+    console.log("config.headers", config.headers);
+    let currentTime = new Date().getTime();
+    console.log("currentTime", currentTime);
+    const decodedToken = await jwt_decode(token);
+    console.log("decodedToken", decodedToken);
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 /**
  * Get the authorization header with the provided token.
@@ -20,41 +50,17 @@ const getAuthorizationHeader = (token) => ({
  * @throws {Error} - If there is an error fetching the products.
  */
 export const fetchProducts = async (token, searchQuery) => {
-  const jwtCookie = Cookies.get("jwt");
   console.log("entry point", token);
-  console.log("jwtCookie", jwtCookie);
   const apiUrl = searchQuery
-    ? `https://furte-server.vercel.app/products?search=${encodeURIComponent(
-        searchQuery
-      )}`
-    : "https://furte-server.vercel.app/products";
+    ? `/products?search=${encodeURIComponent(searchQuery)}`
+    : "/products";
 
   try {
     console.log("first");
-    const res = await fetch(apiUrl, {
-      method: "GET",
-      headers: getAuthorizationHeader(token),
-      credentials: "include",
-    });
-
-    if (res.status === 401 || res.status === 403) {
-      console.log("second is about to jump due to", res.status);
-
-      // Token expired or unauthorized, attempt to refresh the token
-      const newToken = await handleRefresh();
-
-      // Retry the request with the new token
-      const retryRes = await fetch(apiUrl, {
-        method: "GET",
-        headers: getAuthorizationHeader(newToken),
-      });
-      return handleApiError(retryRes);
-    } else {
-      console.log("third is success");
-      return handleApiError(res);
-    }
+    const res = await axiosJWT.get(apiUrl, { withCredentials: true });
+    return handleApiError(res);
   } catch (err) {
-    console.log("fourth is main error");
+    console.log("final fetch error");
     console.error("Error fetching products:", err);
     throw new Error("Error fetching products");
   }
@@ -75,8 +81,8 @@ export const getProduct = async (token, id) => {
     });
     return handleApiError(res);
   } catch (err) {
-    console.error('Error fetching product:', err);
-    throw new Error('Error fetching product');
+    console.error("Error fetching product:", err);
+    throw new Error("Error fetching product");
   }
 };
 
@@ -96,10 +102,10 @@ export const postProduct = async (token, productData) => {
     });
     return handleApiError(res);
   } catch (err) {
-    console.error('Error posting product:', err);
-    throw new Error('Error fetching product');
+    console.error("Error posting product:", err);
+    throw new Error("Error fetching product");
   }
-}
+};
 
 /**
  * Update a product in the API.
@@ -119,10 +125,10 @@ export const updateProduct = async (token, id, productData) => {
     });
     return handleApiError(res);
   } catch (err) {
-    console.error('Error updating product:', err);
-    throw new Error('Error fetching product');
+    console.error("Error updating product:", err);
+    throw new Error("Error fetching product");
   }
-}
+};
 
 /**
  * Delete a product from the API.
@@ -140,10 +146,10 @@ export const deleteProduct = async (token, id) => {
     });
     return handleApiError(res);
   } catch (err) {
-    console.error('Error deleting product:', err);
-    throw new Error('Error fetching product');
+    console.error("Error deleting product:", err);
+    throw new Error("Error fetching product");
   }
-}
+};
 
 /**
  * Fetch users from the API.
@@ -159,8 +165,8 @@ export const fetchUsers = async (token) => {
     });
     return handleApiError(res);
   } catch (err) {
-    console.error('Error fetching users:', err);
-    throw new Error('Error fetching users');
+    console.error("Error fetching users:", err);
+    throw new Error("Error fetching users");
   }
 };
 
@@ -179,8 +185,8 @@ export const getUser = async (token, id) => {
     });
     return handleApiError(res);
   } catch (err) {
-    console.error('Error fetching user:', err);
-    throw new Error('Error fetching user');
+    console.error("Error fetching user:", err);
+    throw new Error("Error fetching user");
   }
 };
 
@@ -201,8 +207,8 @@ export const updateUserRole = async (token, id, role) => {
     });
     return handleApiError(res);
   } catch (err) {
-    console.error('Error updating user role:', err);
-    throw new Error('Error updating user role');
+    console.error("Error updating user role:", err);
+    throw new Error("Error updating user role");
   }
 };
 
@@ -223,8 +229,8 @@ export const updateUserInfo = async (token, id, userInfo) => {
     });
     return handleApiError(res);
   } catch (err) {
-    console.error('Error updating user info:', err);
-    throw new Error('Error updating user info');
+    console.error("Error updating user info:", err);
+    throw new Error("Error updating user info");
   }
 };
 
@@ -244,8 +250,8 @@ export const deleteUser = async (token, id) => {
     });
     return handleApiError(res);
   } catch (err) {
-    console.error('Error deleting user:', err);
-    throw new Error('Error deleting user');
+    console.error("Error deleting user:", err);
+    throw new Error("Error deleting user");
   }
 };
 
@@ -265,10 +271,10 @@ export const signInUser = async (token, userData) => {
     });
     return handleApiError(res, userData);
   } catch (err) {
-    console.error('Error signing user in:', err);
-    throw new Error('Error signing user in');
+    console.error("Error signing user in:", err);
+    throw new Error("Error signing user in");
   }
-}
+};
 
 /**
  * Sign up a new user to the API.
@@ -286,10 +292,10 @@ export const signUpUser = async (token, userData) => {
     });
     return handleApiError(res);
   } catch (err) {
-    console.error('Error signing user up:', err);
-    throw new Error('Error signing user up');
+    console.error("Error signing user up:", err);
+    throw new Error("Error signing user up");
   }
-}
+};
 
 export const refreshToken = async () => {
   const jwtCookie = Cookies.get("jwt");
