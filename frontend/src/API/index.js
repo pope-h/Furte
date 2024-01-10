@@ -5,9 +5,9 @@ import useStorePackage from "../store";
 import { jwtDecode } from "jwt-decode";
 
 // Separate axios instance for refresh requests to avoid circular dependency
-const axiosRefresh = axios.create({
-  baseURL: 'https://furte-server.vercel.app',
-});
+// const axiosRefresh = axios.create({
+//   baseURL: 'https://furte-server.vercel.app',
+// });
 
 const axiosJWT = axios.create({
   baseURL: 'https://furte-server.vercel.app',
@@ -41,7 +41,7 @@ axiosJWT.interceptors.request.use(
     const decodedToken = jwtDecode(token);
     if (decodedToken.exp * 1000 < currentTime) {
       console.log("token expired and entering refreshToken");
-      const newAccessToken = await refreshToken(axiosRefresh); // Use separate instance
+      const newAccessToken = await refreshToken(); // Use separate instance
       console.log("back from refreshToken", newAccessToken);
       config.headers = getAuthorizationHeader(newAccessToken);
     }
@@ -279,10 +279,10 @@ export const signUpUser = async (token, userData) => {
   }
 };
 
-export const refreshToken = async (axiosInstance = axios) => {
+export const refreshToken = async () => {
   try {
     console.log("entered refresh token function")
-    const res = await axiosInstance.post("/refresh", { withCredentials: true });
+    const res = await axiosInstance.get("/refresh", { withCredentials: true });
     console.log("back from the server")
 
     if (!res.ok) {
