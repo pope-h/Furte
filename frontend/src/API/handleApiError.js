@@ -9,7 +9,7 @@
 const handleApiError = async (response) => {
   console.log("entered handleApiError with", response)
   console.log("is response ok?", response.ok)
-  if (!response.ok) {
+  if (response.status !== 200) {
     const errorMessage = await response.text();
     console.error(`API Error: ${errorMessage}`);
     throw new Error(`API Error: ${errorMessage}`);
