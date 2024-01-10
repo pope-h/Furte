@@ -5,9 +5,13 @@ import useStorePackage from "../store";
 import { jwtDecode } from "jwt-decode";
 
 // Separate axios instance for refresh requests to avoid circular dependency
-// const axiosRefresh = axios.create({
-//   baseURL: 'https://furte-server.vercel.app',
-// });
+const axiosRefresh = axios.create({
+  baseURL: 'https://furte-server.vercel.app',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  withCredentials: true,
+});
 
 const axiosJWT = axios.create({
   baseURL: 'https://furte-server.vercel.app',
@@ -282,7 +286,7 @@ export const signUpUser = async (token, userData) => {
 export const refreshToken = async () => {
   try {
     console.log("entered refresh token function")
-    const res = await axiosJWT.get("/refresh", { withCredentials: true });
+    const res = await axiosRefresh.get("/refresh");
     console.log("back from the server")
 
     if (res.status !== 200) {
