@@ -6,8 +6,10 @@
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { deleteProduct, fetchProducts } from '../API';
+import { deleteProduct } from '../API';
 import useStorePackage from '../store';
+import axios from '../API/axios';
+import handleApiError from '../API/handleApiError';
 
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
@@ -17,8 +19,17 @@ const AdminProducts = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const productsFromServer = await fetchProducts(token);
-        setProducts(productsFromServer);
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
+        const response = await axios.get("/products", config);
+        const data = await handleApiError(response);
+
+        setProducts(data);
         setLoading(false);
       } catch (err) {
         console.error('Error fetching products:', err);

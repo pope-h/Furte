@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { fetchProducts } from "../API";
 import ProductsPageCard from "../components/ProductsPageCard";
 import { Link } from "react-router-dom";
 import useStorePackage from "../store";
+import axios from "../API/axios";
+import handleApiError from "../API/handleApiError";
 
 /**
  * Renders the ProductsPage component.
@@ -22,9 +23,21 @@ const ProductsPage = ({ selectedCategory }) => {
      */
     const getProducts = async () => {
       try {
+        const apiUrl = searchQuery
+          ? `/products?search=${encodeURIComponent(searchQuery)}`
+          : "/products";
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
         console.log("fetching products", token);
-        const productsFromServer = await fetchProducts(token, searchQuery);
-        setProducts(productsFromServer);
+        const response = await axios.get(apiUrl, config);
+        const data = await handleApiError(response);
+
+        setProducts(data);
         setLoading(false);
       } catch (err) {
         console.error("Error fetching products:", err);

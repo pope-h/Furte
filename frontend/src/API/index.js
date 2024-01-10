@@ -74,23 +74,23 @@ const getAuthorizationHeader = (token) => ({
  * @returns {Promise} - A promise that resolves to the fetched products.
  * @throws {Error} - If there is an error fetching the products.
  */
-export const fetchProducts = async (token, searchQuery) => {
-  console.log("entry point", token);
-  const apiUrl = searchQuery
-    ? `/products?search=${encodeURIComponent(searchQuery)}`
-    : "/products";
+// export const fetchProducts = async (token, searchQuery) => {
+//   console.log("entry point", token);
+//   const apiUrl = searchQuery
+//     ? `/products?search=${encodeURIComponent(searchQuery)}`
+//     : "/products";
 
-  try {
-    console.log("about to make request");
-    const res = await axiosJWT.get(apiUrl);
-    console.log("response received", res)
-    return handleApiError(res);
-  } catch (err) {
-    console.log("final fetch error");
-    console.error("Error fetching products:", err);
-    throw new Error("Error fetching products");
-  }
-};
+//   try {
+//     console.log("about to make request");
+//     const res = await axiosJWT.get(apiUrl);
+//     console.log("response received", res)
+//     return handleApiError(res);
+//   } catch (err) {
+//     console.log("final fetch error");
+//     console.error("Error fetching products:", err);
+//     throw new Error("Error fetching products");
+//   }
+// };
 
 /**
  * Fetch a product from the API.
@@ -286,7 +286,7 @@ export const signUpUser = async (token, userData) => {
 export const refreshToken = async () => {
   try {
     console.log("entered refresh token function")
-    const res = await axiosRefresh.get("/refresh");
+    const res = await axiosRefresh.get("/refresh", { withCredentials: true });
     console.log("back from the server")
 
     if (res.status !== 200) {
