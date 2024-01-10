@@ -172,7 +172,7 @@ const useStorePackage = create((set) => ({
       sameSite: "None", // set to None if using https
       secure: true, // set to true if using https
     });
-    Cookies.set("userId", userId, { sameSite: "None" });
+    Cookies.set("userId", userId, { sameSite: "None", secure: true });
     localStorage.setItem("userRole", role);
     localStorage.setItem("userName", userName);
   },
