@@ -3,8 +3,8 @@ import CustomInput from "../components/CustomInput";
 import { personalDataSchema } from "../schemas";
 import { useEffect, useState } from "react";
 import useStorePackage from "../store";
-import axios from "../API/axios";
 import handleApiError from "../API/handleApiError";
+import axios from "../API/axios";
 
 /**
  * DashboardPersonalData component displays and allows users to update their personal data.
