@@ -51,11 +51,10 @@ const AdminProducts = () => {
           },
         };
         console.log('Deleting product:', id, token);
-        const response = await axios.delete(
-          '/products',
-          { id },
-          config
-        );
+        const response = await axios.delete("/products", {
+          headers: config.headers,
+          data: { id: id },
+        });
         console.log('Response:', response);
         await handleApiError(response);
         setProducts(products.filter((product) => product._id !== id));
