@@ -49,11 +49,11 @@ const updateUserInfo = async (req, res) => {
         if (!user) return res.status(204).json({ 'msg': `User ID ${req.body.id} not found` });
 
         console.log("checking if user is admin")
-        if (req.role !== "Admin" && req.body?.role) return res.status(403).json({ 'msg': 'You are not authorized to update user role' });
+        // if (req.role !== "Admin" && req.body?.role) return res.status(403).json({ 'msg': 'You are not authorized to update user role' });
         if (req.body?.role) user.role = req.body.role;
 
         console.log("checking if user is User")
-        if (req.role !== "User" && req.body?.userName) return res.status(403).json({ 'msg': 'You are not authorized to update user info' });
+        // if (req.role !== "User" && req.body?.userName) return res.status(403).json({ 'msg': 'You are not authorized to update user info' });
         if (req.body?.userName) user.userName = req.body.userName;
         if (req.body?.email) user.email = req.body.email;
         if (req.body?.firstName) user.firstName = req.body.firstName;
