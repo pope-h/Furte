@@ -47,13 +47,7 @@ const updateUserInfo = async (req, res) => {
         const user = await User.findOne({ _id: req.body.id }).exec();
         console.log("user found", user)
         if (!user) return res.status(204).json({ 'msg': `User ID ${req.body.id} not found` });
-
-        console.log("checking if user is admin")
-        // if (req.role !== "Admin" && req.body?.role) return res.status(403).json({ 'msg': 'You are not authorized to update user role' });
-        if (req.body?.role) user.role = req.body.role;
-
-        console.log("checking if user is User")
-        // if (req.role !== "User" && req.body?.userName) return res.status(403).json({ 'msg': 'You are not authorized to update user info' });
+        
         if (req.body?.userName) user.userName = req.body.userName;
         if (req.body?.email) user.email = req.body.email;
         if (req.body?.firstName) user.firstName = req.body.firstName;
@@ -61,6 +55,14 @@ const updateUserInfo = async (req, res) => {
         if (req.body?.address) user.address = req.body.address;
         if (req.body?.country) user.country = req.body.country;
         if (req.body?.phoneNumber) user.phoneNumber = req.body.phoneNumber;
+
+        console.log("checking if user is admin");
+        if (user.role !== "Admin" && req.body?.role)
+          return res
+            .status(403)
+            .json({ msg: "You are not authorized to update user role" });
+        if (req.body?.role) user.role = req.body.role;
+
         console.log("saving user")
         const result = await user.save();
         console.log("user saved")
