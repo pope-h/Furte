@@ -58,7 +58,6 @@ const DashboardPersonalData = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      console.log("DashboardPersonalData0", userId, values);
       const response = await axios.put(
         "/users",
         { ...values, id: userId },
