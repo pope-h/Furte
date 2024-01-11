@@ -59,7 +59,6 @@ const DashboardAddress = () => {
         config
       );
       await handleApiError(response);
-      console.log("DashboardPersonalData", userId, values);
       alert("User Info updated successfully!");
       actions.resetForm();
       setUser((prevUser) => ({ ...prevUser, ...values }));

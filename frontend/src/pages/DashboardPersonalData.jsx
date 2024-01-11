@@ -99,7 +99,7 @@ const DashboardPersonalData = () => {
                     <CustomInput
                       label="User Name"
                       name="userName"
-                      type="username"
+                      type="userName"
                       id="userName"
                     />
                     <CustomInput
