@@ -58,11 +58,14 @@ const DashboardPersonalData = () => {
           Authorization: `Bearer ${token}`,
         },
       };
+      console.log("DashboardPersonalData", userId, values);
+      console.log("entering axios.put")
       const response = await axios.put(
         "/users",
         { ...values, id: userId },
         config
       );
+      console.log("exiting axios.put")
       await handleApiError(response);
       console.log("DashboardPersonalData", userId, values);
       alert("User Info updated successfully!");
