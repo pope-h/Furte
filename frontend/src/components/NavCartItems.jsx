@@ -26,12 +26,13 @@ const NavCartItems = () => {
             Authorization: `Bearer ${token}`,
           },
         };
-
+        
         const response = await Promise.all(
-          cart.map((product) => axios.get(`/products/${product.id}`, config))
+          cart.map((product) => axios.get(`/products/${product._id}`, config))
         );
-        const data = await handleApiError(response);
-        setProductsFromServer(data);
+        console.log(response);
+        const products = await handleApiError(response);
+        setProductsFromServer(products);
       } catch (err) {
         console.error(err);
       }
