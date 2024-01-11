@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import ProductsPageCard from "../components/ProductsPageCard";
 import { Link } from "react-router-dom";
 import useStorePackage from "../store";
-import { axiosPrivate } from "../API/axios";
+import axios from "../API/axios";
 import handleApiError from "../API/handleApiError";
+import useAxiosPrivate from "../API/useAxiosPrivate";
+import { jwtDecode } from "jwt-decode";
 
 /**
  * Renders the ProductsPage component.
- * 
+ *
  * @param {string} selectedCategory - The selected category for filtering products.
  * @returns {JSX.Element} The rendered ProductsPage component.
  */
@@ -16,6 +18,8 @@ const ProductsPage = ({ selectedCategory }) => {
   const [loading, setLoading] = useState(true);
   const { accessToken: token, searchQuery } = useStorePackage();
   console.log("ProductPage token", token);
+
+  const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {
     /**
@@ -26,6 +30,15 @@ const ProductsPage = ({ selectedCategory }) => {
         const apiUrl = searchQuery
           ? `/products?search=${encodeURIComponent(searchQuery)}`
           : "/products";
+
+        const currentTime = new Date().getTime();
+        const decodedToken = jwtDecode(token);
+
+        if (decodedToken.exp * 1000 < currentTime) {
+          console.log("token expired and entering refreshToken");
+          await axiosPrivate(); // Call useAxiosPrivate to refresh the token
+        }
+
         const config = {
           headers: {
             "Content-Type": "application/json",
@@ -34,7 +47,7 @@ const ProductsPage = ({ selectedCategory }) => {
         };
 
         console.log("fetching products", token);
-        const response = await axiosPrivate.get(apiUrl, config);
+        const response = await axios.get(apiUrl, config);
         const data = await handleApiError(response);
 
         setProducts(data);
@@ -46,7 +59,7 @@ const ProductsPage = ({ selectedCategory }) => {
     };
 
     getProducts();
-  }, [token, searchQuery]);
+  }, [token, searchQuery, axiosPrivate]);
 
   // Filter products based on the selected category
   const filteredProducts = selectedCategory
