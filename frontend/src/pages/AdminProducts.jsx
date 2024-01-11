@@ -7,7 +7,7 @@ import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useStorePackage from '../store';
-import axios from '../API/axios';
+import axios, { axiosPrivate } from '../API/axios';
 import handleApiError from '../API/handleApiError';
 
 const AdminProducts = () => {
@@ -25,7 +25,7 @@ const AdminProducts = () => {
           },
         };
 
-        const response = await axios.get("/products", config);
+        const response = await axiosPrivate.get("/products", config);
         const data = await handleApiError(response);
 
         setProducts(data);

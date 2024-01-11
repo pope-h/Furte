@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ProductsPageCard from "../components/ProductsPageCard";
 import { Link } from "react-router-dom";
 import useStorePackage from "../store";
-import axios from "../API/axios";
+import { axiosPrivate } from "../API/axios";
 import handleApiError from "../API/handleApiError";
 
 /**
@@ -34,7 +34,7 @@ const ProductsPage = ({ selectedCategory }) => {
         };
 
         console.log("fetching products", token);
-        const response = await axios.get(apiUrl, config);
+        const response = await axiosPrivate.get(apiUrl, config);
         const data = await handleApiError(response);
 
         setProducts(data);

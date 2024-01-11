@@ -9,7 +9,7 @@ import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useStorePackage from "../store";
-import axios from "../API/axios";
+import axios, { axiosPrivate } from "../API/axios";
 import handleApiError from "../API/handleApiError";
 
 const Customer = () => {
@@ -26,7 +26,7 @@ const Customer = () => {
             Authorization: `Bearer ${token}`,
           },
         };
-        const response = await axios.get("/users", config);
+        const response = await axiosPrivate.get("/users", config);
         const usersFromServer = await handleApiError(response);
         setUsers(usersFromServer);
         setLoading(false);

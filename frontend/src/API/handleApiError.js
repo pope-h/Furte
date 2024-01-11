@@ -7,12 +7,9 @@
  * @throws {Error} - If the response status is not ok, an error is thrown with the error message.
  */
 const handleApiError = async (response) => {
-  console.log("entered handleApiError with", response);
 
   if (response.status >= 200 && response.status < 300) {
-    console.log("fetching data");
     const data = await response.data;
-    console.log(data);
     return data;
   } else {
     const errorMessage = response.statusText || "Unknown Error";
