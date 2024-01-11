@@ -27,10 +27,16 @@ const NavCartItems = () => {
           },
         };
         
-        const products = await Promise.all(
-          cart.map((product) => axios.get(`/products/${product._id}`, config))
-          .then((res) => {handleApiError(res)})
+        const responses = await Promise.all(
+          cart.map((product) =>
+            axios.get(`/products/${product._id}`, config).catch((error) => {
+              console.error(`Error fetching product ${product._id}:`, error);
+              return error.response;
+            })
+          )
         );
+
+        const products = await Promise.all(responses.map(handleApiError));
         console.log(products);
         setProductsFromServer(products);
       } catch (err) {
