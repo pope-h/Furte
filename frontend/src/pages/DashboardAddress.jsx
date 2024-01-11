@@ -52,7 +52,6 @@ const DashboardAddress = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      console.log("DashboardAddress", userId, values);
       const response = await axios.put(
         "/users",
         { ...values, id: userId },

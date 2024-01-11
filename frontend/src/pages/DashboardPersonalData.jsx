@@ -33,7 +33,6 @@ const DashboardPersonalData = () => {
         const response = await axios.get(`/users/${userId}`, config);
         const userData = await handleApiError(response);
         setUser(userData);
-        console.log("DashboardPersonalData", userData);
       } catch (err) {
         console.error("Error fetching user details:", err);
         alert("Could not fetch user details. Please try again.");
@@ -58,16 +57,12 @@ const DashboardPersonalData = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      console.log("DashboardPersonalData", userId, values);
-      console.log("entering axios.put")
       const response = await axios.put(
         "/users",
         { ...values, id: userId },
         config
       );
-      console.log("exiting axios.put")
       await handleApiError(response);
-      console.log("DashboardPersonalData", userId, values);
       alert("User Info updated successfully!");
     } catch (error) {
       console.error("Error Updating User Info:", error);

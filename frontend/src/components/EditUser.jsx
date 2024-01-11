@@ -60,7 +60,6 @@ const EditUser = () => {
         config
       );
       await handleApiError(response);
-      console.log("EditUser", userId, values);
       actions.resetForm();
       alert("User Info updated successfully!");
       navigate("/admin/customers");
