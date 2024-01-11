@@ -1,6 +1,6 @@
 /**
  * Renders the product detail page.
- * 
+ *
  * @returns {JSX.Element} The product detail page component.
  */
 import { useEffect, useState } from "react";
@@ -10,51 +10,51 @@ import axios from "../API/axios";
 import handleApiError from "../API/handleApiError";
 
 const ProductDetail = () => {
-    const { id: productId } = useParams();
-    const [product, setProduct] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [showNotification, setShowNotification] = useState(false);
-    const token = useStorePackage().accessToken;
-    const addToCart = useStorePackage().addToCart;
+  const { id: productId } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [showNotification, setShowNotification] = useState(false);
+  const token = useStorePackage().accessToken;
+  const addToCart = useStorePackage().addToCart;
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-              const config = {
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                },
-              };
-                const response = await axios.get(`/products/${productId}`, config);
-                const productFromServer = await handleApiError(response);
-                setProduct(productFromServer);
-                setLoading(false);
-            } catch (err) {
-                console.error(err);
-                setLoading(false);
-            }
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         };
+        const response = await axios.get(`/products/${productId}`, config);
+        const productFromServer = await handleApiError(response);
+        setProduct(productFromServer);
+        setLoading(false);
+      } catch (err) {
+        console.error(err);
+        setLoading(false);
+      }
+    };
 
-        fetchProduct();
-    }, [productId, token]);
+    fetchProduct();
+  }, [productId, token]);
 
-    if (loading || !product) {
-        return (
-            <div className="flex items-center justify-center h-screen">
-                <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-gray-900"></div>
-            </div>
-        );
+  if (loading || !product) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-gray-900"></div>
+      </div>
+    );
   }
 
-    const handleAddToCart = () => {
-        addToCart(product);
-        setShowNotification(true);
-    }
+  const handleAddToCart = () => {
+    addToCart(product);
+    setShowNotification(true);
+  };
 
-    const handleCloseNotification = () => {
-        setShowNotification(false);
-    };
+  const handleCloseNotification = () => {
+    setShowNotification(false);
+  };
 
   return (
     <main className="padding relative overflow-hidden">
@@ -114,6 +114,6 @@ const ProductDetail = () => {
       )}
     </main>
   );
-}
+};
 
-export default ProductDetail
+export default ProductDetail;
