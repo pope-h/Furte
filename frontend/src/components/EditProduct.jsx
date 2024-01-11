@@ -56,7 +56,7 @@ const EditProduct = () => {
         },
       };
       const response = await axios.put(
-        `/products/${productId}`,
+        '/products',
         { ...values, id: productId },
         config
       );
