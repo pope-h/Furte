@@ -10,11 +10,12 @@ import { Form, Formik } from "formik";
 import { updateUserSchema } from "../schemas";
 import CustomCheckbox from "./CustomCheckbox";
 import { useEffect, useState } from "react";
-import { getUser, updateUserInfo } from "../API";
 import { useNavigate, useParams } from "react-router-dom";
 import useStorePackage from "../store";
 import CustomSelect from "./CustomSelect";
 import CustomInput from "./CustomInput";
+import axios from "../API/axios";
+import handleApiError from "../API/handleApiError";
 
 const EditUser = () => {
   const { id: userId } = useParams();
@@ -26,7 +27,14 @@ const EditUser = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const userData = await getUser(token, userId);
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await axios.get(`/users/${userId}`, config);
+        const userData = await handleApiError(response);
         setUser(userData);
       } catch (err) {
         console.error("Error fetching user details:", err);
@@ -40,7 +48,18 @@ const EditUser = () => {
 
   const onSubmit = async (values, actions) => {
     try {
-      await updateUserInfo(token, userId, values);
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const response = await axios.put(
+        "/users",
+        { ...values, id: userId },
+        config
+      );
+      await handleApiError(response);
       console.log("EditUser", userId, values);
       actions.resetForm();
       alert("User Info updated successfully!");

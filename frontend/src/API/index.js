@@ -167,15 +167,15 @@ const getAuthorizationHeader = (token) => ({
  * @returns {Promise} - A promise that resolves to the fetched users.
  * @throws {Error} - If there is an error fetching the users.
  */
-export const fetchUsers = async () => {
-  try {
-    const res = await axiosJWT.get("/users");
-    return handleApiError(res);
-  } catch (err) {
-    console.error("Error fetching users:", err);
-    throw new Error("Error fetching users");
-  }
-};
+// export const fetchUsers = async () => {
+//   try {
+//     const res = await axiosJWT.get("/users");
+//     return handleApiError(res);
+//   } catch (err) {
+//     console.error("Error fetching users:", err);
+//     throw new Error("Error fetching users");
+//   }
+// };
 
 /**
  * Fetch a user from the API.
@@ -184,15 +184,15 @@ export const fetchUsers = async () => {
  * @returns {Promise} - A promise that resolves to the fetched user.
  * @throws {Error} - If there is an error fetching the user.
  */
-export const getUser = async (token, id) => {
-  try {
-    const res = await axiosJWT.get(`/users/${id}`);
-    return handleApiError(res);
-  } catch (err) {
-    console.error("Error fetching user:", err);
-    throw new Error("Error fetching user");
-  }
-};
+// export const getUser = async (token, id) => {
+//   try {
+//     const res = await axiosJWT.get(`/users/${id}`);
+//     return handleApiError(res);
+//   } catch (err) {
+//     console.error("Error fetching user:", err);
+//     throw new Error("Error fetching user");
+//   }
+// };
 
 /**
  * Update a user's role in the API.
@@ -219,16 +219,16 @@ export const updateUserRole = async (token, id, role) => {
  * @param {Object} userInfo - The updated information of the user.
  * @returns {Promise} - A promise that resolves to the updated user.
  * @throws {Error} - If there is an error updating the user's info.
- */
-export const updateUserInfo = async (token, id, userInfo) => {
-  try {
-    const res = await axiosJWT.put("/users", { id, ...userInfo });
-    return handleApiError(res);
-  } catch (err) {
-    console.error("Error updating user info:", err);
-    throw new Error("Error updating user info");
-  }
-};
+//  */
+// export const updateUserInfo = async (token, id, userInfo) => {
+//   try {
+//     const res = await axiosJWT.put("/users", { id, ...userInfo });
+//     return handleApiError(res);
+//   } catch (err) {
+//     console.error("Error updating user info:", err);
+//     throw new Error("Error updating user info");
+//   }
+// };
 
 /**
  * Delete a user from the API.
@@ -237,15 +237,15 @@ export const updateUserInfo = async (token, id, userInfo) => {
  * @returns {Promise} - A promise that resolves when the user is deleted.
  * @throws {Error} - If there is an error deleting the user.
  */
-export const deleteUser = async (token, id) => {
-  try {
-    const res = await axiosJWT.delete("/users", { data: { id } });
-    return handleApiError(res);
-  } catch (err) {
-    console.error("Error deleting user:", err);
-    throw new Error("Error deleting user");
-  }
-};
+// export const deleteUser = async (token, id) => {
+//   try {
+//     const res = await axiosJWT.delete("/users", { data: { id } });
+//     return handleApiError(res);
+//   } catch (err) {
+//     console.error("Error deleting user:", err);
+//     throw new Error("Error deleting user");
+//   }
+// };
 
 /**
  * Sign in a user to the API.

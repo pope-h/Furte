@@ -3,7 +3,8 @@ import CustomInput from "../components/CustomInput";
 import { personalDataSchema } from "../schemas";
 import { useEffect, useState } from "react";
 import useStorePackage from "../store";
-import { getUser, updateUserInfo } from "../API";
+import axios from "../API/axios";
+import handleApiError from "../API/handleApiError";
 
 /**
  * DashboardPersonalData component displays and allows users to update their personal data.
@@ -23,7 +24,14 @@ const DashboardPersonalData = () => {
      */
     const fetchUserDetails = async () => {
       try {
-        const userData = await getUser(token, userId);
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await axios.get(`/users/${userId}`, config);
+        const userData = await handleApiError(response);
         setUser(userData);
         console.log("DashboardPersonalData", userData);
       } catch (err) {
@@ -44,7 +52,18 @@ const DashboardPersonalData = () => {
    */
   const onSubmit = async (values, actions) => {
     try {
-      await updateUserInfo(token, userId, values);
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const response = await axios.put(
+        "/users",
+        { ...values, id: userId },
+        config
+      );
+      await handleApiError(response);
       console.log("DashboardPersonalData", userId, values);
       alert("User Info updated successfully!");
     } catch (error) {

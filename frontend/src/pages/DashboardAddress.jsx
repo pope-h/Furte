@@ -11,7 +11,8 @@ import CustomInput from "../components/CustomInput";
 import { shippingAddressSchema } from "../schemas";
 import { useEffect, useState } from "react";
 import useStorePackage from "../store";
-import { getUser, updateUserInfo } from "../API";
+import axios from "../API/axios";
+import handleApiError from "../API/handleApiError";
 
 const DashboardAddress = () => {
   const store = useStorePackage();
@@ -23,7 +24,14 @@ const DashboardAddress = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const userData = await getUser(token, userId);
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await axios.get(`/users/${userId}`, config);
+        const userData = await handleApiError(response);
         setUser(userData);
         console.log("DashboardAddress", userData);
       } catch (err) {
@@ -38,7 +46,18 @@ const DashboardAddress = () => {
 
   const onSubmit = async (values, actions) => {
     try {
-      await updateUserInfo(token, userId, values);
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const response = await axios.put(
+        "/users",
+        { ...values, id: userId },
+        config
+      );
+      await handleApiError(response);
       console.log("DashboardPersonalData", userId, values);
       alert("User Info updated successfully!");
       actions.resetForm();

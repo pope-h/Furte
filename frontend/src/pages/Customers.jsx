@@ -8,8 +8,9 @@
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { deleteUser, fetchUsers } from "../API";
 import useStorePackage from "../store";
+import axios from "../API/axios";
+import handleApiError from "../API/handleApiError";
 
 const Customer = () => {
   const [users, setUsers] = useState([]);
@@ -19,7 +20,14 @@ const Customer = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const usersFromServer = await fetchUsers(token);
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await axios.get("/users", config);
+        const usersFromServer = await handleApiError(response);
         setUsers(usersFromServer);
         setLoading(false);
       } catch (err) {
@@ -38,7 +46,17 @@ const Customer = () => {
 
     if (confirmDelete) {
       try {
-        await deleteUser(token, id);
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await axios.delete("/users", {
+          headers: config.headers,
+          data: { id: id },
+        });
+        await handleApiError(response);
         setUsers(users.filter((user) => user._id !== id));
       } catch (err) {
         console.error("Error deleting user:", err);
