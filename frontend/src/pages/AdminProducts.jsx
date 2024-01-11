@@ -51,7 +51,8 @@ const AdminProducts = () => {
           },
         };
         console.log('Deleting product:', id, token);
-        await axios.delete(`/products/${id}`, config);
+        const response = await axios.delete(`/products/${id}`, { id }, config);
+        await handleApiError(response);
         setProducts(products.filter((product) => product._id !== id));
       } catch (err) {
         console.error('Error deleting product:', err);

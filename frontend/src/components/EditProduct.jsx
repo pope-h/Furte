@@ -55,7 +55,11 @@ const EditProduct = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.put(`/products/${productId}`, values, config);
+      const response = await axios.put(
+        `/products/${productId}`,
+        { ...values, id: productId },
+        config
+      );
       await handleApiError(response);
       actions.resetForm();
         alert('Product updated successfully!');
