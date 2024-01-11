@@ -1,71 +1,71 @@
-import axios from "axios";
-import Cookies from "js-cookie";
-import handleApiError from "./handleApiError";
-import useStorePackage from "../store";
-import { jwtDecode } from "jwt-decode";
+// import axios from "axios";
+// import Cookies from "js-cookie";
+// import handleApiError from "./handleApiError";
+// import useStorePackage from "../store";
+// import { jwtDecode } from "jwt-decode";
 
-// Separate axios instance for refresh requests to avoid circular dependency
-const axiosRefresh = axios.create({
-  baseURL: 'https://furte-server.vercel.app',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  withCredentials: true,
-});
+// // Separate axios instance for refresh requests to avoid circular dependency
+// const axiosRefresh = axios.create({
+//   baseURL: 'https://furte-server.vercel.app',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   withCredentials: true,
+// });
 
-const axiosJWT = axios.create({
-  baseURL: 'https://furte-server.vercel.app',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+// const axiosJWT = axios.create({
+//   baseURL: 'https://furte-server.vercel.app',
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+// });
 
-const axiosInstance = axios.create({
-  baseURL: 'https://furte-server.vercel.app',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+// const axiosInstance = axios.create({
+//   baseURL: 'https://furte-server.vercel.app',
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+// });
 
 // let token;
 // useStorePackage.subscribe((state) => {
 //   token = state.accessToken;
 // });
 
-// Set a request interceptor to include the authorization header for all requests
-axiosJWT.interceptors.request.use(
-  async (config) => {
-    console.log("axiosJWT interceptor");
-    const { accessToken: token } = useStorePackage.getState();
-    console.log("accessToken and entering getAuthorizationHeader", token)
-    config.headers = getAuthorizationHeader(token);
-    console.log("back from getAuthorizationHeader", config.headers)
+// // Set a request interceptor to include the authorization header for all requests
+// axiosJWT.interceptors.request.use(
+//   async (config) => {
+//     console.log("axiosJWT interceptor");
+//     const { accessToken: token } = useStorePackage.getState();
+//     console.log("accessToken and entering getAuthorizationHeader", token)
+//     config.headers = getAuthorizationHeader(token);
+//     console.log("back from getAuthorizationHeader", config.headers)
 
-    const currentTime = new Date().getTime();
-    const decodedToken = jwtDecode(token);
-    if (decodedToken.exp * 1000 < currentTime) {
-      console.log("token expired and entering refreshToken");
-      const newAccessToken = await refreshToken(); // Use separate instance
-      console.log("back from refreshToken", newAccessToken);
-      config.headers = getAuthorizationHeader(newAccessToken);
-    }
+//     const currentTime = new Date().getTime();
+//     const decodedToken = jwtDecode(token);
+//     if (decodedToken.exp * 1000 < currentTime) {
+//       console.log("token expired and entering refreshToken");
+//       const newAccessToken = await refreshToken(); // Use separate instance
+//       console.log("back from refreshToken", newAccessToken);
+//       config.headers = getAuthorizationHeader(newAccessToken);
+//     }
 
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+//     return config;
+//   },
+//   (error) => {
+//     return Promise.reject(error);
+//   }
+// );
 
 /**
  * Get the authorization header with the provided token.
- * @param {string} token - The access token.
- * @returns {Object} - The authorization header.
- */
-const getAuthorizationHeader = (token) => ({
-  Authorization: `Bearer ${token}`,
-  "Content-Type": "application/json",
-});
+//  * @param {string} token - The access token.
+//  * @returns {Object} - The authorization header.
+//  */
+// const getAuthorizationHeader = (token) => ({
+//   Authorization: `Bearer ${token}`,
+//   "Content-Type": "application/json",
+// });
 
 /**
  * Fetch products from the API.
@@ -200,17 +200,17 @@ const getAuthorizationHeader = (token) => ({
  * @param {string} id - The ID of the user to be updated.
  * @param {string} role - The updated role of the user.
  * @returns {Promise} - A promise that resolves to the updated user.
- * @throws {Error} - If there is an error updating the user's role.
- */
-export const updateUserRole = async (token, id, role) => {
-  try {
-    const res = await axiosJWT.put("/users", { id, role });
-    return handleApiError(res);
-  } catch (err) {
-    console.error("Error updating user role:", err);
-    throw new Error("Error updating user role");
-  }
-};
+//  * @throws {Error} - If there is an error updating the user's role.
+//  */
+// export const updateUserRole = async (token, id, role) => {
+//   try {
+//     const res = await axiosJWT.put("/users", { id, role });
+//     return handleApiError(res);
+//   } catch (err) {
+//     console.error("Error updating user role:", err);
+//     throw new Error("Error updating user role");
+//   }
+// };
 
 /**
  * Update a user's info in the API.
@@ -253,72 +253,72 @@ export const updateUserRole = async (token, id, role) => {
  * @param {Object} userData - The data of the user to be signed in.
  * @returns {Promise} - A promise that resolves to the signed-in user.
  * @throws {Error} - If there is an error signing in the user.
- */
-export const signInUser = async (token, userData) => {
-  try {
-    console.log("entered signInUser function");
-    const res = await axiosInstance.post("/signin", userData);
-    console.log("Response from /signin:", res);
-    return handleApiError(res);
-  } catch (err) {
-    console.error("Error signing user in:", err);
-    throw new Error("Error signing user in");
-  }
-};
+//  */
+// export const signInUser = async (token, userData) => {
+//   try {
+//     console.log("entered signInUser function");
+//     const res = await axiosInstance.post("/signin", userData);
+//     console.log("Response from /signin:", res);
+//     return handleApiError(res);
+//   } catch (err) {
+//     console.error("Error signing user in:", err);
+//     throw new Error("Error signing user in");
+//   }
+// };
 
-/**
- * Sign up a new user to the API.
- * @param {string} token - The access token.
- * @param {Object} userData - The data of the user to be signed up.
- * @returns {Promise} - A promise that resolves to the signed-up user.
- * @throws {Error} - If there is an error signing up the user.
- */
-export const signUpUser = async (token, userData) => {
-  try {
-    const res = await axiosInstance.post("/signup", userData);
-    return handleApiError(res);
-  } catch (err) {
-    console.error("Error signing user up:", err);
-    throw new Error("Error signing user up");
-  }
-};
+// /**
+//  * Sign up a new user to the API.
+//  * @param {string} token - The access token.
+//  * @param {Object} userData - The data of the user to be signed up.
+//  * @returns {Promise} - A promise that resolves to the signed-up user.
+//  * @throws {Error} - If there is an error signing up the user.
+//  */
+// export const signUpUser = async (token, userData) => {
+//   try {
+//     const res = await axiosInstance.post("/signup", userData);
+//     return handleApiError(res);
+//   } catch (err) {
+//     console.error("Error signing user up:", err);
+//     throw new Error("Error signing user up");
+//   }
+// };
 
-export const refreshToken = async () => {
-  try {
-    console.log("entered refresh token function")
-    const res = await axiosRefresh.get("/refresh", { withCredentials: true });
-    console.log("back from the server")
+// export const refreshToken = async () => {
+//   try {
+//     console.log("entered refresh token function")
+//     const res = await axiosRefresh.get("/refresh", { withCredentials: true });
+//     console.log("back from the server")
 
-    if (res.status !== 200) {
-      console.log("e don cast");
-      throw new Error("Failed to refresh token");
-    }
+//     if (res.status !== 200) {
+//       console.log("e don cast");
+//       throw new Error("Failed to refresh token");
+//     }
 
-    const data = await res.data;
-    console.log("data", data)
-    Cookies.set("accessToken", data.accessToken, {
-      expires: new Date(data.expiresIn),
-      sameSite: "None",
-    });
-    Cookies.set("expirationTime", new Date(data.expiresIn).getTime(), {
-      sameSite: "None",
-    });
+//     const data = await res.data;
+//     console.log("data", data)
+//     Cookies.set("accessToken", data.accessToken, {
+//       expires: new Date(data.expiresIn),
+//       sameSite: "None",
+//     });
+//     Cookies.set("expirationTime", new Date(data.expiresIn).getTime(), {
+//       sameSite: "None",
+//     });
 
-    return data.accessToken;
-  } catch (err) {
-    throw new Error(`Failed to refresh token: ${err.message}`); // Preserve error details
-  }
-};
+//     return data.accessToken;
+//   } catch (err) {
+//     throw new Error(`Failed to refresh token: ${err.message}`); // Preserve error details
+//   }
+// };
 
-// Define the handleRefresh function
-export const handleRefresh = async () => {
-  try {
-    // Call your refreshToken function to get the new access token
-    const newAccessToken = await refreshToken();
-    console.log("newAccessToken", newAccessToken);
-    return newAccessToken;
-  } catch (err) {
-    console.error("Error handling refresh:", err);
-    throw new Error(`Failed to handle refresh: ${err}`);
-  }
-};
+// // Define the handleRefresh function
+// export const handleRefresh = async () => {
+//   try {
+//     // Call your refreshToken function to get the new access token
+//     const newAccessToken = await refreshToken();
+//     console.log("newAccessToken", newAccessToken);
+//     return newAccessToken;
+//   } catch (err) {
+//     console.error("Error handling refresh:", err);
+//     throw new Error(`Failed to handle refresh: ${err}`);
+//   }
+// };

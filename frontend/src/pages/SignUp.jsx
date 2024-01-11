@@ -4,9 +4,10 @@ import { Form, Formik } from "formik";
 import CustomSignInput from "../components/CustomSignInput";
 import { signUpSchema } from "../schemas";
 import CustomSignCheckbox from "../components/CustomSignCheckbox";
-import { signUpUser } from "../API";
 import useStorePackage from "../store";
 import { useState } from "react";
+import axios from "../API/axios";
+import handleApiError from "../API/handleApiError";
 
 /**
  * Component for the Sign Up page.
@@ -26,7 +27,15 @@ const SignIn = () => {
    */
   const onSubmit = async (values, actions) => {
     try {
-      const res = await signUpUser(token, values);
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      };
+      const response = await axios.post("/signup", values, config);
+      const res = await handleApiError(response);
       console.log(res);
       if (res && res.msg === "User registered successfully") {
         alert("Sign up successful!");

@@ -9,9 +9,10 @@ import { Form, Formik } from "formik";
 import CustomSignInput from "../components/CustomSignInput";
 import { signInSchema } from "../schemas";
 import CustomSignCheckbox from "../components/CustomSignCheckbox";
-import { signInUser } from "../API";
 import useStorePackage from "../store";
 import { useState } from "react";
+import axios from "../API/axios";
+import handleApiError from "../API/handleApiError";
 
 /**
  * Sign In page component.
@@ -40,7 +41,15 @@ const SignIn = () => {
    */
   const onSubmit = async (values, actions) => {
     try {
-      const data = await signInUser(token, values);
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      };
+      const response = await axios.post("/signin", values, config);
+      const data = await handleApiError(response);
 
       login(data.accessToken, data.role, data.userName, data.userId);
       console.log("SignIn", data);
