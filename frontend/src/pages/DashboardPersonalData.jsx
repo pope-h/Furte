@@ -60,7 +60,7 @@ const DashboardPersonalData = () => {
       };
       const response = await axios.put(
         "/users",
-        { ...values, id: userId },
+        { data: { ...values, id: userId }},
         config
       );
       await handleApiError(response);
