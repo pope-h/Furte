@@ -43,14 +43,19 @@ const Cart = () => {
             Authorization: `Bearer ${token}`,
           },
         };
-        const response = await Promise.all(
-          cart.map((product) => axios.get(`/products/${product.id}`, config))
+        const responses = await Promise.all(
+          cart.map((product) =>
+            axios.get(`/products/${product._id}`, config).catch((error) => {
+              console.error(`Error fetching product ${product._id}:`, error);
+              return error.response;
+            })
+          )
         );
-        const data = await handleApiError(response);
-        setProductsFromServer(data);
 
+        const products = await Promise.all(responses.map(handleApiError));
+        setProductsFromServer(products);
         // Calculate total here, when product data is available
-        const total = data.reduce(
+        const total = products.reduce(
           (acc, product, index) =>
             acc + product.price * cart[index]?.quantity || 0,
           0

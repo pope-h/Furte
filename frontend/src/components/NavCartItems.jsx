@@ -37,7 +37,6 @@ const NavCartItems = () => {
         );
 
         const products = await Promise.all(responses.map(handleApiError));
-        console.log(products);
         setProductsFromServer(products);
       } catch (err) {
         console.error(err);

@@ -77,10 +77,16 @@ const Checkout = () => {
             Authorization: `Bearer ${token}`,
           },
         };
-        const response = await Promise.all(
-          cart.map((product) => axios.get(`/products/${product.id}`, config))
+        const responses = await Promise.all(
+          cart.map((product) =>
+            axios.get(`/products/${product._id}`, config).catch((error) => {
+              console.error(`Error fetching product ${product._id}:`, error);
+              return error.response;
+            })
+          )
         );
-        const products = await handleApiError(response);
+
+        const products = await Promise.all(responses.map(handleApiError));
         setProductsFromServer(products);
       } catch (err) {
         console.error(err);
