@@ -53,7 +53,7 @@ const AdminProducts = () => {
         console.log('Deleting product:', id, token);
         const response = await axios.delete(
           '/products',
-          { data: { id } },
+          { id },
           config
         );
         await handleApiError(response);
