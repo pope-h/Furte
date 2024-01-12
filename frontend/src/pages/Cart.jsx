@@ -60,7 +60,7 @@ const Cart = () => {
             acc + product.price * cart[index]?.quantity || 0,
           0
         );
-         //console.log("Total:", total.toFixed(2));
+        console.log("Total:", total.toFixed(2));
       } catch (err) {
         console.error(err);
       }
