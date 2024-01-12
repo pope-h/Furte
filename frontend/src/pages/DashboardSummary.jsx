@@ -29,7 +29,7 @@ const DashboardSummary = () => {
         const response = await axios.get(`/users/${userId}`, config);
         const userData = await handleApiError(response);
         setUser(userData);
-        console.log("DashboardSummary", userData);
+         //console.log("DashboardSummary", userData);
       } catch (err) {
         console.error("Error fetching user details:", err);
         alert("Could not fetch user details. Please try again.");

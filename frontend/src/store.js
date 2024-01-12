@@ -160,7 +160,7 @@ const useStorePackage = create((set) => ({
    * @param {string} userId - The ID of the user.
    */
   login: (accessToken, role, userName, userId) => {
-    console.log("User logged in", accessToken, role, userName, userId);
+     //console.log("User logged in", accessToken, role, userName, userId);
     set({
       accessToken,
       userRole: role,

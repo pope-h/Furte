@@ -11,8 +11,8 @@ import { Menu } from "@headlessui/react";
 import { DropdownMenu } from "./popover/DropdownMenu";
 
 const UserSection = ({ accessToken, userName, navigate, logout }) => {
-  console.log("User is logged in", accessToken);
-  console.log("User Name:", userName);
+   //console.log("User is logged in", accessToken);
+   //console.log("User Name:", userName);
   if (accessToken) {
     // User is logged in
     return (

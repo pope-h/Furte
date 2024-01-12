@@ -29,7 +29,7 @@ function SignIn1() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({...userDetails});
+         //console.log({...userDetails});
 
         setIsLoading(true);
 
@@ -52,13 +52,13 @@ function SignIn1() {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log(data.accessToken);
-                console.log(data.role);
+                 //console.log(data.accessToken);
+                 //console.log(data.role);
                 const userToken = data.accessToken;
                 const role = data.role;
 
                 login(userToken);
-                console.log('Successfully signed in:', data);
+                 //console.log('Successfully signed in:', data);
 
                 // The below will be used oce the database is populated and 
                 // the dashboard get much from it.

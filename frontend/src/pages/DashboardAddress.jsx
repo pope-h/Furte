@@ -17,7 +17,7 @@ import handleApiError from "../API/handleApiError";
 const DashboardAddress = () => {
   const store = useStorePackage();
   const userId = store.userId;
-  console.log("DashboardAddress", userId);
+   //console.log("DashboardAddress", userId);
   const [user, setUser] = useState(null);
   const token = store.accessToken;
 
@@ -33,7 +33,7 @@ const DashboardAddress = () => {
         const response = await axios.get(`/users/${userId}`, config);
         const userData = await handleApiError(response);
         setUser(userData);
-        console.log("DashboardAddress", userData);
+         //console.log("DashboardAddress", userData);
       } catch (err) {
         console.error("Error fetching user details:", err);
         alert("Could not fetch user details. Please try again.");

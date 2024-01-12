@@ -23,8 +23,8 @@ const Nav = () => {
     0
   );
 
-  console.log("User token:", accessToken);
-  console.log("User Name:", userName);
+   //console.log("User token:", accessToken);
+   //console.log("User Name:", userName);
 
   useEffect(() => {
     const handleResize = () => {

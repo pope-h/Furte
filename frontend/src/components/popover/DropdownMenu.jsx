@@ -12,7 +12,7 @@ import { MenuItem } from "./MenuItem";
  * @returns {JSX.Element} The rendered dropdown menu component.
  */
 export const DropdownMenu = ({ buttonContent, items, userName }) => {
-  console.log("DropdownMenu:", userName);
+   //console.log("DropdownMenu:", userName);
 
   /**
    * Capitalizes the first letter of a string.
@@ -25,7 +25,7 @@ export const DropdownMenu = ({ buttonContent, items, userName }) => {
   };
 
   userName = capitalizeFirstLetter(userName);
-  console.log("DropdownMenu2:", userName);
+   //console.log("DropdownMenu2:", userName);
 
   return (
     <Menu as="div" className="">

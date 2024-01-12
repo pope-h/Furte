@@ -52,7 +52,7 @@ const createNewProduct = async (req, res) => {
     });
     res.status(201).json({ msg: "Product created successfully." });
     // res.json(result);
-    console.log(result);
+     //console.log(result);
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: "Server Error" });
@@ -101,7 +101,7 @@ const updateProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
   if (!req?.body?.id)
     return res.status(400).json({ msg: "Product ID required." });
-  // console.log(req.body.id);
+  //  //console.log(req.body.id);
 
   const product = await Product.findOne({ _id: req.body.id }).exec();
   if (!product) {

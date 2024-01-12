@@ -27,7 +27,7 @@ const AdminDashBoardLayout = () => {
   }, []);
 
 
-  console.log("User role:", userRole);
+   //console.log("User role:", userRole);
 
   useEffect(() => {
     if (userRole !== "Admin") {

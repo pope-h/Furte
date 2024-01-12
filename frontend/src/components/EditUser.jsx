@@ -19,7 +19,7 @@ import handleApiError from "../API/handleApiError";
 
 const EditUser = () => {
   const { id: userId } = useParams();
-  console.log("EditUser", userId);
+   //console.log("EditUser", userId);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const token = useStorePackage().accessToken;

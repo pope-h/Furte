@@ -28,7 +28,7 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({...newDetails});
+         //console.log({...newDetails});
 
         setIsLoading(true);
 
@@ -47,7 +47,7 @@ function Register() {
             }
 
             const successData = await response.json();
-            console.log(successData);
+             //console.log(successData);
             navigate('/signin');
         } catch (err) {
             console.error('An error occured:', err);

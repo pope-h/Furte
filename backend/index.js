@@ -54,5 +54,5 @@ const PORT = process.env.PORT || 3001;
  * @param {Function} callback - The function to be called when the server starts listening.
  */
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
+     //console.log(`Server is running on port ${PORT}`)
 });

@@ -70,7 +70,7 @@ const ContactUs = () => {
       if (userClickedSend()) {
         setDisplayUserDetails(true);
       }
-      console.log("values", values);
+       //console.log("values", values);
       alert("This information will not be saved!");
     } catch (error) {
       console.error("Error Placing Order:", error);

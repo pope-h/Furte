@@ -15,7 +15,7 @@ const Checkout = () => {
   const cart = store.cart;
   const [productsFromServer, setProductsFromServer] = useState([]);
   const userId = store.userId;
-  console.log("CheckoutId", userId);
+   //console.log("CheckoutId", userId);
   const [user, setUser] = useState(null);
   const token = store.accessToken;
   const [invalidPaymentMethod, setInvalidPaymentMethod] = useState(false);
@@ -32,7 +32,7 @@ const Checkout = () => {
         const response = await axios.get(`/users/${userId}`, config);
         const userData = await handleApiError(response);
         setUser(userData);
-        console.log("CheckoutData", userData);
+         //console.log("CheckoutData", userData);
       } catch (err) {
         console.error("Error fetching user details:", err);
         alert("Could not fetch user details. Please try again.");

@@ -52,7 +52,7 @@ const SignIn = () => {
       const data = await handleApiError(response);
 
       login(data.accessToken, data.role, data.userName, data.userId);
-      console.log("SignIn", data);
+       //console.log("SignIn", data);
       if (data.role === "Admin") {
         navigate("/admin");
       } else {

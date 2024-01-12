@@ -35,18 +35,18 @@
 // // Set a request interceptor to include the authorization header for all requests
 // axiosJWT.interceptors.request.use(
 //   async (config) => {
-//     console.log("axiosJWT interceptor");
+//      //console.log("axiosJWT interceptor");
 //     const { accessToken: token } = useStorePackage.getState();
-//     console.log("accessToken and entering getAuthorizationHeader", token)
+//      //console.log("accessToken and entering getAuthorizationHeader", token)
 //     config.headers = getAuthorizationHeader(token);
-//     console.log("back from getAuthorizationHeader", config.headers)
+//      //console.log("back from getAuthorizationHeader", config.headers)
 
 //     const currentTime = new Date().getTime();
 //     const decodedToken = jwtDecode(token);
 //     if (decodedToken.exp * 1000 < currentTime) {
-//       console.log("token expired and entering refreshToken");
+//        //console.log("token expired and entering refreshToken");
 //       const newAccessToken = await refreshToken(); // Use separate instance
-//       console.log("back from refreshToken", newAccessToken);
+//        //console.log("back from refreshToken", newAccessToken);
 //       config.headers = getAuthorizationHeader(newAccessToken);
 //     }
 
@@ -75,18 +75,18 @@
  * @throws {Error} - If there is an error fetching the products.
  */
 // export const fetchProducts = async (token, searchQuery) => {
-//   console.log("entry point", token);
+//    //console.log("entry point", token);
 //   const apiUrl = searchQuery
 //     ? `/products?search=${encodeURIComponent(searchQuery)}`
 //     : "/products";
 
 //   try {
-//     console.log("about to make request");
+//      //console.log("about to make request");
 //     const res = await axiosJWT.get(apiUrl);
-//     console.log("response received", res)
+//      //console.log("response received", res)
 //     return handleApiError(res);
 //   } catch (err) {
-//     console.log("final fetch error");
+//      //console.log("final fetch error");
 //     console.error("Error fetching products:", err);
 //     throw new Error("Error fetching products");
 //   }
@@ -256,9 +256,9 @@
 //  */
 // export const signInUser = async (token, userData) => {
 //   try {
-//     console.log("entered signInUser function");
+//      //console.log("entered signInUser function");
 //     const res = await axiosInstance.post("/signin", userData);
-//     console.log("Response from /signin:", res);
+//      //console.log("Response from /signin:", res);
 //     return handleApiError(res);
 //   } catch (err) {
 //     console.error("Error signing user in:", err);
@@ -285,17 +285,17 @@
 
 // export const refreshToken = async () => {
 //   try {
-//     console.log("entered refresh token function")
+//      //console.log("entered refresh token function")
 //     const res = await axiosRefresh.get("/refresh", { withCredentials: true });
-//     console.log("back from the server")
+//      //console.log("back from the server")
 
 //     if (res.status !== 200) {
-//       console.log("e don cast");
+//        //console.log("e don cast");
 //       throw new Error("Failed to refresh token");
 //     }
 
 //     const data = await res.data;
-//     console.log("data", data)
+//      //console.log("data", data)
 //     Cookies.set("accessToken", data.accessToken, {
 //       expires: new Date(data.expiresIn),
 //       sameSite: "None",
@@ -315,7 +315,7 @@
 //   try {
 //     // Call your refreshToken function to get the new access token
 //     const newAccessToken = await refreshToken();
-//     console.log("newAccessToken", newAccessToken);
+//      //console.log("newAccessToken", newAccessToken);
 //     return newAccessToken;
 //   } catch (err) {
 //     console.error("Error handling refresh:", err);

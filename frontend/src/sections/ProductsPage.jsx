@@ -17,7 +17,7 @@ const ProductsPage = ({ selectedCategory }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { accessToken: token, searchQuery } = useStorePackage();
-  console.log("ProductPage token", token);
+   //console.log("ProductPage token", token);
 
   const axiosPrivate = useAxiosPrivate();
 
@@ -35,7 +35,7 @@ const ProductsPage = ({ selectedCategory }) => {
         const decodedToken = jwtDecode(token);
 
         if (decodedToken.exp * 1000 < currentTime) {
-          console.log("token expired and entering refreshToken");
+           //console.log("token expired and entering refreshToken");
           await axiosPrivate(); // Call useAxiosPrivate to refresh the token
         }
 
@@ -46,7 +46,7 @@ const ProductsPage = ({ selectedCategory }) => {
           },
         };
 
-        console.log("fetching products", token);
+         //console.log("fetching products", token);
         const response = await axios.get(apiUrl, config);
         const data = await handleApiError(response);
 

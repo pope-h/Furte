@@ -36,10 +36,10 @@ const SignIn = () => {
       };
       const response = await axios.post("/signup", values, config);
       const res = await handleApiError(response);
-      console.log(res);
+       //console.log(res);
       if (res && res.msg === "User registered successfully") {
         alert("Sign up successful!");
-        console.log("Sign up successful:", res);
+         //console.log("Sign up successful:", res);
         navigate("/signin");
       } else {
         console.error("Error signing up:", res?.msg || "Unknown error");

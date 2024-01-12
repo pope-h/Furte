@@ -13,7 +13,7 @@ import axios from "../API/axios";
 const DashboardPersonalData = () => {
   const store = useStorePackage();
   const userId = store.userId;
-  console.log("DashboardPersonalData", userId);
+   //console.log("DashboardPersonalData", userId);
   const [user, setUser] = useState(null);
   const token = store.accessToken;
 
